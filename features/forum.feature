@@ -34,7 +34,7 @@ Cenário:  Deletando meu comentário
 Dado que eu estou logado como “ÍTALO” e senha “4i(124ksas12” 
 E estou na página de visualização de posts
 E vejo um post sobre a cadeira de “ESS” com dois reviews, sendo um deles feito por mim anteriormente: “Muito interessante sua review”.
-E desejo remover esse comentário
+E desejo remover esse comentário.
 
 Quando eu clico nos 3 pontinhos do comentário
 
@@ -55,3 +55,26 @@ Então aparece um pop-up para selecionar “Deletar comentário”.
 E eu clico em “Deletar comentário”
 
 Então o comentário é deletado.
+
+Cenário: Erro ao adicionar o comentário em um post por falta de internet.
+Dado que eu estou logado com o usuário "ÍTALO" e senha “4i(124ksas12” 
+E estou na página de posts
+E vejo um post do filme "Fragmentados"
+E desejo comentar esse review
+
+Quando eu escrevo o comentário "Incrível sua review"
+E aperto em publicar
+
+Então o botão fica carregando
+E aparece um popup de falha ao comentar escrito "Erro ao publicar comentário, tente novamente"
+
+
+Cenário: Erro na hora de deletar comentário de outro usuário.
+Dado que eu estou logado com o usuário "ÍTALO" e senha “4i(124ksas12” 
+E estou na página de posts
+E vejo um comentário negativo em um post que eu gostei
+E desejo deletar ele
+
+Quando eu clico nos 3 pontinhos
+
+Então não aparece a opção de deletar.
