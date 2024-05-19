@@ -1,0 +1,57 @@
+Funcionalidade: Comentar em post
+Cenário:  Adição de comentário
+
+Dado que eu estou logado com o usuário “ÍTALO” e senha “4i(124ksas12” 
+E estou na página de visualização de posts
+E olho para um post sobre a cadeira “ESS” com um review da cadeira elogiando muito ela, 
+E desejo comentar “Muito imteressante sua review”.
+
+Quando eu digito o comentário na caixa de texto “Muito interessante sua review”
+E clico no botão abaixo “Publicar”
+
+Então meu comentário é publicado e fica visível para todos que estiverem visualizando aquele post
+
+Cenário:  Editando meu comentário
+Dado que eu estou logado como “ÍTALO” e senha “4i(124ksas12” 
+E estou na página de visualização de posts
+E vejo um post sobre a cadeira de “ESS” com dois reviews, sendo um deles feito por mim anteriormente: “Muito imteressante sua review”.
+E vejo que houve um erro de grafia nele
+E desejo corrigir ele.
+
+Quando eu clico nos 3 pontinhos do comentário
+
+Então aparece um pop-up para selecionar “Editar comentário” e “Deletar comentário”.
+E eu clico em “Editar comentário”
+E posso editar
+
+Quando eu edito o comentário para “Muito interessante sua review”. 
+E aperto no botão de publicar
+
+Então o comentário é publicado
+E aparece um marcador indicando que houve edição no comentário.
+
+Cenário:  Deletando meu comentário
+Dado que eu estou logado como “ÍTALO” e senha “4i(124ksas12” 
+E estou na página de visualização de posts
+E vejo um post sobre a cadeira de “ESS” com dois reviews, sendo um deles feito por mim anteriormente: “Muito interessante sua review”.
+E desejo remover esse comentário
+
+Quando eu clico nos 3 pontinhos do comentário
+
+Então aparece um pop-up para selecionar “Editar comentário” e “Deletar comentário”.
+E eu clico em “Deletar comentário”
+
+Então meu comentário é deletado.
+
+Cenário:  Removendo comentário de terceiro como administrador
+Dado que eu estou logado como “ADM” e senha “adm2024!” 
+E estou na página de visualização de posts
+E vejo um post sobre a cadeira de “ESS” com dois reviews, sendo um deles: “Muito interessante sua review”.
+E desejo remover esse comentário.
+
+Quando eu clico nos 3 pontinhos do comentário
+
+Então aparece um pop-up para selecionar “Deletar comentário”.
+E eu clico em “Deletar comentário”
+
+Então o comentário é deletado.
