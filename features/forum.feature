@@ -98,3 +98,15 @@ Então o botão de "Publicar" para deixar pública essa edição continua desati
 Quando eu passo o mouse por cima do botão
 
 Então aparece uma mensagem de "O comentário não se alterou"
+
+Cenário: ADM não conseguindo editar comentário de usuário
+Dado que eu estou logado com o user "ADM" e senha "ADM2024!"
+E estou na página de posts
+E vejo um post sobre o filme "Fragmentados"
+E vejo um comentário sobre ele falando "Incrível o filme" publicado pelo user "ÍTALO"
+E desejo editar esse comentário
+
+Quando eu clico nos 3 pontinhos
+
+Então aparece apenas a opção de Deletar comentário
+E não consigo editar o comentário do usuário.
