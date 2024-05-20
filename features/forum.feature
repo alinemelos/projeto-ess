@@ -79,4 +79,22 @@ Quando eu clico nos 3 pontinhos
 
 Então não aparece a opção de deletar.
 
-Cenário: Erro na hora de deletar comentário de outro usuário.
+Cenário: Erro na hora de editar um comentário por escrever o mesmo comentário de antes
+Dado que eu estou logado com o usuário "ÍTALO" e senha “4i(124ksas12” 
+E estou na página de posts
+E vejo um post do filme "Fragmentados"
+E vejo um comentário meu nesse review dizendo o seguinte: "Filme incrível"
+E desejo editar esse comentário
+
+Quando eu aperto nos 3 pontinhos do comentário
+
+Então aparece um popup com as opções "Excluir" e "Editar"
+
+Quando eu escolho "Editar"
+E escrevo "Filme incrível"
+
+Então o botão de "Publicar" para deixar pública essa edição continua desativado
+
+Quando eu passo o mouse por cima do botão
+
+Então aparece uma mensagem de "O comentário não se alterou"
