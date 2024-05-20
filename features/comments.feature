@@ -111,8 +111,6 @@ Quando eu clico nos 3 pontinhos
 
 Então aparece apenas a opção de Deletar comentário
 E não consigo editar o comentário do usuário.
-<<<<<<< HEAD:features/comments.feature
-=======
 
 Cenário: Adicionando comentário vazio
 Dado que eu estou logado com o usuário "ÍTALO" e senha “4i(124ksas12” 
@@ -125,4 +123,3 @@ E não escrevo nada
 E aperto em publicar
 
 Então aparece a mensagem: "Não foi possível publicar o comentário vazio."
->>>>>>> dev:features/forum.feature
