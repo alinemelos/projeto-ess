@@ -72,9 +72,11 @@ E aparece um popup de falha ao comentar escrito "Erro ao publicar comentário, t
 Cenário: Erro na hora de deletar comentário de outro usuário.
 Dado que eu estou logado com o usuário "ÍTALO" e senha “4i(124ksas12” 
 E estou na página de posts
-E vejo um comentário negativo em um post que eu gostei
+E vejo um comentário negativo em um post que eu gostei criado pelo user "CARLA"
 E desejo deletar ele
 
 Quando eu clico nos 3 pontinhos
 
 Então não aparece a opção de deletar.
+
+Cenário: Erro na hora de deletar comentário de outro usuário.
