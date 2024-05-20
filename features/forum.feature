@@ -110,3 +110,15 @@ Quando eu clico nos 3 pontinhos
 
 Então aparece apenas a opção de Deletar comentário
 E não consigo editar o comentário do usuário.
+
+Cenário: Adicionando comentário vazio
+Dado que eu estou logado com o usuário "ÍTALO" e senha “4i(124ksas12” 
+E estou na página de posts
+E vejo um post do filme "Fragmentados"
+E desejo comentar nesse review.
+
+Quando eu clico na caixa de texto para digitar
+E não escrevo nada
+E aperto em publicar
+
+Então aparece a mensagem: "Impossível publicar comentário vazio."
