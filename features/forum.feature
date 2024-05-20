@@ -36,7 +36,7 @@ E estou na página de visualização de posts
 E vejo um post sobre a cadeira de “ESS” com dois reviews, sendo um deles feito por mim anteriormente: “Muito interessante sua review”.
 E desejo remover esse comentário.
 
-Quando eu clico nos 3 pontinhos do comentário
+Quando eu clico nos 3 pontinhos do comentário “Muito interessante sua review”.
 
 Então aparece um pop-up para selecionar “Editar comentário” e “Deletar comentário”.
 E eu clico em “Deletar comentário”
