@@ -121,4 +121,4 @@ Quando eu clico na caixa de texto para digitar
 E não escrevo nada
 E aperto em publicar
 
-Então aparece a mensagem: "Impossível publicar comentário vazio."
+Então aparece a mensagem: "Não foi possível publicar o comentário vazio."
