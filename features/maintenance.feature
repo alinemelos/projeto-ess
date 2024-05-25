@@ -1,4 +1,4 @@
-Scenario: Editar review.
+Scenario: Entrar na edição review.
     Given Estou no sistema com login "‘Aline’", senha "administrador" e no cargo "ADM".
     And Estou no post "Eduardo e Monica" que já existe no sistema.
     When Eu selecionar a opção "Editar".
@@ -14,7 +14,7 @@ Scenario: Remover review.
     And O post "Eduardo e Monica" não terá a review.
 
 Scenario: Falha na edição.
-    Given Estou no sistema com login "‘Aline’", senha "administrador" e no cargo "ADM".
+    Given Estou no sistema com login "Aline", senha "administrador" e no cargo "ADM".
     And Estou no post "Eduardo e Monica" que já existe no sistema.
     And selecionei a opção "Editar"
     When Eu editar o post adicionando a palavra "adorei" ao "conteúdo".
@@ -23,10 +23,19 @@ Scenario: Falha na edição.
     And O post "Eduardo e Monica" não terá a palavra "adorei" em seu "conteúdo", permanecendo igual.
 
 Scenario: Salvar edição de review.
-    Given Estou no sistema com login "‘Aline’", senha "administrador" e no cargo "ADM".
+    Given Estou no sistema com login "Aline", senha "administrador" e no cargo "ADM".
     And Estou no post "Eduardo e Monica" que já existe no sistema.
     And selecionei a opção "Editar"
     When Eu editar o post adicionando a palavra "adorei" ao "conteúdo".
     And Selecionar a opção "Salvar"
     Then Serei redirecionado a "página inicial"
     And O post "Eduardo e Monica" terá a palavra "adorei" em seu "conteúdo"
+
+Scenario: Editar review.
+    Given Estou no sistema com login "Aline", senha "administrador" e no cargo "ADM".
+    And Estou no post "Eduardo e Monica" que já existe no sistema.
+    And Existe uma review do usuario "Duda" com texto "filme muito ruin"
+    When Eu selecionar a opção "Editar".
+    And Mudar o texto para "filme muito ruim"
+    And Salvar edição
+    Then A review do usuario "Duda" terá texto "filme muito ruim"
