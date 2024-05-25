@@ -14,4 +14,12 @@ Scenario: Visualizaçao de "onde assistir?" com filme indisponível
     And O filme "Eduardo e Mônica" não está disponível em nenhuma plataforma
 	When Eu pressiono o botão "onde assistir?"
 	Then Eu visualizo uma janela sem plataformas e com uma caixa de seleção com a mensagem "Desejo ser avisado quando ficar disponível"
+
+Scenario: Ativar alerta para filme indisponível
+	Given Eu estou na página do filme "Eduardo e Mônica"
+    And O filme "Eduardo e Mônica" não está disponível em nenhuma plataforma
+	When Eu pressiono o botão "onde assistir?"
+	Then Eu visualizo uma janela sem plataformas e com uma caixa de seleção com a mensagem "Desejo ser avisado quando ficar disponível"
+    When Eu marco a caixa de seleção "Desejo ser avisado quando ficar disponível"
+    Then Eu visualizo uma mensagem de confirmação "Alerta ativado com sucesso"
     
