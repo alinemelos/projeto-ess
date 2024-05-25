@@ -21,5 +21,5 @@ Scenario: Ativar alerta para filme indisponível
 	When Eu pressiono o botão "onde assistir?"
 	Then Eu visualizo uma janela sem plataformas e com uma caixa de seleção com a mensagem "Desejo ser avisado quando ficar disponível"
     When Eu marco a caixa de seleção "Desejo ser avisado quando ficar disponível"
-    Then Eu visualizo uma mensagem de confirmação "Alerta ativado com sucesso"
+    Then Eu visualizo a mensagem de confirmação "Alerta ativado com sucesso"
     
