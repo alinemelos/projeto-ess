@@ -30,4 +30,11 @@ Scenario: Notificação de mudança na disponibilidade
     When Eu clico no indicador de notificação
     Then Eu visualizo uma mensagem com a disponibilidade do filme "Eduardo e Mônica"
 
-    
+Scenario: Feedback de usuário sobre indiponibilidade do filme
+    Given Eu estou na página do filme "Eduardo e Mônica"
+    And Eu verifiquei que o filme "Eduardo e Mônica" não está disponível na plataforma "Prime Video"
+    And eu visualizo um botão "Não está mais disponível?"
+    When Eu pressiono o botão "Não está mais disponível?"
+    Then Eu visualizo uma janela com uma lista suspensa com opções de serviços de streaming
+    When Eu seleciono a opção "Prime Video" e pressiono o botão "Enviar"
+    Then Eu visualizo uma mensagem de confirmação "Obrigado pelo feedback!"
