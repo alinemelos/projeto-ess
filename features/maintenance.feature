@@ -30,3 +30,4 @@ Scenario: Salvar edição de review.
     And Selecionar a opção "Salvar"
     Then Serei redirecionado a "página inicial"
     And O post "Eduardo e Monica" terá a palavra "adorei" em seu "conteúdo"
+    Then A edição estará salva
