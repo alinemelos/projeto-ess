@@ -23,3 +23,8 @@ Scenario: Busca falhou (GUI)
         When o usuário seleciona a opção de pesquisa
         And o usuário escreve “asdfghjkl” e clica no botão “Pesquisar”
         Then uma mensagem informando que não foram encontrados resultados é exibida
+
+Scenario: Busca falhou (Serviço)
+        Given o filme "asdfghjkl" não esta cadastrado no site
+        When o usuário pesquisa “asdfghjkl”
+        Then o servidor retorna uma mensagem de erro
