@@ -37,7 +37,7 @@ Scenario: Feedback de usuário sobre indiponibilidade do filme
     When Eu pressiono o botão "Não está mais disponível?"
     Then Eu visualizo uma janela com uma lista suspensa com opções de serviços de streaming
     When Eu seleciono a opção "Prime Video" e pressiono o botão "Enviar"
-    Then Eu visualizo a mensagem de confirmação "Obrigado pelo feedback!"
+    Then Eu visualizo uma mensagem de confirmação "Obrigado pelo feedback!"
 
 Scenario: Adicionar plataforma onde um determinado filme está disponível
     Given Eu estou logado como administrador
@@ -46,5 +46,5 @@ Scenario: Adicionar plataforma onde um determinado filme está disponível
     And Eu visualizo um botão "Adicionar plataforma"
     When Eu pressiono o botão "Adicionar plataforma"
     Then Eu visualizo uma janela com uma lista suspensa com opções de serviços de streaming
-    When Eu seleciono a opção "Globoplay" e pressiono o botão "Salvar"
+    When Eu seleciono a opção "Telecine" e pressiono o botão "Enviar"
     Then Eu visualizo uma mensagem de confirmação "Plataforma adicionada com sucesso!"
