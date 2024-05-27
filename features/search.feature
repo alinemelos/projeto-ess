@@ -17,6 +17,13 @@ Scenario: Busca de autor de reviews
         And o usuário escreve “Vingadores” e clica no botão “Pesquisar”
         Then os posts dos filmes “Os Vingadores” e “Vingadores Ultimato” são exibidas
 
+Scenario: Busca de Reviews por categoria
+        Given que o usuário está na página inicial 
+        And a categoria "Ação" está cadastrada e existem filmes categorizados em "Ação"
+        When o usuário seleciona a opção de pesquisa
+        And o usuário escreve “Ação” e clica no botão “Pesquisar”
+        Then Reviews de filmes de “Ação” são exibidas
+
 Scenario: Busca falhou (GUI)
         Given que o usuário está na página inicial
         And o filme "asdfghjkl" não esta cadastrado no site
