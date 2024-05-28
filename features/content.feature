@@ -26,6 +26,7 @@ When Eu clico no componente "Filme"
 And Escolho a opção "Editar" dentre as opções "Excluir" e "Editar"
 And Modifico as informações do campo sinopse de "Steve Spielberg" para "Michael Radford"
 Then A informação é editada com sucesso
+And O usuário retorna para a página "Feed"
 
 
 Scenario: Falha no Cadastro
