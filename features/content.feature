@@ -19,6 +19,15 @@ And Clico "Sim" na tela de confirmar exclusão
 Then O filme é removido com sucesso
 And O usuário retorna para a página "Feed"
 
+Scenario: Edição das informações do filme
+Given Estou logado no usuário "Administrador"
+And Estou na página "Feed" e esejo editar dados do filme "1984" que está cadastrado no sistema
+When Eu clico no componente "Filme"
+And Escolho a opção "Editar" dentre as opções "Excluir" e "Editar"
+And Modifico as informações do campo sinopse de "Steve Spielberg" para "Michael Radford"
+Then A informação é editada com sucesso
+
+
 Scenario: Falha no Cadastro
 Given Estou logado no usuário "Administrador"
 And Estou na página "Feed" e quero adicionar o filme "Barbie"
