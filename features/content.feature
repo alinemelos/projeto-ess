@@ -19,3 +19,10 @@ And Clico "Sim" na tela de confirmar exclusão
 Then O filme é removido com sucesso
 And O usuário retorna para a página "Feed"
 
+Scenario: Falha no Cadastro
+Given Estou logado no usuário "Administrador"
+And Estou na página "Feed" e quero adicionar o filme "Barbie"
+When Eu pressiono o botão "adicionar" na tela "adicionar mídia"
+And Preencho as informações "Título", "Ano", "Duração", "Gênero" e "Sinopse" com os dados " ", " ", "1h54m", "Comédia" e "Barbie parte para o mundo humano em busca da verdadeira felicidade." respectivamente
+Then Aparece a mensagem de erro "Os campos 'Título' e 'Ano'" não foram preenchidos
+And O usuario volta para a tela de "adicionar mídia"
