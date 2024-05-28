@@ -10,6 +10,13 @@ Scenario: Busca de autor de reviews
         And o usuário escreve “usuário1234” e clica no botão “Pesquisar”
         Then Reviews realizadas pelo usuário “usuário1234” são exibidas
 
+Scenario: Busca de autor de reviews
+        Given que o usuário está na página inicial
+        And o usuário "movie_mover_1490" está cadastrado no site
+        When o usuário seleciona a opção de pesquisa
+        And o usuário escreve “movie_mover_1490” e clica no botão “Pesquisar”
+        Then Reviews realizadas pelo usuário “movie_mover_1490” são exibidas
+
 Scenario: Busca de filme por nome
         Given que o usuário está na página inicial
         And os filmes "Os Vingadores" e "Os Vingadores Ultimato" estão cadastrados no site
