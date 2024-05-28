@@ -27,7 +27,6 @@ And Escolho a opção "Editar" dentre as opções "Excluir" e "Editar"
 And Modifico as informações do campo sinopse de "Steve Spielberg" para "Michael Radford"
 Then A informação é editada com sucesso
 And O usuário retorna para a página "Feed"
-And Remover erro adicionado para a questão na linha 30
 
 Scenario: Falha no Cadastro
 Given Estou logado no usuário "Administrador"
@@ -46,9 +45,3 @@ And Escolho a opção "Editar" dentre as opções "Excluir" e "Editar"
 And Não modifico nenhuma das informações "Título", "Ano", "Duração", "Gênero" e "Sinopse" 
 Then A mensagem de erro "Nenhuma modificação foi feita"
 And O usuário retorna para a página "Feed"
-
-Scenario: Error
-Given Error
-And Error
-When Error
-Then Error
