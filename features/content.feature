@@ -26,3 +26,13 @@ When Eu pressiono o botão "adicionar" na tela "adicionar mídia"
 And Preencho as informações "Título", "Ano", "Duração", "Gênero" e "Sinopse" com os dados " ", " ", "1h54m", "Comédia" e "Barbie parte para o mundo humano em busca da verdadeira felicidade." respectivamente
 Then Aparece a mensagem de erro "Os campos 'Título' e 'Ano'" não foram preenchidos
 And O usuario volta para a tela de "adicionar mídia"
+
+
+Scenario: Falha ao tentar editar arquivo sem modificações
+Given Estou logado no usuário "Administrador"
+And Estou na página "Feed" e esejo editar dados do filme "1984" que está cadastrado no sistema
+When Eu clico no componente "Filme"
+And Escolho a opção "Editar" dentre as opções "Excluir" e "Editar"
+And Não modifico nenhuma das informações "Título", "Ano", "Duração", "Gênero" e "Sinopse" 
+Then A mensagem de erro "Nenhuma modificação foi feita"
+And O usuário retorna para a página "Feed"
