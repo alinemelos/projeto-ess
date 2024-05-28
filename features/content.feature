@@ -27,7 +27,7 @@ And Escolho a opção "Editar" dentre as opções "Excluir" e "Editar"
 And Modifico as informações do campo sinopse de "Steve Spielberg" para "Michael Radford"
 Then A informação é editada com sucesso
 And O usuário retorna para a página "Feed"
-
+And Remover erro adicionado para a questão na linha 30
 
 Scenario: Falha no Cadastro
 Given Estou logado no usuário "Administrador"
