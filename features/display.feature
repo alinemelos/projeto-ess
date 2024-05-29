@@ -18,3 +18,5 @@ and existe uma resenha do usuário “Ellian” com o número de curtidas “50�
 and o usuário ainda não curtiu a resenha em questão
 When ele decide interagir com essa resenha, clicando em curtir, 
 Then o sistema atualizará o número de curtidas em tempo real na resenha correspondente do valor “50” para “51”
+
+
