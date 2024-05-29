@@ -12,5 +12,12 @@ Given que o usuário está na página do filme “Eduardo e Mônica”,
 When ele rola a página para a seção de resenhas de usuários,
 Then ele verá uma lista de resenhas escritas por outros usuários, com cada resenha mostrando o nome do autor, a data da publicação, a nota atribuída e o texto da resenha.
 
+Scenario:  Feedback e Avaliação de Resenhas - curtir
+Given que o usuário está na página do filme “Eduardo e Mônica”, 
+and existe uma resenha do usuário “Ellian” com o número de curtidas “50”
+and o usuário ainda não curtiu a resenha em questão
+When ele decide interagir com essa resenha, clicando em curtir, 
+Then o sistema atualizará o número de curtidas em tempo real na resenha correspondente do valor “50” para “51”
+
 
 
