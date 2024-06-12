@@ -1,6 +1,8 @@
+const { v1: uuidv1 } = require('uuid');
+
 module.exports = [
     {
-      filme_id: 1,
+      filme_id: uuidv1(),
       poster: "https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg",
       nome: "Oppenheimer",
       ano: 2023,
@@ -11,7 +13,7 @@ module.exports = [
       posts: []
     },
     {
-      filme_id: 2,
+      filme_id: uuidv1(),
       poster: "https://example.com/poster2.jpg",
       nome: "Movie 2",
       ano: 2021,

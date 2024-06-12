@@ -8,4 +8,5 @@ router.get("/", controller.get);
 // Miguel
 router.post("/posts", post_controller.createPost);
 
+
 module.exports = router;
