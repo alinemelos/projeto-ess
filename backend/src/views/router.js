@@ -7,6 +7,7 @@ router.get("/", controller.get);
 
 // Miguel
 router.post("/posts", post_controller.createPost);
+router.delete("/posts", post_controller.deletePost);
 
 
 module.exports = router;
