@@ -3,8 +3,8 @@ const movies = require('../db/db');
 
 exports.createPost = (req, res) => {
   try {
-    const { user_id, filme_id, nota, review, comments } = req.body;
-    const newPost = new Post(user_id, filme_id, nota, review, comments);
+    const { user_id, filme_id, nota, review } = req.body;
+    const newPost = new Post(user_id, filme_id, nota, review);
     if (!newPost.validateNota()) {
       return res.status(400).json({ error: 'Nota must be between 0 and 5.' });
     }
