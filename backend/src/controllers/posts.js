@@ -47,3 +47,29 @@ exports.deletePost = (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+exports.updatePost = (req, res) => {
+  try {
+    const { post_id, user_id, filme_id, nota, review } = req.body;
+
+    // Find the movie by filme_id
+    const movie = movies.find(m => m.filme_id === filme_id);
+    if (!movie) {
+      return res.status(404).json({ error: 'Movie not found' });
+    }
+
+    // Find the post by post_id and user_id
+    const post = movie.posts.find(post => post.post_id === post_id && post.user_id === user_id);
+    if (!post) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
+
+    // Update the post with the new data
+    post.nota = nota;
+    post.review = review;
+
+    res.status(200).json({ message: 'Post updated successfully', post });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
