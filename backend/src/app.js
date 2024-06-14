@@ -7,6 +7,7 @@ app.use(express.json()); // Add this line to parse JSON request bodies
 
 app.use("/", router);
 
+// Miguel
 app.use("/posts", postRouter);
 
 app.listen(3000, () => {
