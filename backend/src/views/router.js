@@ -12,6 +12,6 @@ router.delete("/posts", post_controller.deletePost);
 
 //Aline
 router.put("/review", put_controller.putEditR);
-router.delete("/review/:id", put_controller.deleteR);
+router.delete("/review", put_controller.deleteR);
 
 module.exports = router;

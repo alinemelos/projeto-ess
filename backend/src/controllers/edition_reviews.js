@@ -35,14 +35,14 @@ exports.putEditR = (req, res) => {
     }
 };
 
-/*
   exports.deleteR = (req, res) => {
     try {
       const { post_id, user_id, filme_id, review } = req.body;
 
       console.log('Received request with:', { post_id, user_id, filme_id });
 
-  
+      
+
       // Find the movie by filme_id
       const movie = movies.find(m => m.filme_id === filme_id);
       if (!movie) {
@@ -58,17 +58,18 @@ exports.putEditR = (req, res) => {
 
         return res.status(404).json({ error: 'Post not found' });
       }
-  
+      const postIndex = movie.posts.findIndex(p => p.post_id === post_id && p.user_id === user_id);
       // Remove the post from the movie's posts array
-      movie.posts.review.splice(index, 1);
-  
-      res.status(200).json({ message: 'Post deleted successfully' });
+      //movie.posts.splice(index, 1);
+      movie.posts[postIndex].review = "";
+
+      res.status(200).json({ message: 'Review post deleted successfully' });
 
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
   };
-*/
+
 /*exports.deleteR = (req, res) => {
   
   const {id} = request.params;
@@ -78,10 +79,10 @@ exports.putEditR = (req, res) => {
 
   return res.status(200).send();
 
-};*/
-
-exports.deleteR = (req, res) => {
-  const { id } = req.params; // Corrected request to req
+};
+/*
+exports.deleteR = ('controllers/edition_reviews/:id', req, res) => {
+  const id  = req.params.id * 1; // Corrected request to req
   const index = movies.posts.findIndex(post => post.post_id === id); // Corrected post_id to id
 
   if (index !== -1) {
@@ -90,5 +91,5 @@ exports.deleteR = (req, res) => {
   } else {
     return res.status(404).send('Post not found');
   }
-};
+};*/
 
