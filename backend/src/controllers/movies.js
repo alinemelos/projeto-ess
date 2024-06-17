@@ -62,3 +62,39 @@ exports.delMovie = (req, res) => {
     return res.status(500).json({ error: 'Erro ao remover o filme' });
   }
 };
+
+
+exports.editMovie = (req, res) => {
+  try {
+    const { filme_id, nome, ano, duracao, genero, sinopse, imagem, plataformas } = req.body;
+
+    // Find the movie with the given filme_id
+    const movieIndex = movies.findIndex(movie => movie.filme_id === filme_id);
+
+    if (movieIndex === -1) {
+      // If the movie is not found, return a 404 error
+      return res.status(404).json({ error: 'Filme não encontrado' });
+    }
+
+    // Validate the fields
+    if (!nome && !ano && !duracao && !genero && !sinopse && !imagem && !plataformas) {
+      return res.status(400).json({ error: 'Nenhum campo para atualizar' });
+    }
+
+    // Update the movie details
+    if (nome) movies[movieIndex].nome = nome;
+    if (ano) movies[movieIndex].ano = ano;
+    if (duracao) movies[movieIndex].duracao = duracao;
+    if (genero) movies[movieIndex].genero = genero;
+    if (sinopse) movies[movieIndex].sinopse = sinopse;
+    if (imagem) movies[movieIndex].poster = imagem;
+    if (plataformas) movies[movieIndex].plataformas = plataformas;
+
+    // Return the updated movie
+    res.status(200).json(movies[movieIndex]);
+    
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Erro ao editar o filme' });
+  }
+};
