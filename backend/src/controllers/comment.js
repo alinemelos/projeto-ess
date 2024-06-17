@@ -3,6 +3,10 @@ const Comment = require('../models/comment');
 exports.createComment = (req, res) => {
     try {
         const { user_id, response_id, comment } = req.body;
+        
+        if (comment === '') {
+            return res.status(400).json({ error: 'Comment not found' });
+        }
 
         const newComment = new Comment(user_id, response_id, comment);
 
@@ -29,11 +33,11 @@ exports.deleteComment = (req, res) => {
         }
 
         const resposta = Comment.findById(response_id, true, user_id);
-
+        
         if (!resposta) {
-            return res.status(400).json({ error: 'Comment not found' });
+            return res.status(400).json({ error: 'Comment not found or user not authorized' });
         }
-
+        
         res.status(200).json({ message: 'Comment deleted successfully' });
     } catch (error) {
         res.status(400).json({ error: error.message });

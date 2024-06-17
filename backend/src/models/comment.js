@@ -76,7 +76,7 @@ class Comment {
                         comment.comment = newCommentText; // Atualiza o texto do comentário
                         return comment;
                     } else {
-                        return null; // Usuário não autorizado
+                        return false; // Usuário não autorizado
                     }
                 }
             }
