@@ -18,7 +18,7 @@ module.exports = [
           post_id: uuidv4(),
           user_id: 1,
           filme_id: filme1_id,
-          nota: 0.5,
+          nota: 2,
           review: "Horrivel!",
           comments: []
         },

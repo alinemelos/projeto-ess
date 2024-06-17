@@ -12,7 +12,7 @@ exports.createPost = (req, res) => {
     // Find the movie by filme_id
     const movie = movies.find(m => m.filme_id === filme_id);
     if (!movie) {
-      return res.status(404).json({ error: 'Movie not found' });
+      return res.status(404).json({ error: 'Movie not found k7' });
     }
 
     // Add the new post to the movie's posts array
@@ -22,6 +22,7 @@ exports.createPost = (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
 
 exports.deletePost = (req, res) => {
   try {
