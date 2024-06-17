@@ -37,3 +37,28 @@ exports.addMovie = (req, res) => {
     return res.status(500).json({ error: 'Erro ao adicionar o filme' });
   }
 };
+
+
+exports.delMovie = (req, res) => {
+  try {
+    const { filme_id } = req.body;
+    
+    // Find the index of the movie with the given filme_id
+    const movieIndex = movies.findIndex(movie => movie.filme_id === filme_id);
+
+    if (movieIndex === -1) {
+      // If the movie is not found, return a 404 error
+      return res.status(404).json({ error: 'Filme não encontrado' });
+    }
+
+    // Remove the movie from the array
+    movies.splice(movieIndex, 1);
+    
+    // Return a success response
+    res.status(200).json({ message: 'Filme removido com sucesso' });
+    
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: 'Erro ao remover o filme' });
+  }
+};
