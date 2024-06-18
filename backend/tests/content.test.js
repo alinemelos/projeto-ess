@@ -46,6 +46,7 @@ defineFeature(content_feature, (test) => {
             }));
         });
     });
+
     test('Remoção de Filme', ({ given, and, when, then }) => {
         given(/^Estou na página "(.*)"$/, (arg0) => {
 
@@ -84,5 +85,46 @@ defineFeature(content_feature, (test) => {
             expect(filme).toBeUndefined();
         });
     });
+
+    test('Edição das informações do filme', ({ given, and, when, then }) => {
+
+        given(/^Estou na página "(.*)" e esejo editar as informações do filme "(.*)" que está cadastrado no sistema$/, async(arg0, arg1) => {
+            const response = await axios.get('http://localhost:3000/');
+            filme_id = response.data.find((filme) => filme.nome === arg1).filme_id;
+        });
+        
+        and(/^Ele possui os campos "(.*)" e "(.*)" com os valores "(.*)" e "(.*)" respectivamente$/, async(arg0, arg1, arg2, arg3) => {
+            const response = await axios.get('http://localhost:3000/');
+            filme_genero = response.data.find((filme) => filme.filme_id === filme_id).genero;
+            filme_sinopse = response.data.find((filme) => filme.filme_id === filme_id).sinopse;
+        
+            expect(filme_genero).toEqual('Comédia', `Expected genero to be "Comédia" but got "${filme_genero}"`);
+            expect(filme_sinopse).toEqual('Placeholder', `Expected sinopse to be "Placeholder" but got "${filme_sinopse}"`);
+
+        });
+    
+        when(/^Eu clico no componente "(.*)" e escolho a opção "(.*)"$/, (arg0, arg1) => {
+    
+        });
+    
+        and(/^Modifico as informações do campo "(.*)" e "(.*)" para "(.*)" e "(.*)" respectivamente$/, async(arg0, arg1, arg2, arg3) => {
+            const content_test = {
+                "filme_id": filme_id,
+                "sinopse": arg3,
+                "genero": arg2
+            };
+            await axios.put("http://localhost:3000/movie", content_test);
+        });
+    
+        then(/^A informação é editada com sucesso e o usuário retorna para a página "(.*)"$/, async(arg0) => {
+            const response = await axios.get('http://localhost:3000/');
+            const filme = response.data.find(filme => filme.filme_id === filme_id);
+            expect(filme).toEqual(expect.objectContaining({ 
+                "sinopse": "Mil novecentos e oitenta e quatro é um romance distópico do escritor inglês George Orwell. parte para o mundo humano em busca da verdadeira felicidade.",
+                "genero": "Romance"
+            }));
+        });
+    });
 });
+
 

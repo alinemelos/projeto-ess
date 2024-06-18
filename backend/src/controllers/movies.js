@@ -4,7 +4,7 @@ const movies = require('../db/db');
 exports.addMovie = (req, res) => {
   try {
     const { nome, ano, duracao, genero, sinopse, poster } = req.body;
-    console.log(nome, ano, duracao, genero, sinopse, poster)
+    //console.log(nome, ano, duracao, genero, sinopse, poster)
     // Validate the fields
     if (!nome) {
       return res.status(400).json({ error: 'O campo nome está vazio' });

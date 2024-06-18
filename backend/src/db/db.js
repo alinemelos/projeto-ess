@@ -42,6 +42,17 @@ module.exports = [
       diretor: "Director 2",
       genero: 2,
       posts: []
+    },
+    {
+      filme_id: 40028922,
+      poster: "https://image.tmdb.org/t/p/original/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
+      nome: "1984",
+      ano: 1984,
+      duracao: "1h33",
+      sinopse: "Placeholder",
+      genero: "Comédia",
     }
+
+
   ];
   

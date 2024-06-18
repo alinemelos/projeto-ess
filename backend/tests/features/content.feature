@@ -15,3 +15,10 @@ And  Desejo remover o filme "Oppenheimer" que está cadastrado no sistema com os
 When Eu clico no componente "Filme"
 And Escolho a opção "Excluir" e clico "Sim" na tela de confirmar exclusão
 Then O filme é removido com sucesso da página "Feed"
+
+Scenario: Edição das informações do filme
+Given Estou na página "Feed" e esejo editar as informações do filme "1984" que está cadastrado no sistema
+And Ele possui os campos "genero" e "sinopse" com os valores "Comédia" e "Placeholder" respectivamente
+When Eu clico no componente "Filme" e escolho a opção "Editar"
+And Modifico as informações do campo "genero" e "sinopse" para "Romance" e "Mil novecentos e oitenta e quatro é um romance distópico do escritor inglês George Orwell. parte para o mundo humano em busca da verdadeira felicidade." respectivamente
+Then A informação é editada com sucesso e o usuário retorna para a página "Feed"
