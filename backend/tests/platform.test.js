@@ -167,4 +167,54 @@ defineFeature(comment_feature, test => {
             }
         });
     });
+
+    test('Adicionar plataforma sem preencher todos os campos', ({ given, when, and, then }) => {
+        let filme_id;
+        
+        given(/^Eu estou na página do filme "(.*)"$/, async (filmeNome) => {
+            try {
+                // Fazendo a requisição GET
+                const response = await axios.get('http://localhost:3000/');
+                // Armazenando o filme_id do filme especificado
+                const filme = response.data.find((filme) => filme.nome === filmeNome);
+                if (filme) {
+                    filme_id = filme.filme_id;
+                } else {
+                    throw new Error(`Filme "${filmeNome}" não encontrado.`);
+                }
+            } catch (error) {
+                console.error(error.message);
+            }
+        });
+
+        when(/^Eu pressiono o botão "(.*)"$/, (arg0) => {
+            // Simulação do clique no botão
+        });
+
+        and(/^Eu visualizo um "(.*)" na tela$/, (arg0) => {
+            // Simulação de visualizar o formulário na tela
+        });
+
+        and(/^Eu preencho "(.*)" no campo "(.*)", "(.*)" no campo "(.*)" e clico em "(.*)"$/, async (url, arg1, img, arg3, arg5) => {
+            try {
+                // Fazendo a requisição POST
+                const platform_test = {
+                    filme_id: filme_id,
+                    url: url,
+                    img: img
+                };
+                const response = await axios.post('http://localhost:3000/platform', platform_test);
+            } catch (error) {
+                expect(error.response.status).toBe(400);
+                expect(error.response.data).toEqual({
+                    "error": "All fields (filme_id, nome, url, image) are required."
+                });
+            }
+        });
+
+        then('Eu vejo uma mensagem de erro', () => {
+            // Simulação de visualizar a mensagem de erro
+        });
+    });
+
 });

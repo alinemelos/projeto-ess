@@ -4,6 +4,12 @@ const movies = require('../db/db');
 exports.createPlatform = (req, res) => {
   try {
     const { filme_id, nome, url, image } = req.body;
+
+    // Verificar se todos os campos obrigatórios foram fornecidos
+    if (!filme_id || !nome || !url || !image) {
+        return res.status(400).json({ error: 'All fields (filme_id, nome, url, image) are required.' });
+      }
+
     const newPlatform = new Platform(filme_id, nome, url, image);
 
     // Find the movie by filme_id
