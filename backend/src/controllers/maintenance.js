@@ -19,8 +19,6 @@ exports.putEditR = (req, res) => {
         // Encontrar o post específico pelo post_id
         const post = movie.posts.find(post => post.post_id === post_id);
         
-        
-
         // Atualizar apenas nota e review (e outras propriedades que deseja permitir)
         if (nota !== undefined) {
             post.nota = nota;
@@ -40,9 +38,6 @@ exports.putEditR = (req, res) => {
       const { post_id, user_id, filme_id, review } = req.body;
 
       console.log('Received request with:', { post_id, user_id, filme_id });
-
-      
-
       // Find the movie by filme_id
       const movie = movies.find(m => m.filme_id === filme_id);
       if (!movie) {
@@ -52,16 +47,14 @@ exports.putEditR = (req, res) => {
       }
   
       // Find the post by post_id and user_id
-      const index = movie.posts.findIndex(post => post.post_id === post_id && post.user_id === user_id);
+      const index = movie.posts.findIndex(post => post.post_id === post_id);
       if (index === -1) {
         console.log('Post not found');
 
         return res.status(404).json({ error: 'Post not found' });
       }
-      const postIndex = movie.posts.findIndex(p => p.post_id === post_id && p.user_id === user_id);
-      // Remove the post from the movie's posts array
       //movie.posts.splice(index, 1);
-      movie.posts[postIndex].review = "";
+      movie.posts[index].review = "";
 
       res.status(200).json({ message: 'Review post deleted successfully' });
 
