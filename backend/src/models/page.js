@@ -1,9 +1,9 @@
 
 class Page{
-    constructor(filme_id, titulo, image_url, sinopse, diretor, ano, genero, duracao, faixa_etaria, posts = []) {
+    constructor(filme_id, nome, image_url, sinopse, diretor, ano, genero, duracao, faixa_etaria, posts = []) {
         this.filme_id = filme_id;
         this.poster = image_url;    
-        this.titulo = titulo;
+        this.nome = nome;
         this.ano = ano;
         this.duracao = duracao;
         this.sinopse = sinopse;
