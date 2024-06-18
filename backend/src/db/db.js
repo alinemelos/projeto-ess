@@ -12,9 +12,8 @@ module.exports = [
       duracao: 181,
       sinopse: "The story of J. Robert Oppenheimer’s role in the development of the atomic bomb during World War II.",
       diretor: "Christopher Nolan",
-      genero: 3,
       plataformas: [
-        {
+      {
           filme1_id: filme1_id,
           nome: "Globoplay",
           url: "https://globoplay.com/oppenheimer",
@@ -27,6 +26,7 @@ module.exports = [
           image: "https://netflix.com/logo.png",
       }
       ],
+      genero: "comedia",
       posts: [
         {
           post_id: uuidv4(),
@@ -54,8 +54,44 @@ module.exports = [
       duracao: 130,
       sinopse: "Synopsis of movie 2",
       diretor: "Director 2",
-      genero: 2,
       plataformas: [],
+      genero: "comedia",
+      posts: []
+    },
+    {
+      filme_id: "d9a92df2-2d0e-11ef-85cc-15bfccf04c98",
+      poster: "https://example.com/poster3.jpg",
+      nome: "Os Vingadores",
+      ano: 2021,
+      duracao: 130,
+      sinopse: "Synopsis of movie 3",
+      diretor: "Director 3",
+      plataformas: [],
+      genero: "Ação",
+      posts: []
+    },
+    {
+      filme_id: "d9a92df3-2d0e-11ef-85cc-15bfccf04c99",
+      poster: "https://example.com/poster4.jpg",
+      nome: "Vingadores Ultimato",
+      ano: 2021,
+      duracao: 130,
+      sinopse: "Synopsis of movie 4",
+      diretor: "Director 4",
+      plataformas: [],
+      genero: "comedia",
+      posts: []
+    },
+    {
+      filme_id: "d9a92df3-2d0e-11ef-85cc-15bfccf04c00",
+      poster: "https://example.com/poster5.jpg",
+      nome: "A era do gelo",
+      ano: 2021,
+      duracao: 130,
+      sinopse: "Synopsis of movie 5",
+      diretor: "Director 5",
+      plataformas: [],
+      genero: "comedia",
       posts: []
     }
   ];
