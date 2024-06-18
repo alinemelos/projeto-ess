@@ -1,11 +1,11 @@
 Feature: Mostrar reviews e notas
 
 Scenario: Visualização da Sinopse do Filme
-    Given que existe o filme "Eduado e Mônica" e o mesmo está cadastrado
+    Given que existe o filme "Oppenheimer" e o mesmo está cadastrado
     And o usuário acessa o post do filme por meio da barra de busca ou da tela inicial
     When usuário está no post do filme
     And ele acessa a página ao clicar no post,
-    Then ele verá a sinopse do filme localizada na primeira parte da página "Lorem Ipsum is simply dummy text of the printing and typesetting industry", logo abaixo do título do filme: "Eduardo e Mônica" e informações básicas como o gênero: "Comédia", duração: "1 hora e 54 min" e ano de lançamento: "2020"
+    Then ele verá a sinopse do filme localizada na primeira parte da página "Lorem Ipsum is simply dummy text of the printing and typesetting industry", logo abaixo do título do filme: "Oppenheimer" e informações básicas como o gênero: "Drama", duração: "3 hora e 9 min" e ano de lançamento: "2023"
 
 Scenario:  Visualização de Resenhas e Notas na Página do Filme
     Given que o usuário está na página do filme “Eduardo e Mônica”,
