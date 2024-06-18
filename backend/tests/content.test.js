@@ -26,7 +26,7 @@ defineFeature(content_feature, (test) => {
             console.log("...................AQUI..................");
             const response = await axios.post('http://localhost:3000/movie', content_test);
             filme_id = response.data.filme_id;
-            console.log(filme_id);
+            //console.log(filme_id);
             
 
         });
@@ -46,4 +46,43 @@ defineFeature(content_feature, (test) => {
             }));
         });
     });
+    test('Remoção de Filme', ({ given, and, when, then }) => {
+        given(/^Estou na página "(.*)"$/, (arg0) => {
+
+        });
+
+        and(/^Desejo remover o filme "(.*)" que está cadastrado no sistema com os dados "(.*)", "(.*)", "(.*)", "(.*)" e "(.*)"$/, async(arg0, arg1, arg2, arg3, arg4, arg5) => {
+            const content_test = {
+                "nome": arg0,
+                "ano": arg1,
+                "duracao": arg2,
+                "genero": arg3,
+                "sinopse": arg4,
+                "poster": arg5
+            };
+    
+            const response = await axios.post('http://localhost:3000/movie', content_test);
+            filme_id = response.data.filme_id;
+
+        });
+
+        when(/^Eu clico no componente "(.*)"$/, (arg0) => {
+
+        });
+
+        and(/^Escolho a opção "(.*)" e clico "(.*)" na tela de confirmar exclusão$/, async(arg0, arg1) => {
+
+            const data = {
+                filme_id: filme_id
+            };
+            await axios.delete('http://localhost:3000/movie', { data });
+        });
+
+        then(/^O filme é removido com sucesso da página "(.*)"$/, async(arg0) => {
+            const response = await axios.get('http://localhost:3000');
+            const filme = response.data.find(filme => filme.filme_id === filme_id);
+            expect(filme).toBeUndefined();
+        });
+    });
 });
+
