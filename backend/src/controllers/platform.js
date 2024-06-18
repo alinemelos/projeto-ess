@@ -12,6 +12,12 @@ exports.createPlatform = (req, res) => {
       return res.status(404).json({ error: 'Movie not found' });
     }
 
+    // checar se a plataforma já existe
+    const platformExists = movie.plataformas.some(platform => platform.nome === nome);
+    if (platformExists) {
+      return res.status(400).json({ error: 'Platform already exists' });
+    }
+
     // Add the new platform to the movie's platforms array
     movie.plataformas.push(newPlatform);
     res.status(201).json(newPlatform);
