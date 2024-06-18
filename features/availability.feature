@@ -31,5 +31,15 @@ Scenario: Adicionar plataforma onde um determinado filme está disponível
     And Eu visualizo um botão "Adicionar plataforma"
     When Eu pressiono o botão "Adicionar plataforma"
     Then Eu visualizo uma janela com uma lista suspensa com opções de serviços de streaming
-    When Eu seleciono a opção "Telecine" e pressiono o botão "Enviar"
+    When Eu seleciono a opção "Globoplay" e pressiono o botão "Enviar"
     Then Eu visualizo uma mensagem de confirmação "Plataforma adicionada com sucesso!"
+
+Scenario: Remover plataforma onde um determinado filme está disponível
+    Given Eu estou logado como administrador
+    And Eu estou na página do filme "Eduardo e Mônica"
+    And Eu verifiquei que o filme "Eduardo e Mônica" não está disponível na plataformas "Globoplay"
+    And Eu visualizo um botão "Remover plataforma"
+    When Eu pressiono o botão "Remover plataforma"
+    Then Eu visualizo uma janela com uma lista suspensa com opções de serviços de streaming
+    When Eu seleciono a opção "Globoplay" e pressiono o botão "Enviar"
+    Then Eu visualizo uma mensagem de confirmação "Plataforma removida com sucesso!"
