@@ -4,7 +4,7 @@ const movies = require('../db/db')
 exports.showpage = (req, res) => {
     try{
 
-        const {filme_id} = req.body;
+        const {nome, filme_id} = req.body;
 
  
         // Find the movie by filme_id
