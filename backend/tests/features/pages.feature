@@ -1,7 +1,7 @@
 Feature: Mostrar reviews e notas
 
 Scenario: Visualização da Sinopse do Filme
-    Given que existe o filme "Oppenheimer" e o mesmo está cadastrado
+    Given que existe o filme "Eduado e Mônica" e o mesmo está cadastrado
     And o usuário acessa o post do filme por meio da barra de busca ou da tela inicial
     When usuário está no post do filme
     And ele acessa a página ao clicar no post,
@@ -18,7 +18,6 @@ Scenario:  Feedback e Avaliação de Resenhas - curtir
     And o usuário ainda não curtiu a resenha em questão
     When ele decide interagir com essa resenha, clicando em curtir, 
     Then o sistema atualizará o número de curtidas em tempo real na resenha correspondente do valor “50” para “51”
-
 
 
 
