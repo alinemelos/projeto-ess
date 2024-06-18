@@ -12,6 +12,20 @@ module.exports = [
       duracao: 181,
       sinopse: "The story of J. Robert Oppenheimer’s role in the development of the atomic bomb during World War II.",
       diretor: "Christopher Nolan",
+      plataformas: [
+      {
+          filme1_id: filme1_id,
+          nome: "Globoplay",
+          url: "https://globoplay.com/oppenheimer",
+          image: "https://globoplay.com/logo.png",
+      },
+      {
+          filme1_id: filme1_id,
+          nome: "Netflix",
+          url: "https://netflix.com/oppenheimer",
+          image: "https://netflix.com/logo.png",
+      }
+      ],
       genero: "comedia",
       posts: [
         {
@@ -40,6 +54,7 @@ module.exports = [
       duracao: 130,
       sinopse: "Synopsis of movie 2",
       diretor: "Director 2",
+      plataformas: [],
       genero: "comedia",
       posts: []
     },
@@ -51,6 +66,7 @@ module.exports = [
       duracao: 130,
       sinopse: "Synopsis of movie 3",
       diretor: "Director 3",
+      plataformas: [],
       genero: "Ação",
       posts: []
     },
@@ -62,6 +78,7 @@ module.exports = [
       duracao: 130,
       sinopse: "Synopsis of movie 4",
       diretor: "Director 4",
+      plataformas: [],
       genero: "comedia",
       posts: []
     },
@@ -73,6 +90,7 @@ module.exports = [
       duracao: 130,
       sinopse: "Synopsis of movie 5",
       diretor: "Director 5",
+      plataformas: [],
       genero: "comedia",
       posts: []
     }
