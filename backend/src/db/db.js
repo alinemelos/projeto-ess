@@ -51,6 +51,15 @@ module.exports = [
       duracao: "1h33",
       sinopse: "Placeholder",
       genero: "Comédia",
+    },
+    {
+      "filme_id": "12345678",
+       "nome": "Barbie2",
+       "ano": "2023", 
+       "duracao": "1h54m",
+       "genero": "2",
+       "sinopse": "Barbie parte para o mundo humano em busca da verdadeira felicidade.",
+       "poster": "https://image.tmdb.org/t/p/original/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" 
     }
 
 

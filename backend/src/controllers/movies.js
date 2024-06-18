@@ -21,6 +21,14 @@ exports.addMovie = (req, res) => {
     if (!sinopse) {
       return res.status(400).json({ error: 'O campo sinopse está vazio' });
     }
+    if (!poster) {
+      return res.status(400).json({ error: 'O campo poster está vazio' });
+    }
+
+    const existingMovie = movies.find(movie => movie.nome === nome);
+    if (existingMovie) {
+      return res.status(409).json({ error: 'Um filme com esse nome já existe' });
+    }
 
     // Create a new movie instance
     const newMovie = new Movie(nome, ano, duracao, genero, sinopse, poster);
