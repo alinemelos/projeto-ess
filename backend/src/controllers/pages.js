@@ -14,8 +14,8 @@ exports.showpage = (req, res) => {
         }
 
         // update page information based on the movie of the data base
-        const newPage = new Page(movie.filme_id, movie.nome, movie.poster, movie.sinopse, movie.diretor, movie.ano, movie.genero, movie.duracao, movie.faixa_etaria, movie.posts);
- 
+        const newPage = new Page(movie.filme_id, movie.nome, movie.poster, movie.sinopse, movie.diretor, movie.ano, movie.genero, movie.duracao, movie.posts);
+
         res.status(201).json(newPage);
         return newPage;
     }catch(error){
