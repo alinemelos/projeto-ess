@@ -42,7 +42,7 @@ defineFeature(content_feature, (test) => {
                 "duracao": "1h54m",
                 "genero":  "2",
                 "sinopse": "Barbie parte para o mundo humano em busca da verdadeira felicidade.",
-                "poster": "https://image.tmdb.org/t/p/original/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg"
+                "poster": "https://image.tmdb.org/t/p/original/qirvDexByE5erglM8fdIm0AEVFD.jpg"
             }));
         });
     });
@@ -150,7 +150,7 @@ defineFeature(content_feature, (test) => {
             } catch (error) {
                 expect(error.response.status).toBe(409);
                 expect(error.response.data).toEqual({
-                    "error": "Um filme com esse nome já existe"
+                    "error": "Um filme com esse nome ou poster já existe"
                  });
             }
         });
@@ -160,6 +160,40 @@ defineFeature(content_feature, (test) => {
         });
 
         then(/^Aparece uma mensagem de erro "(.*)"$/, (arg0) => {
+
+        });
+    });
+
+    test('Cadastro de Filme com informações incompletas', ({ given, when, and, then }) => {
+        given(/^Estou na página "(.*)" e desejo adicionar um filme$/, (arg0) => {
+
+        });
+
+        when(/^Eu pressiono o botão "(.*)"$/, (arg0) => {
+
+        });
+
+        and(/^Preencho apenas as informações "(.*)", "(.*)", "(.*)", "(.*)" e "(.*)" com os dados "(.*)", "(.*)", "(.*)", "(.*)" e "(.*)" respectivamente$/, async(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) => {
+            const content_test = {
+                "ano": arg5,
+                "duracao": arg6,
+                "genero": arg7,
+                "sinopse": arg8,
+                "poster": arg9
+            };
+            try{
+                const response = await axios.post('http://localhost:3000/movie', content_test);
+            }
+            catch (error) {
+                expect(error.response.status).toBe(400);
+                expect(error.response.data).toEqual({
+                    "error": "Cadastro Incompleto"
+                });
+            }
+        
+        });
+
+        then(/^Aparece uma mensagem de erro "(.*)" e o usuário permanece na página "(.*)"$/, (arg0, arg1) => {
 
         });
     });

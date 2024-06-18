@@ -7,29 +7,30 @@ exports.addMovie = (req, res) => {
     //console.log(nome, ano, duracao, genero, sinopse, poster)
     // Validate the fields
     if (!nome) {
-      return res.status(400).json({ error: 'O campo nome está vazio' });
+      return res.status(400).json({ error: 'Cadastro Incompleto' });
     }
     if (!ano) {
-      return res.status(400).json({ error: 'O campo ano está vazio' });
+      return res.status(400).json({ error: 'Cadastro Incompleto' });
     }
     if (!duracao) {
-      return res.status(400).json({ error: 'O campo duração está vazio' });
+      return res.status(400).json({ error: 'Cadastro Incompleto' });
     }
     if (!genero) {
-      return res.status(400).json({ error: 'O campo gênero está vazio' });
+      return res.status(400).json({ error: 'Cadastro Incompleto' });
     }
     if (!sinopse) {
-      return res.status(400).json({ error: 'O campo sinopse está vazio' });
+      return res.status(400).json({ error: 'Cadastro Incompleto' });
     }
     if (!poster) {
-      return res.status(400).json({ error: 'O campo poster está vazio' });
+      return res.status(400).json({ error: 'Cadastro Incompleto' });
     }
 
-    const existingMovie = movies.find(movie => movie.nome === nome);
-    if (existingMovie) {
-      return res.status(409).json({ error: 'Um filme com esse nome já existe' });
+    const existingNome = movies.find(movie => movie.nome === nome);
+    const existingPoster = movies.find(movie => movie.poster === poster);
+    if (existingNome || existingPoster) {
+      return res.status(409).json({ error: 'Um filme com esse nome ou poster já existe' });
     }
-
+    
     // Create a new movie instance
     const newMovie = new Movie(nome, ano, duracao, genero, sinopse, poster);
 

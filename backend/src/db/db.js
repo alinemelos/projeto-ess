@@ -59,7 +59,7 @@ module.exports = [
        "duracao": "1h54m",
        "genero": "2",
        "sinopse": "Barbie parte para o mundo humano em busca da verdadeira felicidade.",
-       "poster": "https://image.tmdb.org/t/p/original/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" 
+       "poster": "https://image.tmdb.org/t/p/original/uUbdc9TMwbazp1zCNzGtXoBHhUa.jpg" 
     }
 
 

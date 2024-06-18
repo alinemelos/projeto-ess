@@ -6,7 +6,7 @@ Feature: Content
 Scenario: Cadastro de Filme
     Given Estou na página "Feed" e quero adicionar um filme
     When Eu pressiono o botão "adicionar mídia"
-    And Preencho as informações "nome", "ano", "duracao", "genero", "sinopse" e "poster" com os dados "Barbie", "2023", "1h54m", "2", "Barbie parte para o mundo humano em busca da verdadeira felicidade." e "https://image.tmdb.org/t/p/original/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" respectivamente
+    And Preencho as informações "nome", "ano", "duracao", "genero", "sinopse" e "poster" com os dados "Barbie", "2023", "1h54m", "2", "Barbie parte para o mundo humano em busca da verdadeira felicidade." e "https://image.tmdb.org/t/p/original/qirvDexByE5erglM8fdIm0AEVFD.jpg" respectivamente
     Then Aparece uma mensagem de confirmação "Filme adicionado com sucesso" e posso ver o filme na "Lista de filmes".
 
 Scenario: Remoção de Filme
@@ -26,12 +26,12 @@ Scenario: Edição das informações do filme
     Scenario: Cadastro de Filme que já existe
     Given Estou na página "Feed" e quero adicionar o filme "Barbie2"
     When Eu pressiono o botão "adicionar mídia"
-    And Preencho as informações "nome", "ano", "duracao", "genero", "sinopse" e "poster" com os dados "Barbie", "2023", "1h54m", "2", "Barbie parte para o mundo humano em busca da verdadeira felicidade." e "https://image.tmdb.org/t/p/original/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" respectivamente
+    And Preencho as informações "nome", "ano", "duracao", "genero", "sinopse" e "poster" com os dados "Barbie", "2023", "1h54m", "2", "Barbie parte para o mundo humano em busca da verdadeira felicidade." e "https://image.tmdb.org/t/p/original/uUbdc9TMwbazp1zCNzGtXoBHhUa.jpg" respectivamente
     And O filme "Barbie" já estava cadastrado
     Then Aparece uma mensagem de erro "O filme já está no sistema"
 
-# Scenario: Cadastro de Filme com informações incompletas
-#     Given Estou na página "Feed" e desejo adicionar um filme
-#     When Eu pressiono o botão "adicionar mídia"
-#     And Preencho apenas as informações "ano", "duracao", "genero", "sinopse" e "poster" com os dados "2023", "1h54m", "2", "Barbie parte para o mundo humano em busca da verdadeira felicidade." e "https://image.tmdb.org/t/p/original/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg" respectivamente
-#     Then Aparece uma mensagem de erro "Cadastro Incompleto" e o usuário permanece na página "Feed"
+Scenario: Cadastro de Filme com informações incompletas
+    Given Estou na página "Feed" e desejo adicionar um filme
+    When Eu pressiono o botão "adicionar mídia"
+    And Preencho apenas as informações "ano", "duracao", "genero", "sinopse" e "poster" com os dados "1968", "2h29", "Science Fiction", "Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer." e "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg" respectivamente
+    Then Aparece uma mensagem de erro "Cadastro Incompleto" e o usuário permanece na página "Feed"
