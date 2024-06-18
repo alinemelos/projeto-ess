@@ -4,25 +4,24 @@ const movies = require('../db/db');
 exports.addMovie = (req, res) => {
   try {
     const { nome, ano, duracao, genero, sinopse, poster } = req.body;
-    //console.log(nome, ano, duracao, genero, sinopse, poster)
-    // Validate the fields
+
     if (!nome) {
-      return res.status(400).json({ error: 'Cadastro Incompleto' });
+      return res.status(400).json({ error: 'O nome não foi preenchido' });
     }
     if (!ano) {
-      return res.status(400).json({ error: 'Cadastro Incompleto' });
+      return res.status(400).json({ error: 'O ano não foi preenchido' });
     }
     if (!duracao) {
-      return res.status(400).json({ error: 'Cadastro Incompleto' });
+      return res.status(400).json({ error: 'A duração não foi preenchida' });
     }
     if (!genero) {
-      return res.status(400).json({ error: 'Cadastro Incompleto' });
+      return res.status(400).json({ error: 'O genero não foi preenchido' });
     }
     if (!sinopse) {
-      return res.status(400).json({ error: 'Cadastro Incompleto' });
+      return res.status(400).json({ error: 'A sinopse não foi preenchida' });
     }
     if (!poster) {
-      return res.status(400).json({ error: 'Cadastro Incompleto' });
+      return res.status(400).json({ error: 'O poster não foi adicionado' });
     }
 
     const existingNome = movies.find(movie => movie.nome === nome);
@@ -31,10 +30,8 @@ exports.addMovie = (req, res) => {
       return res.status(409).json({ error: 'Um filme com esse nome ou poster já existe' });
     }
     
-    // Create a new movie instance
     const newMovie = new Movie(nome, ano, duracao, genero, sinopse, poster);
 
-    // Add the new movie to the database (array)
     movies.push(newMovie);
     res.status(201).json(newMovie);
     
@@ -49,18 +46,14 @@ exports.delMovie = (req, res) => {
   try {
     const { filme_id } = req.body;
     
-    // Find the index of the movie with the given filme_id
     const movieIndex = movies.findIndex(movie => movie.filme_id === filme_id);
 
     if (movieIndex === -1) {
-      // If the movie is not found, return a 404 error
       return res.status(404).json({ error: 'Filme não encontrado' });
     }
 
-    // Remove the movie from the array
     movies.splice(movieIndex, 1);
     
-    // Return a success response
     res.status(200).json({ message: 'Filme removido com sucesso' });
     
   } catch (error) {
@@ -74,20 +67,16 @@ exports.editMovie = (req, res) => {
   try {
     const { filme_id, nome, ano, duracao, genero, sinopse, poster, plataformas } = req.body;
 
-    // Find the movie with the given filme_id
     const movieIndex = movies.findIndex(movie => movie.filme_id === filme_id);
 
     if (movieIndex === -1) {
-      // If the movie is not found, return a 404 error
       return res.status(404).json({ error: 'Filme não encontrado' });
     }
 
-    // Validate the fields
     if (!nome && !ano && !duracao && !genero && !sinopse && !poster && !plataformas) {
       return res.status(400).json({ error: 'Nenhum campo para atualizar' });
     }
 
-    // Update the movie details
     if (nome) movies[movieIndex].nome = nome;
     if (ano) movies[movieIndex].ano = ano;
     if (duracao) movies[movieIndex].duracao = duracao;
@@ -96,7 +85,6 @@ exports.editMovie = (req, res) => {
     if (poster) movies[movieIndex].poster = poster;
     if (plataformas) movies[movieIndex].plataformas = plataformas;
 
-    // Return the updated movie
     res.status(200).json(movies[movieIndex]);
     
   } catch (error) {

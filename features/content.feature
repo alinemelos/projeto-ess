@@ -4,44 +4,34 @@ Feature: Content
     So that os usuários possam compartilhar reviews
 
 Scenario: Cadastro de Filme
-Given Estou logado no usuário "Administrador"
-And Estou na página "Feed" e quero adicionar o filme "Barbie"
-When Eu pressiono o botão "adicionar mídia"
-And Preencho as informações "Título", "Ano", "Duração", "Gênero" e "Sinopse" com os dados "Barbie", "2023", "1h54m", "Comédia" e "Barbie parte para o mundo humano em busca da verdadeira felicidade." respectivamente
-Then Aparece uma mensagem de confirmação e o filme é adicionado com sucesso.
+    Given Estou na página "Feed" e quero adicionar um filme
+    When Eu pressiono o botão "adicionar mídia"
+    And Preencho as informações "nome", "ano", "duracao", "genero", "sinopse" e "poster" com os dados "Barbie", "2023", "1h54m", "2", "Barbie parte para o mundo humano em busca da verdadeira felicidade." e "https://image.tmdb.org/t/p/original/qirvDexByE5erglM8fdIm0AEVFD.jpg" respectivamente
+    Then Aparece uma mensagem de confirmação "Filme adicionado com sucesso" e posso ver o filme na "Lista de filmes".
 
 Scenario: Remoção de Filme
-Given Estou logado no usuário "Administrador"
-And Estou na página "Feed" e esejo remover o filme "Oppenheimer" que está cadastrado no sistema
-When Eu clico no componente "Filme"
-And Escolho a opção "Excluir" dentre as opções "Excluir" e "Editar"
-And Clico "Sim" na tela de confirmar exclusão
-Then O filme é removido com sucesso
-
+    Given Estou na página "Feed" 
+    And  Desejo remover o filme "Openheimer" que está cadastrado no sistema com os dados "2023", "1h52", "3", "A história de J. Robert Oppenheimer, o homem que liderou a equipe que desenvolveu a bomba atômica durante a Segunda Guerra Mundial." e "https://image.tmdb.org/t/p/original/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg"
+    When Eu clico no componente "Filme"
+    And Escolho a opção "Excluir" e clico "Sim" na tela de confirmar exclusão
+    Then O filme é removido com sucesso da página "Feed"
 
 Scenario: Edição das informações do filme
-Given Estou logado no usuário "Administrador"
-And Estou na página "Feed" e esejo editar dados do filme "1984" que está cadastrado no sistema
-When Eu clico no componente "Filme"
-And Escolho a opção "Editar" dentre as opções "Excluir" e "Editar"
-And Modifico as informações do campo sinopse de "Steve Spielberg" para "Michael Radford"
-Then A informação é editada com sucesso
-And O usuário retorna para a página "Feed"
+    Given Estou na página "Feed" e esejo editar as informações do filme "1984" que está cadastrado no sistema
+    And Ele possui os campos "genero" e "sinopse" com os valores "Comédia" e "Placeholder" respectivamente
+    When Eu clico no componente "Filme" e escolho a opção "Editar"
+    And Modifico as informações do campo "genero" e "sinopse" para "Romance" e "Mil novecentos e oitenta e quatro é um romance distópico do escritor inglês George Orwell. parte para o mundo humano em busca da verdadeira felicidade." respectivamente
+    Then A informação é editada com sucesso e o usuário retorna para a página "Feed"
 
-Scenario: Falha no Cadastro
-Given Estou logado no usuário "Administrador"
-And Estou na página "Feed" e quero adicionar o filme "Barbie"
-When Eu pressiono o botão "adicionar" na tela "adicionar mídia"
-And Preencho as informações "Título", "Ano", "Duração", "Gênero" e "Sinopse" com os dados " ", " ", "1h54m", "Comédia" e "Barbie parte para o mundo humano em busca da verdadeira felicidade." respectivamente
-Then Aparece a mensagem de erro "Os campos 'Título' e 'Ano'" não foram preenchidos
-And O usuario volta para a tela de "adicionar mídia"
+Scenario: Cadastro de Filme que já existe
+    Given Estou na página "Feed" e quero adicionar o filme "Barbie2"
+    When Eu pressiono o botão "adicionar mídia"
+    And Preencho as informações "nome", "ano", "duracao", "genero", "sinopse" e "poster" com os dados "Barbie", "2023", "1h54m", "2", "Barbie parte para o mundo humano em busca da verdadeira felicidade." e "https://image.tmdb.org/t/p/original/uUbdc9TMwbazp1zCNzGtXoBHhUa.jpg" respectivamente
+    And O filme "Barbie" já estava cadastrado
+    Then Aparece uma mensagem de erro "O filme já está no sistema"
 
-
-Scenario: Falha ao tentar editar arquivo sem modificações
-Given Estou logado no usuário "Administrador"
-And Estou na página "Feed" e esejo editar dados do filme "1984" que está cadastrado no sistema
-When Eu clico no componente "Filme"
-And Escolho a opção "Editar" dentre as opções "Excluir" e "Editar"
-And Não modifico nenhuma das informações "Título", "Ano", "Duração", "Gênero" e "Sinopse" 
-Then A mensagem de erro "Nenhuma modificação foi feita"
-And O usuário retorna para a página "Feed"
+Scenario: Cadastro de Filme com informações incompletas
+    Given Estou na página "Feed" e desejo adicionar um filme
+    When Eu pressiono o botão "adicionar mídia"
+    And Preencho apenas as informações "ano", "duracao", "genero", "sinopse" e "poster" com os dados "1968", "2h29", "Science Fiction", "Humanity finds a mysterious object buried beneath the lunar surface and sets off to find its origins with the help of HAL 9000, the world's most advanced super computer." e "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ve72VxNqjGM69Uky4WTo2bK6rfq.jpg" respectivamente
+    Then Aparece uma mensagem de erro "Cadastro Incompleto" e o usuário permanece na página "Feed"

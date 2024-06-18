@@ -23,7 +23,7 @@ Scenario: Edição das informações do filme
     And Modifico as informações do campo "genero" e "sinopse" para "Romance" e "Mil novecentos e oitenta e quatro é um romance distópico do escritor inglês George Orwell. parte para o mundo humano em busca da verdadeira felicidade." respectivamente
     Then A informação é editada com sucesso e o usuário retorna para a página "Feed"
 
-    Scenario: Cadastro de Filme que já existe
+Scenario: Cadastro de Filme que já existe
     Given Estou na página "Feed" e quero adicionar o filme "Barbie2"
     When Eu pressiono o botão "adicionar mídia"
     And Preencho as informações "nome", "ano", "duracao", "genero", "sinopse" e "poster" com os dados "Barbie", "2023", "1h54m", "2", "Barbie parte para o mundo humano em busca da verdadeira felicidade." e "https://image.tmdb.org/t/p/original/uUbdc9TMwbazp1zCNzGtXoBHhUa.jpg" respectivamente

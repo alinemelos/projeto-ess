@@ -7,11 +7,9 @@ defineFeature(content_feature, (test) => {
     test('Cadastro de Filme', ({ given, when, and, then }) => {
         let filme_id;
         given(/^Estou na página "(.*)" e quero adicionar um filme$/, (arg0) => {
-
         });
 
         when(/^Eu pressiono o botão "(.*)"$/, (arg0) => {
-
         });
 
         and(/^Preencho as informações "(.*)", "(.*)", "(.*)", "(.*)", "(.*)" e "(.*)" com os dados "(.*)", "(.*)", "(.*)", "(.*)", "(.*)" e "(.*)" respectivamente$/, async (arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11) => {
@@ -26,15 +24,11 @@ defineFeature(content_feature, (test) => {
 
             const response = await axios.post('http://localhost:3000/movie', content_test);
             filme_id = response.data.filme_id;
-            //console.log(filme_id);
-            
-
         });
 
         then(/^Aparece uma mensagem de confirmação "(.*)" e posso ver o filme na "(.*)".$/, async(arg0, arg1) => {
             const response = await axios.get('http://localhost:3000');
             const filme = response.data.find(filme => filme.filme_id === filme_id);
-
 
             expect(filme).toEqual(expect.objectContaining({ 
                 "nome": "Barbie",
@@ -49,7 +43,6 @@ defineFeature(content_feature, (test) => {
 
     test('Remoção de Filme', ({ given, and, when, then }) => {
         given(/^Estou na página "(.*)"$/, (arg0) => {
-
         });
 
         and(/^Desejo remover o filme "(.*)" que está cadastrado no sistema com os dados "(.*)", "(.*)", "(.*)", "(.*)" e "(.*)"$/, async(arg0, arg1, arg2, arg3, arg4, arg5) => {
@@ -64,11 +57,9 @@ defineFeature(content_feature, (test) => {
     
             const response = await axios.post('http://localhost:3000/movie', content_test);
             filme_id = response.data.filme_id;
-
         });
 
         when(/^Eu clico no componente "(.*)"$/, (arg0) => {
-
         });
 
         and(/^Escolho a opção "(.*)" e clico "(.*)" na tela de confirmar exclusão$/, async(arg0, arg1) => {
@@ -100,11 +91,9 @@ defineFeature(content_feature, (test) => {
         
             expect(filme_genero).toEqual('Comédia', `Expected genero to be "Comédia" but got "${filme_genero}"`);
             expect(filme_sinopse).toEqual('Placeholder', `Expected sinopse to be "Placeholder" but got "${filme_sinopse}"`);
-
         });
     
         when(/^Eu clico no componente "(.*)" e escolho a opção "(.*)"$/, (arg0, arg1) => {
-    
         });
     
         and(/^Modifico as informações do campo "(.*)" e "(.*)" para "(.*)" e "(.*)" respectivamente$/, async(arg0, arg1, arg2, arg3) => {
@@ -128,13 +117,9 @@ defineFeature(content_feature, (test) => {
 
     test('Cadastro de Filme que já existe', ({ given, when, and, then }) => {
         given(/^Estou na página "(.*)" e quero adicionar o filme "(.*)"$/, (arg0, arg1) => {
-
         });
-
         when(/^Eu pressiono o botão "(.*)"$/, (arg0) => {
-
         });
-
         and(/^Preencho as informações "(.*)", "(.*)", "(.*)", "(.*)", "(.*)" e "(.*)" com os dados "(.*)", "(.*)", "(.*)", "(.*)", "(.*)" e "(.*)" respectivamente$/, async(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11) => {
             const content_test = {
                 "nome": arg6,
@@ -144,7 +129,6 @@ defineFeature(content_feature, (test) => {
                 "sinopse": arg10,
                 "poster": arg11
             };
-
             try {
                 const response = await axios.post('http://localhost:3000/movie', content_test);
             } catch (error) {
@@ -156,21 +140,17 @@ defineFeature(content_feature, (test) => {
         });
 
         and(/^O filme "(.*)" já estava cadastrado$/, (arg0) => {
-
         });
 
         then(/^Aparece uma mensagem de erro "(.*)"$/, (arg0) => {
-
         });
     });
 
     test('Cadastro de Filme com informações incompletas', ({ given, when, and, then }) => {
         given(/^Estou na página "(.*)" e desejo adicionar um filme$/, (arg0) => {
-
         });
 
         when(/^Eu pressiono o botão "(.*)"$/, (arg0) => {
-
         });
 
         and(/^Preencho apenas as informações "(.*)", "(.*)", "(.*)", "(.*)" e "(.*)" com os dados "(.*)", "(.*)", "(.*)", "(.*)" e "(.*)" respectivamente$/, async(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) => {
@@ -187,7 +167,7 @@ defineFeature(content_feature, (test) => {
             catch (error) {
                 expect(error.response.status).toBe(400);
                 expect(error.response.data).toEqual({
-                    "error": "Cadastro Incompleto"
+                    "error": "O nome não foi preenchido"
                 });
             }
         
