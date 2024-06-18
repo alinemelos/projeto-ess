@@ -3,8 +3,8 @@ const movies = require('../db/db');
 
 exports.addMovie = (req, res) => {
   try {
-    const { filme_id, nome, ano, duracao, genero, sinopse, imagem, plataformas } = req.body;
-    
+    const { nome, ano, duracao, genero, sinopse, poster } = req.body;
+    console.log(nome, ano, duracao, genero, sinopse, poster)
     // Validate the fields
     if (!nome) {
       return res.status(400).json({ error: 'O campo nome está vazio' });
@@ -21,12 +21,9 @@ exports.addMovie = (req, res) => {
     if (!sinopse) {
       return res.status(400).json({ error: 'O campo sinopse está vazio' });
     }
-    if (!plataformas) {
-      return res.status(400).json({ error: 'O campo plataformas está vazio' });
-    }
 
     // Create a new movie instance
-    const newMovie = new Movie(filme_id, nome, ano, duracao, genero, sinopse, imagem, plataformas);
+    const newMovie = new Movie(nome, ano, duracao, genero, sinopse, poster);
 
     // Add the new movie to the database (array)
     movies.push(newMovie);
@@ -66,7 +63,7 @@ exports.delMovie = (req, res) => {
 
 exports.editMovie = (req, res) => {
   try {
-    const { filme_id, nome, ano, duracao, genero, sinopse, imagem, plataformas } = req.body;
+    const { filme_id, nome, ano, duracao, genero, sinopse, poster, plataformas } = req.body;
 
     // Find the movie with the given filme_id
     const movieIndex = movies.findIndex(movie => movie.filme_id === filme_id);
@@ -77,7 +74,7 @@ exports.editMovie = (req, res) => {
     }
 
     // Validate the fields
-    if (!nome && !ano && !duracao && !genero && !sinopse && !imagem && !plataformas) {
+    if (!nome && !ano && !duracao && !genero && !sinopse && !poster && !plataformas) {
       return res.status(400).json({ error: 'Nenhum campo para atualizar' });
     }
 
@@ -87,7 +84,7 @@ exports.editMovie = (req, res) => {
     if (duracao) movies[movieIndex].duracao = duracao;
     if (genero) movies[movieIndex].genero = genero;
     if (sinopse) movies[movieIndex].sinopse = sinopse;
-    if (imagem) movies[movieIndex].poster = imagem;
+    if (poster) movies[movieIndex].poster = poster;
     if (plataformas) movies[movieIndex].plataformas = plataformas;
 
     // Return the updated movie
