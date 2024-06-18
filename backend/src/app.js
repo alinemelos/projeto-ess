@@ -6,12 +6,17 @@ const searchRouter = require("./views/search.routes");
 const commentRouter = require("./views/comment.routes");
 const platformRouter = require("./views/platform.routes");
 
+const movieRouter = require("./views/movies.routes");
+
 app.use(express.json()); // Add this line to parse JSON request bodies
 
 app.use("/", router);
 
 // Miguel
 app.use("/posts", postRouter);
+
+//Ariel
+app.use("/movie", movieRouter);
 
 // Vidal
 app.use("/search", searchRouter);

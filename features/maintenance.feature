@@ -25,6 +25,7 @@ Scenario: Falha na edição.
     Then Serei redirecionado a "página inicial"
     And O post "Eduardo e Monica" não terá a palavra "adorei" no texto "conteúdo" na review do usuario "Duda"
 
+
 Scenario: Salvar edição de review.
     Given Estou no sistema com login "Aline", senha "administrador" e no cargo "ADM".
     And Estou no post "Eduardo e Monica" que já existe no sistema.
