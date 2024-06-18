@@ -64,4 +64,55 @@ defineFeature(comment_feature, test => {
             }
         });
     });
+
+    test('Adicionar plataforma já existente', ({ given, when, and, then }) => {
+        let filme_id;
+        let errorMessage;
+        
+        given(/^Eu estou na página do filme "(.*)"$/, async (filmeNome) => {
+            try {
+                // Fazendo a requisição GET
+                const response = await axios.get('http://localhost:3000/');
+                // Armazenando o filme_id do filme especificado
+                const filme = response.data.find((filme) => filme.nome === filmeNome);
+                if (filme) {
+                    filme_id = filme.filme_id;
+                } else {
+                    throw new Error(`Filme "${filmeNome}" não encontrado.`);
+                }
+            } catch (error) {
+                console.error(error.message);
+            }
+        });
+
+        when(/^Eu pressiono o botão "(.*)"$/, (arg0) => {
+            // Simulação do clique no botão
+        });
+
+        and(/^Eu visualizo um "(.*)" na tela$/, (arg0) => {
+            // Simulação de visualizar o formulário na tela
+        });
+
+        and(/^Eu preencho "(.*)" no campo "(.*)", "(.*)" no campo "(.*)", "(.*)" no campo "(.*)" e clico em"(.*)"$/, async (nome, arg1, url, arg3, image, arg5, arg6) => {
+            try {
+                // Fazendo a requisição POST
+                const platform_test = {
+                    filme_id: filme_id,
+                    nome: nome,
+                    url: url,
+                    image: image
+                };
+                const response = await axios.post('http://localhost:3000/platform', platform_test);
+            } catch (error) {
+                expect(error.response.status).toBe(400);
+                expect(error.response.data).toEqual({
+                    "error": "Platform already exists"
+                });
+            }
+        });
+    
+        then('Eu vejo uma mensagem de erro', () => {
+            // Simulação de visualizar a mensagem de erro
+        });
+    });
 });
