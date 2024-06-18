@@ -115,4 +115,56 @@ defineFeature(comment_feature, test => {
             // Simulação de visualizar a mensagem de erro
         });
     });
+
+    test('Remover plataforma', ({ given, when, and, then }) => {
+        let filme_id;
+        
+        given(/^Eu estou na página do filme "(.*)"$/, async (filmeNome) => {
+            try {
+                // Fazendo a requisição GET
+                const response = await axios.get('http://localhost:3000/');
+                // Armazenando o filme_id do filme especificado
+                const filme = response.data.find((filme) => filme.nome === filmeNome);
+                if (filme) {
+                    filme_id = filme.filme_id;
+                } else {
+                    throw new Error(`Filme "${filmeNome}" não encontrado.`);
+                }
+            } catch (error) {
+                console.error(error.message);
+            }
+        });
+
+        when(/^Eu pressiono o botão "(.*)" da plataforma "(.*)"$/, (arg0, arg2) => {
+            // Simulação do clique no botão
+        });
+
+        then(/^A plataforma "(.*)" é removida$/, async (nomePlataforma) => {
+            try {
+                // Fazendo a requisição DELETE
+                const platform_test = {
+                    filme_id: filme_id,
+                    nome: nomePlataforma
+                };
+                const response = await axios.delete('http://localhost:3000/platform', { data: platform_test });
+                expect(response.status).toBe(200);
+            } catch (error) {
+                console.error(error.message);
+            }
+        });
+
+       and(/^Eu não vejo a plataforma "(.*)" na lista de plataformas disponíveis$/, async (nomePlataforma) => {
+            try {
+                // Fazendo a requisição GET para obter as plataformas do filme
+                const response = await axios.get('http://localhost:3000/');
+                // Armazenando o filme_id do filme especificado
+                const filme = response.data.find((filme) => filme.filme_id === filme_id);
+                // Verificando se a plataforma foi removida
+                const plataforma = filme.plataformas.some((platform) => platform.nome === nomePlataforma);
+                expect(plataforma).toBe(false);
+            } catch (error) {
+                console.error('Erro ao buscar plataformas:', error.message);
+            }
+        });
+    });
 });
