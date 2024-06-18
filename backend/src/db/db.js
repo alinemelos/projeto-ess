@@ -13,6 +13,20 @@ module.exports = [
       sinopse: "The story of J. Robert Oppenheimer’s role in the development of the atomic bomb during World War II.",
       diretor: "Christopher Nolan",
       genero: 3,
+      plataformas: [
+        {
+          filme1_id: filme1_id,
+          nome: "Globoplay",
+          url: "https://globoplay.com/oppenheimer",
+          image: "https://globoplay.com/logo.png",
+      },
+      {
+          filme1_id: filme1_id,
+          nome: "Netflix",
+          url: "https://netflix.com/oppenheimer",
+          image: "https://netflix.com/logo.png",
+      }
+      ],
       posts: [
         {
           post_id: uuidv4(),
@@ -41,6 +55,7 @@ module.exports = [
       sinopse: "Synopsis of movie 2",
       diretor: "Director 2",
       genero: 2,
+      plataformas: [],
       posts: []
     }
   ];
