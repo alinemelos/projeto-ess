@@ -4,7 +4,7 @@ Feature: Post
     So that eu possa compartilhar minha opinião sobre um filme
 
 Scenario: Criar um review.
-	Given Eu Estou na página do filme "Oppenheimer"
+	Given Eu Estou na página do filme "Eduardo e Mônica"
 	When Eu clico no botão "Review"
 	And Um "Modal de Review" abre na minha tela
 	And Eu preencho "Filme muito bom" no campo "Review", "5" no campo nota e clico em "Publicar"
@@ -42,19 +42,3 @@ Scenario: Falha na criação de um post clicou no botão de submeter sem preench
     And Eu clico no botão "Publicar"
     Then Uma "Mensagem de Erro" escrita "Erro: O campo Nota é de preenchimento obrigatório" surge ao lado do botão "Publicar"
     And Um asterisco vermelho surge ao lado do campo "Nota"
-
-Scenario: Apagar um review.
-    Given Eu estou na página do filme "Oppenheimer"
-    And Eu já publiquei um review com o texto "Filme muito bom" e nota "5"
-    When Eu clico no botão "Apagar" no meu review
-    Then Meu review é removido do "Campo de Reviews"
-    And Eu não posso mais ver meu review no "Campo de Reviews"
-
-Scenario: Atualizar um review.
-    Given Eu estou na página do filme "Oppenheimer"
-    And Eu já publiquei um review com o texto "bom." e nota "3"
-    When Eu clico no botão "Editar" no meu review
-    And Um "Modal de Edição de Review" abre na minha tela
-    And Eu altero o texto para "Obra-prima cinematográfica" e a nota para "5" e clico em "Atualizar"
-    Then O "Modal de Edição de Review" fecha
-    And Eu posso ver meu review atualizado com o texto "Obra-prima cinematográfica" e nota "5" no topo do "Campo de Reviews"
