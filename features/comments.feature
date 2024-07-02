@@ -6,8 +6,8 @@ Feature: Comentar em post
 
 Scenario:  Adição de comentário
     Given eu estou logado com o usuário “ÍTALO” e senha “4i(124ksas12” 
-    And estou na página de visualização de filmes
-    And olho para um post sobre o filme "EDUARDO E MÔNICA" com um review escrito "Ótimo filme", 
+    And estou na página de visualização de posts
+    And olho para um post sobre a cadeira “ESS” com um review da cadeira elogiando muito ela, 
     And desejo comentar “Muito imteressante sua review”.
 
     When eu digito o comentário na caixa de texto “Muito interessante sua review”
@@ -18,7 +18,7 @@ Scenario:  Adição de comentário
 Scenario:  Editando meu comentário
     Given eu estou logado como “ÍTALO” e senha “4i(124ksas12” 
     And estou na página de visualização de posts
-    And vejo um post sobre o filme "EDUARDO E MÔNICA" com dois reviews, sendo um deles feito por "ÍTALO".
+    And vejo um post sobre a cadeira de “ESS” com dois reviews, sendo um deles feito por mim anteriormente: “Muito imteressante sua review”.
     And vejo que houve um erro de grafia nele
     And desejo corrigir ele.
 
@@ -35,11 +35,12 @@ Scenario:  Editando meu comentário
     And aparece um marcador indicando que houve edição no comentário.
 
 Scenario:  Deletando meu comentário
-    Given eu estou logado como “ÍTALO”
+    Given eu estou logado como “ÍTALO” e senha “4i(124ksas12” 
     And estou na página de visualização de posts
-    And vejo um post sobre o filme "EDUARDO E MÔNICA", com dois reviews, sendo um deles feito por "ÍTALO" e o outro por "JOAO".
+    And vejo um post sobre a cadeira de “ESS” com dois reviews, sendo um deles feito por mim anteriormente: “Muito interessante sua review”.
+    And desejo remover esse comentário.
 
-    When eu clico nos 3 pontinhos do comentário feito por "ÍTALO".
+    When eu clico nos 3 pontinhos do comentário “Muito interessante sua review”.
 
     Then aparece um pop-up para selecionar “Editar comentário” e “Deletar comentário”.
     And eu clico em “Deletar comentário”
@@ -84,10 +85,11 @@ Scenario: Erro na hora de deletar comentário de outro usuário.
     And não consigo deletar.
 
 Scenario: Erro na hora de editar um comentário por escrever o mesmo comentário de antes
-    Given eu estou logado com o usuário "ÍTALO"
+    Given eu estou logado com o usuário "ÍTALO" e senha “4i(124ksas12” 
     And estou na página de posts
     And vejo um post do filme "Fragmentados"
-    And vejo um comentário do usuário "ÍTALO"
+    And vejo um comentário meu nesse review dizendo o seguinte: "Filme incrível"
+    And desejo editar esse comentário
 
     When eu aperto nos 3 pontinhos do comentário
 

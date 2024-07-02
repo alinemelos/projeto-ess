@@ -1,70 +1,105 @@
-# Getting Started with Create React App
+# ESS Front-end React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the Front-end base project in React for the Software and Systems Engineering discipline, offered by the Informatics Center (CIn) of the Federal University of Pernambuco (UFPE).
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+1. [Getting Started](##getting-started)
+2. [Running the tests](#running-the-tests)
+3. [Scripts](#scripts)
+4. [Dependencies](#dependencies)
+5. [Architecture](#architecture)
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+To run this project, you'll need to have the following software installed on your system:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js
+- npm (Node Package Manager)
 
-### `npm run build`
+### Installing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Clone the repository and install the dependencies by running the following command in the project directory:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### First time running ?
 
-### `npm run eject`
+Run the follow scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+chmod +x .husky/pre-commit
+chmod +x .husky/pre-push
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+npm run
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Environment
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+This project uses `.env` files to manage environment variables. You can create a `.env.development` file in the project directory and set the environment variables in the file (iou can create it from .`env.example`). The `env` script in the `package.json` file uses the `env-cmd` package to load the environment variables from the `.env.development` file.
 
-## Learn More
+### Running the App
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To start the app, run the following command:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+npm run dev
+```
 
-### Code Splitting
+This command will run the React app in development with Vite.js script
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Running the tests
 
-### Analyzing the Bundle Size
+There are two types of tests configured in the base project: unit tests using Vitest with React Testing Library and E2E acceptance tests using Cypress with Cucumber. It's interesting to create the **.env.testing** at the root of the project the same way it was created to run in development, changing the necessary values.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To run unit tests
 
-### Making a Progressive Web App
+```
+npm run test
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+To run E2E tests in **interactive mode**
 
-### Advanced Configuration
+```
+npm run cy:e2e-interactive
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+To run E2E tests in **headless mode**
 
-### Deployment
+```
+npm run cy:e2e-headless
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**Note:** To run E2E tests that test flows that involve connecting to the back-end, such as login, the back-end must be running. Remember to provide a valid URL for the backend in the **.env.testing** file.
 
-### `npm run build` fails to minify
+## Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The following scripts are available in the `package.json` file:
+
+- `dev`: Runs the app in development mode.
+- `build`: Compiles the TypeScript code.
+- `test`: Runs the Vitest tests for the project.
+- `prettier`: Formats the code using Prettier.
+- `lint`: Lints the code using ESLint.
+
+## Dependencies
+
+The following dependencies are used in the project:
+
+- [vite](https://github.com/microsoft/TypeScript): Vite is a new breed of frontend build tooling that significantly improves the frontend development experience.
+- [react](https://github.com/facebook/react): React is a JavaScript library for building user interfaces.
+- [react-router-dom](https://github.com/remix-run/react-router): React Router is a lightweight, fully-featured routing library for the React JavaScript library.
+- [react-hook-form](https://github.com/react-hook-form/react-hook-form): React Hook Form is a library for React that simplifies form validation and input data handling.
+- [zod](https://github.com/colinhacks/zod): Zod is a TypeScript-first schema declaration and validation library. I'm using the term "schema" to broadly refer to any data type, from a simple string to a complex nested object.
+
+## Architecture
+
+To understand and learn more details about the structure of the project, click [here](./docs/architecture-pattern.md) to be redirected to the README that contains this information.
