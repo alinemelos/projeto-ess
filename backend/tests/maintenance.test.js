@@ -100,7 +100,6 @@ defineFeature(maintenance_feature, test =>{
                 // Verificando se o post corresponde ao user_id e à review fornecidos
                 if (post.user_id === Number(arg0) && post.review === arg1) {
                     user_id = post.user_id;
-                    console.log("ENTROU AQUIIIIII")
                     review = post.review;
                     nota = post.nota;
                     post_id = post.post_id
