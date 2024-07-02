@@ -177,7 +177,6 @@ defineFeature(comment_feature, test => {
             // Fazendo a requisição GET
             const response = await axios.get('http://localhost:3000/');
             // Verificando se o comentário foi excluído
-            console.log(comment_id.data.comment_id)
             let res = findById(response.data, comment_id.data.comment_id);
             expect(res === null).toBe(true);
         })
