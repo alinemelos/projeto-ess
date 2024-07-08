@@ -71,7 +71,6 @@ defineFeature(search_feature, test => {
 
         then(/^Reviews de filmes de "(.*)" são exibidas$/, (categoria) => {
 
-            console.log(search_results);
             let movie_genre = [];
             for (let i = 0; i < search_results.data.length; i++) {
                 movie_genre.push(search_results.data[i].genero);
