@@ -20,14 +20,14 @@ const ModalReview = ({
 }) => {
   const [postText, setPostText] = useState('')
   const [errorNota, setErrorNota] = useState(false)
-  const [rating, setRating] = useState()
+  const [rating, setRating] = useState(null)
 
   const handleCreatePost = async () => {
     if (isEditing) {
       const response = await UpdatePost(editingPostInfo.post_id, editingPostInfo.user_id, editingPostInfo.filme_id, rating, postText)
       if (response.status === 200) {
         setPostText('')
-        setRating()
+        setRating(null)
         setIsEditing()
         setModalOpen()
       } else if (response === 'Nota is required.') {
@@ -39,7 +39,7 @@ const ModalReview = ({
       const response = await CreatePost(user_id, filme_id, rating, postText)
       if (response.status === 201) {
         setPostText('')
-        setRating()
+        setRating(null)
         setModalOpen()
       } else if (response === 'Nota is required.') {
         setErrorNota(true)
@@ -52,7 +52,7 @@ const ModalReview = ({
   useEffect(() => {
     setErrorNota(false)
     setPostText('')
-    setRating(0)
+    setRating(null)
     if (isEditing) {
       setPostText(editingPostInfo.review)
       setRating(editingPostInfo.nota)
@@ -62,7 +62,7 @@ const ModalReview = ({
   if (isOpen) {
     return (
       <div style={styles.background}>
-        <div style={styles.modal}>
+        <div style={styles.modal} className='modal'>
           <div style={styles.cotainer}>
             <div style={styles.exit}>
               <IoCloseSharp size={32} onClick={setModalOpen} style={styles.exit__btn} />
@@ -95,12 +95,13 @@ const ModalReview = ({
                       <Rating
                         name='simple-controlled'
                         value={rating}
-                        precision={0.5}
                         onChange={(_, value) => {
                           setRating(value)
                         }}
+                        precision={0.5}
                         emptyIcon={<StarIcon style={{ color: '#D9D9D9' }} />}
                         icon={<StarIcon style={{ color: '#FF182C' }} />}
+                        data-testid='rating-component'
                       />
                     </div>
                     <button style={styles.button} onClick={handleCreatePost}>
