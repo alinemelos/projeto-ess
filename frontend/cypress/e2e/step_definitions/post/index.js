@@ -103,6 +103,7 @@ let factory_start = async () => {
     duracao: '1h54m',
     genero: '1',
     sinopse: 'QA Movie.',
+    diretor: 'Martin Q. A. Scorsese',
     poster: 'https://image.tmdb.org/t/p/original/qirvDexByE5erglM8fdIm0AEVFD.jpg'
   }
 
@@ -137,5 +138,5 @@ let factory_end = async () => {
   }
 
   const data = await response.json()
-  expect(data).to.have.property('message', 'Filme removido com sucesso')
+  expect(data).to.have.property('message', 'Filme Removido com Sucesso')
 }
