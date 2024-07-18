@@ -1,14 +1,13 @@
-const { v4: uuidv4 } = require('uuid');
-
 class Movie {
-    constructor(nome, ano, duracao, genero, sinopse, poster) {
-        this.filme_id = uuidv4();
+    constructor(filme_id, poster, nome, ano, duracao, sinopse, diretor, genero) {
+        this.filme_id = filme_id
+        this.poster = poster;
         this.nome = nome;
         this.ano = ano;
         this.duracao = duracao;
-        this.genero = genero;
         this.sinopse = sinopse;
-        this.poster = poster;
+        this.genero = genero;
+        this.diretor = diretor;
         this.plataformas = [];
         this.posts = [];
     }
