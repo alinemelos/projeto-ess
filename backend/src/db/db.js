@@ -96,7 +96,7 @@ module.exports = [
     },
     {
       filme_id: "40028922",
-      poster: "https://image.tmdb.org/t/p/original/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
+      poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2EOfGaRluwJe6OlR21JtbLhWDvt.jpg",
       nome: "1984",
       ano: 1984,
       duracao: "1h33",
@@ -105,23 +105,23 @@ module.exports = [
     },
     {
       filme_id: "12345678",
-       nome: "Barbie2",
-       ano: 2023, 
-       duracao: "1h54m",
-       genero: "2",
-       sinopse: "Barbie parte para o mundo humano em busca da verdadeira felicidade.",
-       poster: "https://image.tmdb.org/t/p/original/uUbdc9TMwbazp1zCNzGtXoBHhUa.jpg" 
+      nome: "Barbie2",
+      ano: 2023, 
+      duracao: "1h54m",
+      genero: "2",
+      sinopse: "Barbie parte para o mundo humano em busca da verdadeira felicidade.",
+      poster: "https://image.tmdb.org/t/p/original/uUbdc9TMwbazp1zCNzGtXoBHhUa.jpg" 
     },
     {
       filme_id: "a7b8c9d0-1e2f-11ef-3a4b-5c6d7e8f9a0b",
-      poster: "https://example.com/poster3.jpg",
+      poster: "https://img.wonderhowto.com/img/66/40/63426113510199/0/disney-tangled-2010.w1456.jpg",
       nome: "Enrolados",
       ano: 2010,
-      duracao: "1h40",
-      sinopse: "The magically long-haired Rapunzel has spent her entire life in a tower, but now that a runaway thief has stumbled upon her, she is about to discover the world for the first time, and who she really is.",
-      diretor: "Nathan Greno",
+      duracao: '1h40',
+      sinopse: "Os mundos colidem quando Flash viaja no tempo para mudar os eventos do passado. No entanto, quando sua tentativa de salvar sua família altera o futuro, ele fica preso em uma realidade na qual o General Zod voltou, ameaçando a aniquilação.",
+      diretor: "Andy Nathan Greno",
       plataformas: [],
-      genero: "Animation",
+      genero: "comedia",
       posts: []
     },
     { 
@@ -148,5 +148,113 @@ module.exports = [
       genero: "comedia",
       posts: []
     },
+    {
+      filme_id: "1a2b3c4d-5e6f-7g8h-9i10-11jk12lm13no",
+      poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/nCbkOyOMTEwlEV0LtCOvCnwEONA.jpg",
+      nome: "Interstellar",
+      ano: 2014,
+      duracao: '169',
+      sinopse: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+      diretor: "Christopher Nolan",
+      plataformas: [],
+      genero: "sci-fi",
+      posts: []
+    },
+    {
+      filme_id: "2b3c4d5e-6f7g-8h9i-10j11-k12l13m14no",
+      poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9e3Dz7aCANy5aRUQF745IlNloJ1.jpg",
+      nome: "Inception",
+      ano: 2010,
+      duracao: 148,
+      sinopse: "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
+      diretor: "Christopher Nolan",
+      plataformas: [],
+      genero: "sci-fi",
+      posts: []
+    },
+    {
+      filme_id: "3c4d5e6f-7g8h-9i10-j11k12-l13m14n15o",
+      poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/d5NXSklXo0qyIYkgV94XAgMIckC.jpg",
+      nome: "Dune",
+      ano: 2021,
+      duracao: 155,
+      sinopse: "Feature adaptation of Frank Herbert's science fiction novel, about the son of a noble family entrusted with the protection of the most valuable asset and most vital element in the galaxy.",
+      diretor: "Denis Villeneuve",
+      plataformas: [],
+      genero: "sci-fi",
+      posts: []
+    },
+    {
+      filme_id: "4d5e6f7g-8h9i-10j11-k12l13-m14n15o16p",
+      poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+      nome: "The Dark Knight",
+      ano: 2008,
+      duracao: 152,
+      sinopse: "When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.",
+      diretor: "Christopher Nolan",
+      plataformas: [],
+      genero: "action",
+      posts: []
+    },
+    {
+      filme_id: "5e6f7g8h-9i10-j11k12-l13m14-n15o16p17q",
+      poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg",
+      nome: "The Matrix",
+      ano: 1999,
+      duracao: 136,
+      sinopse: "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+      diretor: "The Wachowskis",
+      plataformas: [],
+      genero: "sci-fi",
+      posts: []
+    },
+    {
+      filme_id: "6f7g8h9i-10j11-k12l13-m14n15-o16p17q18r",
+      poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/n0ybibhJtQ5icDqTp8eRytcIHJx.jpg",
+      nome: "The Social Network",
+      ano: 2010,
+      duracao: 120,
+      sinopse: "The story of the founders of the social-networking website, Facebook.",
+      diretor: "David Fincher",
+      plataformas: [],
+      genero: "drama",
+      posts: []
+    },
+    {
+      filme_id: "7g8h9i10-j11k12-l13m14-n15o16-p17q18r19s",
+      poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7sfbEnaARXDDhKm0CZ7D7uc2sbo.jpg",
+      nome: "Inglourious Basterds",
+      ano: 2009,
+      duracao: 153,
+      sinopse: "In Nazi-occupied France during World War II, a plan to assassinate Nazi leaders by a group of Jewish U.S. soldiers coincides with a theatre owner's vengeful plans for the same.",
+      diretor: "Quentin Tarantino",
+      plataformas: [],
+      genero: "war",
+      posts: []
+    },
+    {
+      filme_id: "8h9i10j11-k12l13-m14n15-o16p17-q18r19s20t",
+      poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9xjZS2rlVxm8SFx8kPC3aIGCOYQ.jpg",
+      nome: "Titanic",
+      ano: 1997,
+      duracao: 195,
+      sinopse: "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",
+      diretor: "James Cameron",
+      plataformas: [],
+      genero: "romance",
+      posts: []
+    },
+    {
+      filme_id: "10j11k12-l13m14-n15o16-p17q18-r19s20t21u22v",
+      poster: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+      nome: "Avengers: Endgame",
+      ano: 2019,
+      duracao: 181,
+      sinopse: "After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+      diretor: "Anthony Russo",
+      plataformas: [],
+      genero: "action",
+      posts: []
+    }
   ];
   
