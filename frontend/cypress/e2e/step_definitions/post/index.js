@@ -21,7 +21,7 @@ Then('Um "Modal de Review" abre na minha tela', () => {
   cy.get('.modal').should('exist')
 })
 
-And('Eu preencho "Filme muito bom" no campo "Review", "5" no campo nota e clico em "ENVIAR"', () => {
+And('Eu preencho "Filme muito bom" no campo Review, "5" no campo nota e clico em "ENVIAR"', () => {
   cy.get('textarea').type('Filme muito bom')
   // Select the Rating component using the data-testid attribute
   cy.get('[data-testid="rating-component"]').as('rating')
@@ -81,7 +81,7 @@ And('O "Modal de Review" fecha', () => {
   cy.get('.modal').should('not.exist')
 })
 
-And('Eu posso ver meu review no "Forum", com nota "5" e sem "Review"', async () => {
+And('Eu posso ver meu review no "Forum", com nota "5" e sem Review', async () => {
   // cy.get('.post').contains('Filme muito bom').should('exist')
   cy.get('.post').within(() => {
     // Check for 5 red stars
@@ -91,6 +91,31 @@ And('Eu posso ver meu review no "Forum", com nota "5" e sem "Review"', async () 
         cy.wrap($star).find('svg').should('have.attr', 'style', 'color: rgb(255, 24, 44);')
       })
   })
+})
+
+// Scenario: Falha criação de review sem nota.
+
+And('Eu preencho "Filme muito bom" no campo Review e clico no botão "Publicar"', () => {
+  cy.get('textarea').type('Filme muito bom')
+  cy.get('button').contains('ENVIAR').click()
+})
+
+Then('Uma "Mensagem de Erro" escrita "Nota é obrigatória" surge acima das estrelas', () => {
+  cy.get('[data-testid="error"]').contains('Nota é obrigatória').should('exist')
+})
+
+// Scenario: Apagar um review.
+
+When('Eu clico no icone de "opções" no meu review', () => {
+  cy.get('[data-testid="settings-menu"]').click()
+})
+
+And('Eu clico no botão "Deletar"', () => {
+  cy.get('li').contains('Deletar').click()
+})
+
+Then('Meu review é removido do "Campo de Reviews"', () => {
+  cy.get('.post').should('not.exist')
 })
 
 let filme_id
