@@ -6,7 +6,7 @@ import GetPage from '../../services/pages/GetPage'
 import Post from '../../components/Post'
 import { Button } from '@mui/material'
 import ModalReview from '../../components/ModalReview'
-import Bg from '../../components/Bg'
+// import Bg from '../../components/Bg'
 
 const FilmDetail = () => {
   const { id } = useParams()
@@ -32,8 +32,7 @@ const FilmDetail = () => {
   }
 
   return (
-    <>
-      <Bg />
+    <div style={styles.bg}>
       <div style={styles.container}>
         <ModalReview
           isOpen={openModal}
@@ -85,7 +84,7 @@ const FilmDetail = () => {
             ))}
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
