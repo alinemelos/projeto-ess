@@ -4,8 +4,8 @@ const styles = {
     cursor: 'pointer',
     justifyContent: 'flex-end'
   },
-  none: {
-    display: 'None'
+  settings__menu__hidden: {
+    visibility: 'hidden'
   }
 }
 

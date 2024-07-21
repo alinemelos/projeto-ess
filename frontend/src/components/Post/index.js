@@ -5,13 +5,20 @@ import { Rating } from '@mui/material'
 import { PiArrowBendDownLeftFill } from 'react-icons/pi'
 import StarIcon from '@mui/icons-material/Star'
 import SettingsMenu from '../SettingsMenu'
+import Commenting from '../Commenting'
 
-const Post = ({ post, user_id, setModalOpen, setIsEditing, setReload }) => {
+const Post = ({ post, user_id, setModalOpen, setIsEditing, setReload, publishComment }) => {
   const [nota, setNota] = useState(post.nota)
+  const [showCommenting, setShowCommenting] = useState(false)
+  const [user] = useState(user_id)
 
   useEffect(() => {
     setNota(post.nota)
   }, [post.nota])
+
+  const handleArrowClick = () => {
+    setShowCommenting(!showCommenting)
+  }
 
   return (
     <div className='post' style={styles.container}>
@@ -38,11 +45,17 @@ const Post = ({ post, user_id, setModalOpen, setIsEditing, setReload }) => {
         <p style={styles.post__body__content_review}>{post.review}</p>
       </div>
       <div style={styles.post__footer}>
-        <div style={styles.post__footer_arrow}>
+        <div style={styles.post__footer_arrow} onClick={handleArrowClick}>
           <PiArrowBendDownLeftFill />
         </div>
-        {post.comments.length > 0 && <h3>Comentários:</h3>}
-        {post.comments.length > 0 && post.comments.map((comment) => <Comment key={comment.comment_id} comment={comment} />)}
+
+        {showCommenting && (
+          <Commenting response_id={post.post_id} user_id={user} publishComment={publishComment} publish={handleArrowClick} />
+        )}
+        {post.comments.length > 0 &&
+          post.comments.map((comment) => (
+            <Comment key={comment.comment_id} comment={comment} user_id={user} publishComment={publishComment} />
+          ))}
       </div>
     </div>
   )
