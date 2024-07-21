@@ -8,10 +8,10 @@ const MY_NAMESPACE = 'd7b4380e-75f9-4b83-a67b-867540268a50';
 exports.getMovie = (req, res) => {
   try {
     const { filme_id } = req.body;
-    
     const movieIndex = movies.findIndex(movie => movie.filme_id === filme_id);
 
     if (movieIndex === -1) {
+      console.log(movieIndex)
       return res.status(404).json({ error: 'Filme não encontrado' });
     }
 
@@ -94,7 +94,7 @@ exports.delMovie = (req, res) => {
 
 exports.editMovie = (req, res) => {
   try {
-    const { filme_id, poster, nome, ano, duracao, sinopse, diretor, genero, plataformas } = req.body;
+    const { filme_id, poster, nome, ano, duracao, sinopse, genero } = req.body;
 
     const movieIndex = movies.findIndex(movie => movie.filme_id === filme_id);
 
@@ -102,7 +102,7 @@ exports.editMovie = (req, res) => {
       return res.status(404).json({ error: 'Filme não encontrado' });
     }
 
-    if (!poster && !nome && !ano && !duracao && !sinopse && !diretor && !genero && !plataformas) {
+    if (filme_id === movies[movieIndex].filme_id && poster === movies[movieIndex].poster && nome === movies[movieIndex].nome && ano === movies[movieIndex].ano && duracao === movies[movieIndex].duracao && sinopse === movies[movieIndex].sinopse && genero === movies[movieIndex].genero) {
       return res.status(400).json({ error: 'Nenhum campo para atualizar' });
     }
 
@@ -111,9 +111,9 @@ exports.editMovie = (req, res) => {
     if (ano) movies[movieIndex].ano = ano;
     if (duracao) movies[movieIndex].duracao = duracao;
     if (sinopse) movies[movieIndex].sinopse = sinopse;
-    if (diretor) movies[movieIndex].diretor = diretor;
+    // if (diretor) movies[movieIndex].diretor = diretor;
     if (genero) movies[movieIndex].genero = genero;
-    if (plataformas) movies[movieIndex].plataformas = plataformas;
+    // if (plataformas) movies[movieIndex].plataformas = plataformas;
 
     res.status(200).json({
       message: "Filme Editado com Sucesso",
@@ -123,6 +123,7 @@ exports.editMovie = (req, res) => {
     
   } catch (error) {
     console.error(error);
+
     return res.status(500).json({ error: 'Erro ao editar o filme' });
   }
 };

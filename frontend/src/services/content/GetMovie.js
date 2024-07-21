@@ -1,11 +1,11 @@
 import api from '../index'
 
-export default async function DeleteMovie(filme_id) {
+export default async function GetMovie(filme_id) {
   try {
-    const data = {
+    const dados = {
       filme_id: filme_id
     }
-    const response = await api.delete('/movie', { data: data })
+    const response = await api.get('/movie', { dados })
     return response
   } catch (error) {
     if (error.response && error.response.data && error.response.data.error === 'Filme não encontrado') {

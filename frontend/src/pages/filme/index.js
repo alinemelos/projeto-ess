@@ -6,6 +6,7 @@ import GetPage from '../../services/pages/GetPage'
 import Post from '../../components/Post'
 import { Button } from '@mui/material'
 import ModalReview from '../../components/ModalReview'
+import ModalContentEdit from '../../components/ContentComponents/ModalContentEdit'
 
 const FilmDetail = () => {
   const { id } = useParams()
@@ -15,7 +16,7 @@ const FilmDetail = () => {
   const [reload, setReload] = useState(false)
   const [editingPostInfo, setEditingPostInfo] = useState([])
   const [openModal, setOpenModal] = useState(false)
-
+  const [showContent, setShowContent] = useState(false)
   useEffect(() => {
     async function fetchData() {
       const response = await GetPage(id)
@@ -28,6 +29,14 @@ const FilmDetail = () => {
   const handleOpenModal = () => {
     setIsEditing(false)
     setOpenModal(true)
+  }
+
+  function handleContent() {
+    setShowContent(!showContent)
+  }
+
+  const ModalEditMovie = (props) => {
+    return <>{props.showContent && <ModalContentEdit handleContent={handleContent} id={id} />}</>
   }
 
   return (
@@ -58,6 +67,10 @@ const FilmDetail = () => {
           <Button variant='contained' color='primary' onClick={handleOpenModal}>
             Poste um Review
           </Button>
+          <Button variant='contained' color='secondary' onClick={handleContent}>
+            Editar Filme
+          </Button>
+          {showContent && <ModalEditMovie showContent={showContent} />}
         </div>
       </div>
       <div style={styles.forum}>
