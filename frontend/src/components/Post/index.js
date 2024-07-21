@@ -30,7 +30,7 @@ const Post = ({ post, user_id, setModalOpen, setIsEditing, setReload }) => {
             icon={<StarIcon style={{ color: '#FF182C' }} />}
           />
         </div>
-        <div style={styles.post__header__options}>
+        <div style={styles.post__header__options} data-testid='settings-menu'>
           <SettingsMenu post={post} user_id={user_id} setModalOpen={setModalOpen} setIsEditing={setIsEditing} setReload={setReload} />
         </div>
       </div>

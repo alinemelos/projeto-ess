@@ -9,6 +9,8 @@ After(async () => {
   await factory_end()
 })
 
+// Scenario: Criar um review
+
 Given('Eu Estou na página do filme "Teste"', () => {
   cy.visit(`http://localhost:3005/filme/${filme_id}`)
 })
@@ -21,7 +23,7 @@ Then('Um "Modal de Review" abre na minha tela', () => {
   cy.get('.modal').should('exist')
 })
 
-And('Eu preencho "Filme muito bom" no campo "Review", "5" no campo nota e clico em "ENVIAR"', () => {
+And('Eu preencho "Filme muito bom" no campo Review, "5" no campo nota e clico em "ENVIAR"', () => {
   cy.get('textarea').type('Filme muito bom')
   // Select the Rating component using the data-testid attribute
   cy.get('[data-testid="rating-component"]').as('rating')
@@ -81,7 +83,7 @@ And('O "Modal de Review" fecha', () => {
   cy.get('.modal').should('not.exist')
 })
 
-And('Eu posso ver meu review no "Forum", com nota "5" e sem "Review"', async () => {
+And('Eu posso ver meu review no "Forum", com nota "5" e sem Review', async () => {
   // cy.get('.post').contains('Filme muito bom').should('exist')
   cy.get('.post').within(() => {
     // Check for 5 red stars
@@ -91,6 +93,31 @@ And('Eu posso ver meu review no "Forum", com nota "5" e sem "Review"', async () 
         cy.wrap($star).find('svg').should('have.attr', 'style', 'color: rgb(255, 24, 44);')
       })
   })
+})
+
+// Scenario: Falha criação de review sem nota.
+
+And('Eu preencho "Filme muito bom" no campo Review e clico no botão "Publicar"', () => {
+  cy.get('textarea').type('Filme muito bom')
+  cy.get('button').contains('ENVIAR').click()
+})
+
+Then('Uma "Mensagem de Erro" escrita "Nota é obrigatória" surge acima das estrelas', () => {
+  cy.get('[data-testid="error"]').contains('Nota é obrigatória').should('exist')
+})
+
+// Scenario: Apagar um review.
+
+When('Eu clico no icone de "opções" no meu review', () => {
+  cy.get('[data-testid="settings-menu"]').click()
+})
+
+And('Eu clico no botão "Deletar"', () => {
+  cy.get('li').contains('Deletar').click()
+})
+
+Then('Meu review é removido do "Campo de Reviews"', () => {
+  cy.get('.post').should('not.exist')
 })
 
 let filme_id
@@ -103,6 +130,7 @@ let factory_start = async () => {
     duracao: '1h54m',
     genero: '1',
     sinopse: 'QA Movie.',
+    diretor: 'Martin Q. A. Scorsese',
     poster: 'https://image.tmdb.org/t/p/original/qirvDexByE5erglM8fdIm0AEVFD.jpg'
   }
 
@@ -137,5 +165,5 @@ let factory_end = async () => {
   }
 
   const data = await response.json()
-  expect(data).to.have.property('message', 'Filme removido com sucesso')
+  expect(data).to.have.property('message', 'Filme Removido com Sucesso')
 }
