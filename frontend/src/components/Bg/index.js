@@ -6,12 +6,13 @@ const Bg = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const vh = window.innerHeight
-      const numGradients = Math.floor(vh / 300) // Number of gradients needed for the viewport height
+      // const vh = window.innerHeight
+      // const numGradients = Math.floor(vh / 300) // Number of gradients needed for the viewport height
+      const numGradients = 1 // Number of gradients needed for the viewport height
       const newGradients = []
 
       for (let i = 0; i < numGradients; i++) {
-        const topOffset = i * 100 // 100vh height distance between gradients
+        const topOffset = i * 150 // 100vh height distance between gradients
         newGradients.push({
           id: i * 2,
           top: `${5 + topOffset}%`,
@@ -19,7 +20,7 @@ const Bg = () => {
         })
         newGradients.push({
           id: i * 2 + 1,
-          top: `${40 + topOffset}%`,
+          top: `${55 + topOffset}%`,
           left: '-5%'
         })
       }
