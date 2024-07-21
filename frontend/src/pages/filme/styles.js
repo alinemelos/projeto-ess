@@ -3,13 +3,15 @@ import background from '../../assets/bg.png'
 // src/pages/FilmStyles.js
 const styles = {
   bg: {
+    backgroundAttachment: 'fixed',
     backgroundImage: `url(${background})`,
     backgroundPosition: 'center',
-    backgroundSize: 'contain',
-    width: '100%'
+    backgroundSize: 'cover',
+    backgroundRepeat: 'repeat',
+    minHeight: '100vh'
   },
   container: {
-    maxWidth: '80%',
+    maxWidth: '80vw',
     margin: '0 auto 0 7%',
     padding: '20px'
   },
