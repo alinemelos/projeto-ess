@@ -50,6 +50,7 @@ class Comment {
         } else {
             // Procurar em posts
             for (const filme of movies) {
+                console.log(filme)
                 for (let i = 0; i < filme.posts.length; i++) {
                     const post = filme.posts[i];
                     if (post.post_id === id) {

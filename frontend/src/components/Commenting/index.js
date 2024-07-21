@@ -11,6 +11,7 @@ const Commenting = ({ response_id, user_id, publishComment, publish, editing = f
   }
 
   const handlePublishClick = async () => {
+    console.log(user_id, response_id, comment)
     await CreateComment(user_id, response_id, comment)
     setComment('')
     publishComment()
@@ -33,7 +34,7 @@ const Commenting = ({ response_id, user_id, publishComment, publish, editing = f
           type='text'
           placeholder='Digite seu comentário...'
           style={styles.input}
-          value={comentario}
+          value={comment}
           onChange={handleCommentChange}
           rows={3}
         />

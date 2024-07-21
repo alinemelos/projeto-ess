@@ -8,7 +8,6 @@ import { Button } from '@mui/material'
 import ModalReview from '../../components/ModalReview'
 import Header from '../../components/ContentComponents/Header'
 
-
 const FilmDetail = () => {
   const nomes = ['Miguel Oliveira', 'Ítalo Lima', 'Lívia Bion']
   const getRandomName = () => {

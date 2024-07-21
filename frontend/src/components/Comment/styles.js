@@ -21,8 +21,7 @@ const styles = {
   },
   comment__body: {
     display: 'flex',
-    width: '100%',
-    backgroundColor: 'white'
+    width: '100%'
   },
   comment__content: {
     fontSize: '16px',

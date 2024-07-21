@@ -2,8 +2,8 @@ import subprocess
 import os
 
 # Caminhos dos diretórios
-backend_dir = os.path.join(os.getcwd(), 'backend')
-frontend_dir = os.path.join(os.getcwd(), 'frontend')
+backend_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'backend')
+frontend_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'frontend')
 
 # Comandos para abrir terminais e executar 'npm start'
 backend_command = f'start cmd /k "cd /d {backend_dir} && npm start"'
