@@ -6,16 +6,24 @@ import GetPage from '../../services/pages/GetPage'
 import Post from '../../components/Post'
 import { Button } from '@mui/material'
 import ModalReview from '../../components/ModalReview'
-// import Bg from '../../components/Bg'
+import Header from '../../components/ContentComponents/Header'
+
 
 const FilmDetail = () => {
+  const nomes = ['Miguel Oliveira', 'Ítalo Lima', 'Lívia Bion']
+  const getRandomName = () => {
+    const randomIndex = Math.floor(Math.random() * nomes.length)
+    return nomes[randomIndex]
+  }
+
   const { id } = useParams()
-  const [user_id] = useState('Miguel Oliveira')
+  const [user_id] = useState(getRandomName())
   const [page, setPage] = useState([])
   const [isEditing, setIsEditing] = useState(false)
   const [reload, setReload] = useState(false)
   const [editingPostInfo, setEditingPostInfo] = useState([])
   const [openModal, setOpenModal] = useState(false)
+  const [publishComment, setPublishComment] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -23,12 +31,15 @@ const FilmDetail = () => {
       setPage(response.data)
     }
     fetchData()
-  }, [openModal, reload])
+  }, [openModal, reload, publishComment])
   // Fetch the film details using the id, or use a state management solution.
-
   const handleOpenModal = () => {
     setIsEditing(false)
     setOpenModal(true)
+  }
+
+  const handleReplacePublishComment = () => {
+    setPublishComment(!publishComment)
   }
 
   return (
@@ -51,6 +62,7 @@ const FilmDetail = () => {
           }}
         />
         <div style={styles.content}>
+          <Header user_id={user_id} />
           <h1 style={styles.title}>Detalhes do filme com id: {id}</h1>
           <p style={styles.synopsis}>{page.sinopse}</p>
           <div style={styles.detail}>
@@ -80,6 +92,7 @@ const FilmDetail = () => {
                 setReload={() => {
                   setReload(!reload)
                 }}
+                publishComment={handleReplacePublishComment}
               />
             ))}
         </div>
