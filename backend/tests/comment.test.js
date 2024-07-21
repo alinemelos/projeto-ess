@@ -65,7 +65,7 @@ defineFeature(comment_feature, test => {
             post_id = filme_data.posts[Number(arg1)].post_id;
 
             comment_test = {
-                "user_id": Number(arg2),
+                "user_id": arg2,
                 "response_id": post_id,
                 "comment": arg3,
             };
@@ -107,7 +107,7 @@ defineFeature(comment_feature, test => {
             post_id = filme_data.posts[Number(arg1)].post_id;
 
             comment_test = {
-                "user_id": Number(arg2),
+                "user_id": arg2,
                 "response_id": post_id,
                 "comment": arg3,
             };
@@ -120,7 +120,7 @@ defineFeature(comment_feature, test => {
         when(/^execute um put na rota "(.*)" user_id "(.*)" e comentário "(.*)"$/, async (arg0, arg1, arg2) => {
             
             comment_test = {
-                "user_id": Number(arg1),
+                "user_id": arg1,
                 "comment_id": response.data.comment_id,
                 "comment": arg2
             }
@@ -156,7 +156,7 @@ defineFeature(comment_feature, test => {
             post_id = filme_data.posts[Number(arg1)].post_id;
 
             comment_test = {
-                "user_id": Number(arg2),
+                "user_id": arg2,
                 "response_id": post_id,
                 "comment": arg3,
             };
@@ -169,7 +169,7 @@ defineFeature(comment_feature, test => {
             // Fazendo a requisição DELETE
             
             const delete_req = {
-                "user_id": Number(arg1),
+                "user_id": arg1,
                 "response_id": response.data.comment_id
             }
 
@@ -202,7 +202,7 @@ defineFeature(comment_feature, test => {
             post_id = filme_data.posts[Number(arg1)].post_id;
 
             comment_test = {
-                "user_id": Number(arg2),
+                "user_id": arg2,
                 "response_id": post_id,
                 "comment": arg3,
             };
@@ -239,7 +239,7 @@ defineFeature(comment_feature, test => {
             post_id = filme_data.posts[Number(arg1)].post_id;
 
             comment_test = {
-                "user_id": Number(arg2),
+                "user_id": arg2,
                 "response_id": post_id,
                 "comment": arg3,
             };
@@ -250,7 +250,7 @@ defineFeature(comment_feature, test => {
 
         when(/^execute um post na rota "(.*)" com o post_id do comentário anterior, user_id "(.*)" e comentário "(.*)"$/, async (arg0, arg1, arg2) => {
             comment_test = {
-                "user_id": Number(arg1),
+                "user_id": arg1,
                 "response_id": response.data.comment_id,
                 "comment": arg2,
             };
@@ -285,7 +285,7 @@ defineFeature(comment_feature, test => {
             post_id = filme_data.posts[Number(arg1)].post_id;
 
             comment_test = {
-                "user_id": Number(arg2),
+                "user_id": arg2,
                 "response_id": post_id,
                 "comment": arg3,
             };
@@ -298,7 +298,7 @@ defineFeature(comment_feature, test => {
             // Fazendo a requisição DELETE
             
             const delete_req = {
-                "user_id": Number(arg1),
+                "user_id": arg1,
                 "response_id": response.data.comment_id
             }
             
