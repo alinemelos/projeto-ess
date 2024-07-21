@@ -9,6 +9,8 @@ After(async () => {
   await factory_end()
 })
 
+// Scenario: Criar um review
+
 Given('Eu Estou na página do filme "Teste"', () => {
   cy.visit(`http://localhost:3005/filme/${filme_id}`)
 })
