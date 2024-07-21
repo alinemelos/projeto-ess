@@ -80,7 +80,7 @@ const styles = {
   },
   textarea: {
     backgroundColor: '#F6F6F6',
-    fontFamily: 'Be Vietnam Pro',
+    fontFamily: 'Montserrat',
     flex: 1,
     width: '90%',
     marginRight: '0.5rem',

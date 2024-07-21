@@ -15,6 +15,7 @@ const styles = {
     fontSize: '16px',
     width: '100%',
     marginRight: '10px',
+    fontFamily: 'Montserrat',
     backgroundColor: 'transparent'
   },
   buttonPublish: {
