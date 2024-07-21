@@ -3,7 +3,7 @@ const styles = {
     alignItems: 'center',
     marginTop: '10px',
     marginBottom: '30px',
-    marginLeft: '3%',
+    marginLeft: '1%',
     width: '90%'
   },
   input: {
@@ -14,7 +14,9 @@ const styles = {
     outline: 'none',
     fontSize: '16px',
     width: '100%',
-    marginRight: '10px'
+    marginRight: '10px',
+    fontFamily: 'Montserrat',
+    backgroundColor: 'transparent'
   },
   buttonPublish: {
     display: 'flex',
