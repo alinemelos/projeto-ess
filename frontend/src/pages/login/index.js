@@ -6,13 +6,6 @@ import styles from './styles' // Import the styles from the same directory
 const Login = () => {
   const navigate = useNavigate()
 
-  const handleLogin = () => {
-    // Lógica de autenticação aqui
-
-    // Redirecionar para a rota de dashboard
-    navigate('/dashboard')
-  }
-
   const HandleAdminLogin = () => {
     navigate('/admindashboard')
   }
@@ -25,9 +18,6 @@ const Login = () => {
     <div style={styles.container}>
       <div>
         <h1 style={styles.title}>Login</h1>
-        <Button variant='contained' color='primary' onClick={handleLogin}>
-          Login
-        </Button>
         <Button variant='contained' color='primary' onClick={HandleAdminLogin}>
           Admin Login
         </Button>

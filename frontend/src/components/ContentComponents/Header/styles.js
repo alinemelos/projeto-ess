@@ -5,8 +5,8 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     position: 'relative',
-    // padding: '4vh 6vw 4vh 6vw',
-    margin: '4vh 6vw 10vh 4vw',
+    paddingTop: '4vh',
+    margin: '0vh 4vh 4vh 4vh',
     borderBottom: 'solid 2px #000000'
   },
   title: {
@@ -15,14 +15,21 @@ const styles = {
   },
   fonte_titulo: {
     fontFamily: 'Bebas Neue',
-    fontSize: '3rem',
-    fontWeight: 'bold'
+    fontSize: '3rem'
   },
   options: {
     gap: '4vw',
     display: 'flex',
     alignItems: 'center',
     padding: '0 10px 0 10px'
+  },
+  user: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1vw'
+  },
+  profile: {
+    fontSize: '2rem'
   }
 }
 

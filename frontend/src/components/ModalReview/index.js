@@ -91,7 +91,11 @@ const ModalReview = ({
                   <div style={styles.form__bottom}>
                     <div style={styles.form__bottom__nota}>
                       <p style={styles.form__bottom__nota_label}>Nota</p>
-                      {errorNota && <p style={styles.form__bottom__nota_error}>Nota é obrigatória</p>}
+                      {errorNota && (
+                        <p style={styles.form__bottom__nota_error} data-testid='error'>
+                          Nota é obrigatória
+                        </p>
+                      )}
                       <Rating
                         name='simple-controlled'
                         value={rating}

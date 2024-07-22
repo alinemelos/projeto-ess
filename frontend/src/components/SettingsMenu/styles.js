@@ -3,6 +3,9 @@ const styles = {
     color: '#000000',
     cursor: 'pointer',
     justifyContent: 'flex-end'
+  },
+  none: {
+    display: 'None'
   }
 }
 

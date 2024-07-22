@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './styles'
 import ModalContentAdd from '../../components/ContentComponents/ModalContentAdd'
-import CarouselMovies from '../../components/ContentComponents/CarrouselMovies'
+import UserCarouselMovies from '../../components/ContentComponents/UserCarouselMovies'
 import Header from '../../components/ContentComponents/Header'
 
 const AdminDashboard = () => {
@@ -16,7 +16,7 @@ const AdminDashboard = () => {
     <div style={styles.background}>
       <Header topRightName={'Usuario'} />
       <div>
-        <CarouselMovies handleContent={handleContent} showMovieFrame={false} />
+        <UserCarouselMovies handleContent={handleContent} showMovieFrame={false} />
         {showContent && <ModalAddMovie showContent={showContent} />}
       </div>
     </div>
