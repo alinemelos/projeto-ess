@@ -6,6 +6,7 @@ import GetPage from '../../services/pages/GetPage'
 import Post from '../../components/Post'
 import { Button } from '@mui/material'
 import ModalReview from '../../components/ModalReview'
+import ModalPlatform from '../../components/ModalPlatform'
 
 const FilmDetail = () => {
   const { id } = useParams()
@@ -15,6 +16,7 @@ const FilmDetail = () => {
   const [reload, setReload] = useState(false)
   const [editingPostInfo, setEditingPostInfo] = useState([])
   const [openModal, setOpenModal] = useState(false)
+  const [openModalPlatform, setOpenModalPlatform] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -28,6 +30,10 @@ const FilmDetail = () => {
   const handleOpenModal = () => {
     setIsEditing(false)
     setOpenModal(true)
+  }
+
+  const handleOpenModalPlatform = () => {
+    setOpenModalPlatform(true)
   }
 
   return (
@@ -48,6 +54,13 @@ const FilmDetail = () => {
           setIsEditing(!isEditing)
         }}
       />
+      <ModalPlatform
+        isOpen={openModalPlatform}
+        selectedFilmId={id}
+        setModalOpen={() => {
+          setOpenModalPlatform(!openModalPlatform)
+        }}
+      />
       <div style={styles.content}>
         <h1 style={styles.title}>Detalhes do filme com id: {id}</h1>
         <p style={styles.synopsis}>{page.sinopse}</p>
@@ -57,6 +70,9 @@ const FilmDetail = () => {
           <p>Genero: {page.genero}</p>
           <Button variant='contained' color='primary' onClick={handleOpenModal}>
             Poste um Review
+          </Button>
+          <Button variant='contained' color='primary' onClick={handleOpenModalPlatform}>
+            Onde Assistir?
           </Button>
         </div>
       </div>

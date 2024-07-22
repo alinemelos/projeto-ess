@@ -17,14 +17,20 @@ module.exports = [
           filme1_id: filme1_id,
           nome: "Globoplay",
           url: "https://globoplay.com/oppenheimer",
-          image: "https://globoplay.com/logo.png",
+          image: "https://podecomparar.com.br/sites/podecomparar.com.br/files/images/logos-redes-sociais/logo-globoplay-200px.png",
       },
       {
           filme1_id: filme1_id,
           nome: "Netflix",
           url: "https://netflix.com/oppenheimer",
-          image: "https://netflix.com/logo.png",
-      }
+          image: "https://static.vecteezy.com/system/resources/previews/006/874/233/original/netflix-logo-icon-on-white-background-free-vector.jpg",
+      },
+      {
+        filme1_id: filme1_id,
+        nome: "Prime Video",
+        url: "https://www.primevideo.com/detail/0TQ0HYSFFKAO9W3UUIOMSTPUJ7/ref=atv_sr_fle_c_Tn74RA_1_1_1?sr=1-1&pageTypeIdSource=ASIN&pageTypeId=B0CKRZ7G7N&qid=1721626218893",
+        image: "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/f1/f7/27/f1f72776-cb16-2416-cd6b-db9f9d9d93f4/AppIcon-2x_U007euniversal-0-4-0-0-85-220-0.png/1200x630wa.png",
+    }
       ],
       genero: "comedia",
       posts: [
@@ -54,7 +60,14 @@ module.exports = [
       duracao: 260,
       sinopse: "Um homem deprimido que sofre de insônia conhece um estranho vendedor chamado Tyler Durden e se vê morando em uma casa suja depois que seu perfeito apartamento é destruído. A dupla forma um clube com regras rígidas onde homens lutam. A parceria perfeita é comprometida quando uma mulher, Marla, atrai a atenção de Tyler.",
       diretor: "David Fincher",
-      plataformas: [],
+      plataformas: [
+        {
+          filme1_id: filme1_id,
+          nome: "Netflix",
+          url: "https://netflix.com/oppenheimer",
+          image: "https://static.vecteezy.com/system/resources/previews/006/874/233/original/netflix-logo-icon-on-white-background-free-vector.jpg",
+      }
+      ],
       genero: "comedia",
       posts: []
     },
