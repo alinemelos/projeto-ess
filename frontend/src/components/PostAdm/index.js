@@ -14,7 +14,7 @@ const Post = ({ post, user_id, setModalOpen, setIsEditing, setReload }) => {
   }, [post.nota])
 
   return (
-    <div className='post' style={styles.container}>
+    <div className='postadm' style={styles.container}>
       <div style={styles.post__header}>
         <div style={styles.post__header__data}>
           <p style={styles.post__header__data_userID}>{post.user_id}</p>
@@ -30,7 +30,7 @@ const Post = ({ post, user_id, setModalOpen, setIsEditing, setReload }) => {
             icon={<StarIcon style={{ color: '#FF182C' }} />}
           />
         </div>
-        <div style={styles.post__header__options}>
+        <div style={styles.post__header__options} data-testid='settings-menu'>
           <SettingsMenu post={post} user_id={user_id} setModalOpen={setModalOpen} setIsEditing={setIsEditing} setReload={setReload} />
         </div>
       </div>
