@@ -14,7 +14,7 @@ const AdminDashboard = () => {
   }
   return (
     <div style={styles.background}>
-      <Header topRightName={'Usuario'} />
+      <Header user_id={'Usuário'} />
       <div>
         <UserCarouselMovies handleContent={handleContent} showMovieFrame={false} />
         {showContent && <ModalAddMovie showContent={showContent} />}

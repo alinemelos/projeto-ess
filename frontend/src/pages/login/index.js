@@ -15,15 +15,19 @@ const Login = () => {
   }
 
   return (
-    <div style={styles.container}>
-      <div>
-        <h1 style={styles.title}>Login</h1>
-        <Button variant='contained' color='primary' onClick={HandleAdminLogin}>
-          Admin Login
-        </Button>
-        <Button variant='contained' color='primary' onClick={HandleUserLogin}>
-          User Login
-        </Button>
+    <div style={styles.bg}>
+      <div style={styles.container}>
+        <div style={styles.content}>
+          <h1 style={styles.title}>Login</h1>
+          <div style={styles.buttons}>
+            <Button variant='contained' style={styles.button} onClick={HandleAdminLogin}>
+              Admin Login
+            </Button>
+            <Button variant='contained' style={styles.button} onClick={HandleUserLogin}>
+              User Login
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   )
