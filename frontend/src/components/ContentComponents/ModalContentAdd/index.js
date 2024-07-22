@@ -7,6 +7,7 @@ import ModalConfirm from '../ModalConfirm'
 
 const ModalContentAdd = ({ handleContent }) => {
   const [postName, setPostName] = useState('')
+  const [postDiretor, setPostDiretor] = useState('')
   const [postYear, setPostYear] = useState('')
   const [postDuration, setPostDuration] = useState('')
   const [postGenre, setPostGenre] = useState('')
@@ -22,7 +23,7 @@ const ModalContentAdd = ({ handleContent }) => {
 
   const handleAddMovie = async () => {
     toggleConfirm()
-    const response = await AddMovie(postImage, postName, postYear, postDuration, postSynopsis, postGenre)
+    const response = await AddMovie(postImage, postName, postDiretor, postYear, postDuration, postSynopsis, postGenre)
 
     if (response.status === 201) {
       setMessage('Filme Cadastrado com Sucesso')
@@ -115,6 +116,13 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Nome do Filme'
                 value={postName}
                 onChange={(e) => setPostName(e.target.value)}
+              />
+              <input
+                style={styles.input_diretor}
+                type='text'
+                placeholder='Diretor'
+                value={postDiretor}
+                onChange={(e) => setPostDiretor(e.target.value)}
               />
               <input
                 style={styles.input_year}

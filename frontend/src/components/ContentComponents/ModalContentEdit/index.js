@@ -7,6 +7,7 @@ import ModalConfirm from '../ModalConfirm'
 
 const ModalContentEdit = ({ handleContent, id }) => {
   const [postName, setPostName] = useState('')
+  const [postDiretor, setPostDiretor] = useState('')
   const [postYear, setPostYear] = useState('')
   const [postDuration, setPostDuration] = useState('')
   const [postGenre, setPostGenre] = useState('')
@@ -19,7 +20,7 @@ const ModalContentEdit = ({ handleContent, id }) => {
 
   const handleEditMovie = async () => {
     toggleConfirm()
-    const response = await EditMovie(id, postImage, postName, postYear, postDuration, postSynopsis, postGenre)
+    const response = await EditMovie(id, postImage, postName, postDiretor, postYear, postDuration, postSynopsis, postGenre)
     if (response.status === 200) {
       setMessage('Filme Editado com Sucesso')
     } else if (response == 'Nenhum campo para atualizar') {
@@ -39,6 +40,7 @@ const ModalContentEdit = ({ handleContent, id }) => {
       if (response.status === 200) {
         const filme = filmes.filter((filme) => filme.filme_id === id)
         setPostName(filme[0].nome)
+        setPostDiretor(filme[0].diretor)
         setPostYear(filme[0].ano)
         setPostDuration(filme[0].duracao)
         setPostGenre(filme[0].genero)
@@ -100,6 +102,13 @@ const ModalContentEdit = ({ handleContent, id }) => {
                 placeholder='Nome do Filme'
                 value={postName}
                 onChange={(e) => setPostName(e.target.value)}
+              />
+              <input
+                style={styles.input_diretor}
+                type='text'
+                placeholder='Diretor'
+                value={postDiretor}
+                onChange={(e) => setPostDiretor(e.target.value)}
               />
               <input
                 style={styles.input_year}

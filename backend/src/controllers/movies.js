@@ -94,7 +94,7 @@ exports.delMovie = (req, res) => {
 
 exports.editMovie = (req, res) => {
   try {
-    const { filme_id, poster, nome, ano, duracao, sinopse, genero } = req.body;
+    const { filme_id, poster, nome, ano, duracao, sinopse, diretor, genero } = req.body;
 
     const movieIndex = movies.findIndex(movie => movie.filme_id === filme_id);
 
@@ -111,7 +111,7 @@ exports.editMovie = (req, res) => {
     if (ano) movies[movieIndex].ano = ano;
     if (duracao) movies[movieIndex].duracao = duracao;
     if (sinopse) movies[movieIndex].sinopse = sinopse;
-    // if (diretor) movies[movieIndex].diretor = diretor;
+    if (diretor) movies[movieIndex].diretor = diretor;
     if (genero) movies[movieIndex].genero = genero;
     // if (plataformas) movies[movieIndex].plataformas = plataformas;
 

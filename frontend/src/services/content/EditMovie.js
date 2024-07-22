@@ -1,11 +1,12 @@
 import api from '../index'
 
-export default async function EditMovie(filme_id, poster, nome, ano, duracao, sinopse, genero) {
+export default async function EditMovie(filme_id, poster, nome, diretor, ano, duracao, sinopse, genero) {
   try {
     const data = {
       filme_id: filme_id,
       poster: poster,
       nome: nome,
+      diretor: diretor,
       ano: ano,
       duracao: duracao,
       sinopse: sinopse,
