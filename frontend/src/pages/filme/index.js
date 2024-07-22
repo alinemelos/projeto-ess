@@ -26,7 +26,7 @@ const FilmDetail = () => {
       setPage(response.data)
     }
     fetchData()
-  }, [openModal, reload])
+  }, [openModal, reload, publishComment])
   // Fetch the film details using the id, or use a state management solution.
 
   const handleOpenModal = () => {
@@ -70,6 +70,7 @@ const FilmDetail = () => {
         />
 
         <div style={styles.content}>
+          <Header user_id={user_id} />
           <div>
             <h1 style={styles.title}>{page.nome}</h1>
           </div>
@@ -91,6 +92,9 @@ const FilmDetail = () => {
                 <p>Duracao: {page.duracao} min</p>
                 <Button variant='contained' style={{ backgroundColor: 'red', color: 'white' }} onClick={handleOpenModal}>
                   Poste um Review
+                </Button>
+                <Button variant='contained' color='primary' onClick={handleOpenModalPlatform}>
+                  Onde Assistir?
                 </Button>
               </div>
             </div>
@@ -114,6 +118,7 @@ const FilmDetail = () => {
                 setReload={() => {
                   setReload(!reload)
                 }}
+                publishComment={handleReplacePublishComment}
               />
             ))}
         </div>
