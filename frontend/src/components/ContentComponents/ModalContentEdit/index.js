@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import styles from './styles'
 import { IoCloseSharp } from 'react-icons/io5'
-// import MovieFrame from '../MovieFrame'
-// import AddMovie from '../../../services/content/AddMovie'
 import EditMovie from '../../../services/content/EditMovie'
 import GetFilmes from '../../../services/filmes/GetFilmes'
-// import GetMovie from '../../../services/content/GetMovie'
 import ModalConfirm from '../ModalConfirm'
 
 const ModalContentEdit = ({ handleContent, id }) => {
-  // console.log(id)
   const [postName, setPostName] = useState('')
   const [postYear, setPostYear] = useState('')
   const [postDuration, setPostDuration] = useState('')
@@ -24,7 +20,6 @@ const ModalContentEdit = ({ handleContent, id }) => {
   const handleEditMovie = async () => {
     toggleConfirm()
     const response = await EditMovie(id, postImage, postName, postYear, postDuration, postSynopsis, postGenre)
-    console.log(response.status)
     if (response.status === 200) {
       setMessage('Filme Editado com Sucesso')
     } else if (response == 'Nenhum campo para atualizar') {
@@ -41,10 +36,8 @@ const ModalContentEdit = ({ handleContent, id }) => {
     const handleGetMovie = async (id) => {
       const response = await GetFilmes()
       const filmes = response.data
-      // console.log(response.data[2].filme_id)
       if (response.status === 200) {
         const filme = filmes.filter((filme) => filme.filme_id === id)
-        // console.log(filme[0].nome)
         setPostName(filme[0].nome)
         setPostYear(filme[0].ano)
         setPostDuration(filme[0].duracao)

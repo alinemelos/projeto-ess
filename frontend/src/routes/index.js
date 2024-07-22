@@ -5,7 +5,6 @@ import Dashboard from '../pages/dashboard'
 import Filme from '../pages/filme'
 import AdminDashboard from '../pages/adminDashboard'
 import UserDashboard from '../pages/userDashboard'
-import ModalConfirm from '../components/ContentComponents/ModalConfirm'
 
 export default function Rotas() {
   return (
@@ -16,7 +15,6 @@ export default function Rotas() {
         <Route path='/admindashboard' element={<AdminDashboard />} />
         <Route path='/userdashboard' element={<UserDashboard />} />
         <Route path='/filme/:id' element={<Filme />} />
-        <Route path='/modalconfirm' element={<ModalConfirm />} />
       </Routes>
     </Router>
   )

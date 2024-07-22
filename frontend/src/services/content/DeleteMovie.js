@@ -6,12 +6,14 @@ export default async function DeleteMovie(filme_id) {
       filme_id: filme_id
     }
     const response = await api.delete('/movie', { data: data })
+    console.log('Response Back')
+    console.log(response)
     return response
   } catch (error) {
-    if (error.response && error.response.data && error.response.data.error === 'Filme não encontrado') {
+    if (error.response.status === 404) {
       return 'Filme não encontrado'
     } else {
-      return 'Error'
+      return 'Erro ao remover o filme'
     }
   }
 }

@@ -7,6 +7,7 @@ import Post from '../../components/Post'
 import { Button } from '@mui/material'
 import ModalReview from '../../components/ModalReview'
 import ModalContentEdit from '../../components/ContentComponents/ModalContentEdit'
+import ModalContentDelete from '../../components/ContentComponents/ModalContentDelete'
 
 const FilmDetail = () => {
   const { id } = useParams()
@@ -17,6 +18,7 @@ const FilmDetail = () => {
   const [editingPostInfo, setEditingPostInfo] = useState([])
   const [openModal, setOpenModal] = useState(false)
   const [showContent, setShowContent] = useState(false)
+  const [deleteContent, setDeleteContent] = useState(false)
   useEffect(() => {
     async function fetchData() {
       const response = await GetPage(id)
@@ -35,8 +37,16 @@ const FilmDetail = () => {
     setShowContent(!showContent)
   }
 
+  function handleDelete() {
+    setDeleteContent(!deleteContent)
+  }
+
   const ModalEditMovie = (props) => {
     return <>{props.showContent && <ModalContentEdit handleContent={handleContent} id={id} />}</>
+  }
+
+  const ModalDeleteMovie = (props) => {
+    return <>{props.deleteContent && <ModalContentDelete handleDelete={handleDelete} id={id} />}</>
   }
 
   return (
@@ -70,7 +80,11 @@ const FilmDetail = () => {
           <Button variant='contained' color='secondary' onClick={handleContent}>
             Editar Filme
           </Button>
+          <Button variant='contained' color='secondary' onClick={handleDelete}>
+            Apagar Filme
+          </Button>
           {showContent && <ModalEditMovie showContent={showContent} />}
+          {deleteContent && <ModalDeleteMovie deleteContent={deleteContent} />}
         </div>
       </div>
       <div style={styles.forum}>
