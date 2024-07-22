@@ -71,19 +71,19 @@ const FilmDetail = () => {
 
         <div style={styles.content}>
           <Header user_id={user_id} />
-          <div>
+          <div className='title'>
             <h1 style={styles.title}>{page.nome}</h1>
           </div>
           <div style={styles.info}>
             <img src={page.poster} alt='Poster do Filme' style={styles.image} />
             <div style={styles.detail}>
-              <div style={styles.synopsis}>
+              <div className='synopsis' style={styles.synopsis}>
                 <h2>
                   <strong>Sinopse: </strong>
                 </h2>
                 <p>{page.sinopse}</p>
               </div>
-              <div style={styles.information}>
+              <div className='information' style={styles.information}>
                 <p>
                   <b>Diretor:</b> {page.diretor}
                 </p>
