@@ -20,6 +20,14 @@ const styles = {
     marginBottom: '20px',
     color: '#333'
   },
+  image: {
+    width: '15%'
+  },
+  info: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: '20px'
+  },
   synopsis: {
     fontSize: '1.2em',
     color: '#555'
@@ -27,7 +35,10 @@ const styles = {
   detail: {
     marginTop: '20px',
     fontSize: '1em',
-    color: '#777'
+    color: '#777',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '50px'
   },
   forum: {
     marginTop: '4rem'
