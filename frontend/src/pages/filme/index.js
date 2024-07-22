@@ -71,25 +71,35 @@ const FilmDetail = () => {
 
         <div style={styles.content}>
           <Header user_id={user_id} />
-          <div className='title'>
-            <h1 style={styles.title}>{page.nome}</h1>
+          <div>
+            <h1 data-testid='title' style={styles.title}>
+              {page.nome}
+            </h1>
           </div>
           <div style={styles.info}>
             <img src={page.poster} alt='Poster do Filme' style={styles.image} />
             <div style={styles.detail}>
               <div className='synopsis' style={styles.synopsis}>
-                <h2>
-                  <strong>Sinopse: </strong>
-                </h2>
+                <h2 style={styles.titlesbegin}> Sinopse: </h2>
                 <p>{page.sinopse}</p>
               </div>
               <div className='information' style={styles.information}>
-                <p>
-                  <b>Diretor:</b> {page.diretor}
+                <p style={styles.minordetail}>
+                  <p style={styles.titlesbegin}>Diretor:</p>
+                  <p>{page.diretor}</p>
                 </p>
-                <p>Ano de Lancamento: {page.ano}</p>
-                <p>Genero: {page.genero}</p>
-                <p>Duracao: {page.duracao} min</p>
+                <p style={styles.minordetail}>
+                  <p style={styles.titlesbegin}>Ano de Lancamento:</p>
+                  <p>{page.ano}</p>
+                </p>
+                <p style={styles.minordetail}>
+                  <p style={styles.titlesbegin}>Genero:</p>
+                  <p> {page.genero}</p>
+                </p>
+                <p style={styles.minordetail}>
+                  <p style={styles.titlesbegin}>Duracao:</p>
+                  <p> {page.duracao} min</p>
+                </p>
                 <Button variant='contained' style={{ backgroundColor: 'red', color: 'white' }} onClick={handleOpenModal}>
                   Poste um Review
                 </Button>

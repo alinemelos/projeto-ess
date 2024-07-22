@@ -1,6 +1,5 @@
 import background from '../../assets/bg.png'
 
-// src/pages/FilmStyles.js
 const styles = {
   bg: {
     backgroundAttachment: 'fixed',
@@ -16,29 +15,40 @@ const styles = {
     padding: '20px'
   },
   title: {
-    fontSize: '2em',
+    fontSize: '3.2em',
+    fontFamily: 'Bebas Neue',
     marginBottom: '20px',
+    color: '#000'
+  },
+  minordetail: {
+    display: 'flex',
+    gap: '5px'
+  },
+  titlesbegin: {
+    fontSize: '1.2em',
+    fontFamily: 'Bebas Neue',
     color: '#333'
   },
   image: {
-    width: '15%'
+    width: '20%',
+    borderRadius: '10px',
+    objectFit: 'cover' // Assegura que a imagem cubra totalmente a caixa
   },
   info: {
     display: 'flex',
     justifyContent: 'space-between',
-    gap: '20px'
+    gap: '20px',
+    alignItems: 'stretch' // Faz com que as caixas dentro de info tenham a mesma altura
   },
   synopsis: {
     fontSize: '1.2em',
     color: '#555'
   },
   detail: {
-    marginTop: '20px',
-    fontSize: '1em',
-    color: '#777',
     display: 'flex',
     flexDirection: 'column',
-    gap: '50px'
+    justifyContent: 'space-between',
+    flexGrow: 1 // Faz com que a caixa de detalhes cresça para preencher o espaço disponível
   },
   forum: {
     marginTop: '4rem'
