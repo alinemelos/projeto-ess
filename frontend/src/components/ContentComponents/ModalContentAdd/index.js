@@ -3,9 +3,11 @@ import styles from './styles'
 import { IoCloseSharp } from 'react-icons/io5'
 import MovieFrame from '../MovieFrame'
 import AddMovie from '../../../services/content/AddMovie'
+import ModalConfirm from '../ModalConfirm'
 
 const ModalContentAdd = ({ handleContent }) => {
   const [postName, setPostName] = useState('')
+  const [postDiretor, setPostDiretor] = useState('')
   const [postYear, setPostYear] = useState('')
   const [postDuration, setPostDuration] = useState('')
   const [postGenre, setPostGenre] = useState('')
@@ -13,36 +15,43 @@ const ModalContentAdd = ({ handleContent }) => {
   const [postImage, setPostImage] = useState('')
 
   const [switchImage, setSwitchImage] = useState(false)
+  const [switchConfirm, setSwitchConfirm] = useState(false)
+
+  const [message, setMessage] = useState('')
+
+  const [booleano, setBooleano] = useState(false)
 
   const handleAddMovie = async () => {
-    const response = await AddMovie(postImage, postName, postYear, postDuration, postSynopsis, postGenre)
-    console.log(response.status)
+    toggleConfirm()
+    const response = await AddMovie(postImage, postName, postDiretor, postYear, postDuration, postSynopsis, postGenre)
+
     if (response.status === 201) {
-      alert('Filme cadastrado com sucesso!')
+      setMessage('Filme Cadastrado com Sucesso')
       setPostName('')
       setPostYear('')
       setPostDuration('')
       setPostGenre('')
       setPostSynopsis('')
-      handleContent()
+      setBooleano(true)
+      // handleContent()
     } else if (response === 'Filme já cadastrado no sistema') {
-      alert('Filme já cadastrado no sistema')
-      // } else if (response === 'O poster não foi adicionado') {
-      //   alert('Preencha o campo "Poster"')
+      setMessage('Filme já cadastrado no sistema')
+    } else if (response === 'O poster não foi adicionado') {
+      setMessage('Preencha o campo "Poster"')
     } else if (response === 'O campo nome não foi preenchido') {
-      alert('Preencha o campo "Nome"')
+      setMessage('Preencha o campo "Nome"')
     } else if (response === 'O campo ano não foi preenchido') {
-      alert('Preencha o campo "Ano"')
+      setMessage('Preencha o campo "Ano"')
     } else if (response === 'O campo duração não foi preenchido') {
-      alert('Preencha o campo "Duração"')
+      setMessage('Preencha o campo "Duração"')
     } else if (response === 'O campo sinopse não foi preenchido') {
-      alert('Preencha o campo "Sinopse"')
+      setMessage('Preencha o campo "Sinopse"')
       // } else if (response === 'O campo diretor não foi preenchido') {
       //   alert('Preencha o campo "Diretor"')
     } else if (response === 'O campo genero não foi preenchido') {
-      alert('Preencha o campo "Gênero"')
+      setMessage('Preencha o campo "Gênero"')
     } else {
-      alert('Erro ao cadastrar filme')
+      setMessage('Erro ao cadastrar filme')
     }
   }
 
@@ -68,6 +77,28 @@ const ModalContentAdd = ({ handleContent }) => {
     )
   }
 
+  function toggleConfirm() {
+    setSwitchConfirm(!switchConfirm)
+  }
+
+  const handleCloseFull = () => {
+    toggleConfirm()
+    handleContent()
+  }
+
+  function RenderCorrectWindow() {
+    return (
+      <>
+        {' '}
+        {!booleano ? (
+          <ModalConfirm handleClose={toggleConfirm} text={message} />
+        ) : (
+          <ModalConfirm handleClose={handleCloseFull} text={message} />
+        )}
+      </>
+    )
+  }
+
   return (
     <div style={styles.background}>
       <div style={styles.modal}>
@@ -85,6 +116,13 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Nome do Filme'
                 value={postName}
                 onChange={(e) => setPostName(e.target.value)}
+              />
+              <input
+                style={styles.input_diretor}
+                type='text'
+                placeholder='Diretor'
+                value={postDiretor}
+                onChange={(e) => setPostDiretor(e.target.value)}
               />
               <input
                 style={styles.input_year}
@@ -119,6 +157,7 @@ const ModalContentAdd = ({ handleContent }) => {
         </div>
         <div style={styles.confirm} onClick={handleAddMovie}>
           <button style={styles.button_confirm}> Confirmar </button>
+          {switchConfirm && <RenderCorrectWindow />}
         </div>
       </div>
     </div>

@@ -71,8 +71,18 @@ const styles = {
     fontSize: '1.5rem',
     textAlign: 'center'
   },
+  input_diretor: {
+    width: '23%',
+    padding: '5px',
+    border: '1px solid black',
+    borderRadius: '4px',
+    backgroundColor: 'transparent',
+    fontFamily: 'Montserrat',
+    fontSize: '1.5rem',
+    textAlign: 'center'
+  },
   input_year: {
-    width: '13.2%',
+    width: '12%',
     padding: '5px',
     border: '1px solid black',
     borderRadius: '4px',
@@ -82,7 +92,7 @@ const styles = {
     textAlign: 'center'
   },
   input_duration: {
-    width: '23.7%',
+    width: '13.2%',
     padding: '5px',
     border: '1px solid black',
     borderRadius: '4px',

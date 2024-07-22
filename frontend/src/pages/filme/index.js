@@ -6,6 +6,10 @@ import GetPage from '../../services/pages/GetPage'
 import Post from '../../components/Post'
 import { Button } from '@mui/material'
 import ModalReview from '../../components/ModalReview'
+import ModalPlatform from '../../components/ModalPlatform'
+import Header from '../../components/ContentComponents/Header'
+
+
 
 const FilmDetail = () => {
   const { id } = useParams()
@@ -15,6 +19,8 @@ const FilmDetail = () => {
   const [reload, setReload] = useState(false)
   const [editingPostInfo, setEditingPostInfo] = useState([])
   const [openModal, setOpenModal] = useState(false)
+  const [openModalPlatform, setOpenModalPlatform] = useState(false)
+  const [publishComment, setPublishComment] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -30,25 +36,41 @@ const FilmDetail = () => {
     setOpenModal(true)
   }
 
+  const handleOpenModalPlatform = () => {
+    setOpenModalPlatform(true)
+  }
+
+  const handleReplacePublishComment = () => {
+    setPublishComment(!publishComment)
+  }
+
   return (
-    <div style={styles.container}>
-      <ModalReview
-        isOpen={openModal}
+    <div style={styles.bg}>
+      <div style={styles.container}>
+        <ModalReview
+          isOpen={openModal}
+          setModalOpen={() => {
+            setOpenModal(!openModal)
+          }}
+          imageUrl={page.poster}
+          user_id={user_id}
+          filme_id={id}
+          filme_ano={page.ano}
+          filme_nome={page.nome}
+          isEditing={isEditing}
+          editingPostInfo={editingPostInfo}
+          setIsEditing={() => {
+            setIsEditing(!isEditing)
+          }}
+        />
+      <ModalPlatform
+        isOpen={openModalPlatform}
+        selectedFilmId={id}
         setModalOpen={() => {
-          setOpenModal(!openModal)
-        }}
-        imageUrl={page.poster}
-        user_id={user_id}
-        filme_id={id}
-        filme_ano={page.ano}
-        filme_nome={page.nome}
-        isEditing={isEditing}
-        editingPostInfo={editingPostInfo}
-        setIsEditing={() => {
-          setIsEditing(!isEditing)
+          setOpenModalPlatform(!openModalPlatform)
         }}
       />
-
+        
       <div style={styles.content}>
         <div>
           <h1 style={styles.title}>{page.nome}</h1>
