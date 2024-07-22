@@ -62,9 +62,9 @@ const ModalReviewAdm = ({
   if (isOpen) {
     return (
       <div style={styles.background}>
-        <div style={styles.modal} className='modal'>
+        <div style={styles.modal} className='modaladm'>
           <div style={styles.cotainer}>
-            <div style={styles.exit}>
+            <div style={styles.exit} data-testid='exit-button'>
               <IoCloseSharp size={32} onClick={setModalOpen} style={styles.exit__btn} />
             </div>
             <div style={styles.body}>

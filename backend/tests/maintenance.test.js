@@ -27,22 +27,21 @@ const deletePost = async (postTest) => {
 defineFeature(maintenance_feature, (test) => {
   // Feature "Salvar edição de review"
   test("Salvar edição de review", ({ given, and, when, then }) => {
-    let filme, postId, userId, nota, review, postTest, postFinal;
+    let filme, postId, userId, nota, review, postTest, postFinal,filme_id;
 
     given(/^Estou no post "(.*)" que já existe no sistema$/, async (arg0) => {
       filme = await getFilmeByName(arg0);
+      const response = await axios.get("http://localhost:3000/");
+      filme_id = response.data.find((filme) => filme.nome === arg0).filme_id;
     });
 
-    and(
-      /^Existe uma review do usuario "(.*)" com texto "(.*)"$/,
-      async (arg0, arg1) => {
+    and(/^Existe uma review do usuario "(.*)" com texto "(.*)"$/,async (arg0, arg1) => {
         const reviewData = getReviewFromFilme(filme, arg0, arg1);
         postId = reviewData.post_id;
         userId = reviewData.user_id;
         nota = reviewData.nota;
         review = reviewData.review;
-      },
-    );
+      });
 
     and(/^Selecionei a opção "(.*)"$/, async (arg0) => {});
 
