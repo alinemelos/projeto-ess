@@ -46,7 +46,7 @@ const Post = ({ post, user_id, setModalOpen, setIsEditing, setReload, publishCom
       </div>
       <div style={styles.post__footer}>
         <div style={styles.post__footer_arrow} onClick={handleArrowClick}>
-          <PiArrowBendDownLeftFill />
+          <PiArrowBendDownLeftFill data-testid='arrow' />
         </div>
 
         {showCommenting && (

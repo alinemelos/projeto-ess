@@ -54,8 +54,12 @@ export default function SettingsMenuComment({ comment, user_id, fetchComment, ed
             'aria-labelledby': 'basic-button'
           }}
         >
-          <MenuItem onClick={handleEditar}>Editar</MenuItem>
-          <MenuItem onClick={handleDeletar}>Deletar</MenuItem>
+          <MenuItem className='edit-comment' onClick={handleEditar}>
+            Editar
+          </MenuItem>
+          <MenuItem className='delete-comment' onClick={handleDeletar}>
+            Deletar
+          </MenuItem>
         </Menu>
       </div>
     </div>
