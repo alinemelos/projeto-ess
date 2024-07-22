@@ -123,8 +123,17 @@ exports.editMovie = (req, res) => {
       return res.status(404).json({ error: "Filme não encontrado" });
     }
 
-    if (filme_id === movies[movieIndex].filme_id && poster === movies[movieIndex].poster && nome === movies[movieIndex].nome && ano === movies[movieIndex].ano && duracao === movies[movieIndex].duracao && sinopse === movies[movieIndex].sinopse && genero === movies[movieIndex].genero) {
-      return res.status(400).json({ error: 'Nenhum campo para atualizar' });
+    if (
+      filme_id === movies[movieIndex].filme_id &&
+      poster === movies[movieIndex].poster &&
+      nome === movies[movieIndex].nome &&
+      ano === movies[movieIndex].ano &&
+      duracao === movies[movieIndex].duracao &&
+      sinopse === movies[movieIndex].sinopse &&
+      genero === movies[movieIndex].genero
+    ) {
+      return res.status(400).json({ error: "Nenhum campo para atualizar" });
+    }
 
     if (
       !poster &&
@@ -137,7 +146,6 @@ exports.editMovie = (req, res) => {
       !plataformas
     ) {
       return res.status(400).json({ error: "Nenhum campo para atualizar" });
-
     }
 
     if (poster) movies[movieIndex].poster = poster;
@@ -156,6 +164,5 @@ exports.editMovie = (req, res) => {
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Erro ao editar o filme" });
-
   }
 };
