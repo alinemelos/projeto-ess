@@ -19,12 +19,12 @@ const styles = {
     padding: '3rem',
     backgroundColor: '#fff',
     display: 'flex',
-    flexDirection: 'column', // Ajustado para coluna
+    flexDirection: 'column',
     borderRadius: '22px'
   },
   exit: {
     display: 'flex',
-    justifyContent: 'flex-end' // Ajustado para alinhar à direita
+    justifyContent: 'flex-end'
   },
   exit__btn: {
     cursor: 'pointer'
@@ -33,29 +33,46 @@ const styles = {
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center', // Centralizar o conteúdo
-    justifyContent: 'center' // Centralizar o conteúdo
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   title__text: {
     fontWeight: '400',
     fontSize: '2rem',
-    textAlign: 'center' // Centralizar o texto
+    textAlign: 'center'
   },
   platforms: {
     display: 'flex',
+    justifyContent: 'center',
+    gap: '20px',
+    flexWrap: 'wrap'
+  },
+  platformContainer: {
+    position: 'relative',
+    display: 'flex',
     flexDirection: 'column',
-    gap: '10px'
+    alignItems: 'center'
   },
   platform: {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
     textDecoration: 'none',
     color: '#000'
   },
   platformImage: {
-    width: '32px',
-    height: '32px',
-    marginRight: '10px'
+    width: '80px',
+    height: '80px',
+    marginBottom: '0.5rem'
+  },
+  removeIcon: {
+    position: 'absolute',
+    top: '-10px',
+    right: '-10px',
+    cursor: 'pointer',
+    backgroundColor: 'white',
+    borderRadius: '50%',
+    padding: '2px'
   }
 }
 
