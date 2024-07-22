@@ -5,18 +5,18 @@ import Dashboard from '../pages/dashboard'
 import Filme from '../pages/filme'
 import AdminDashboard from '../pages/adminDashboard'
 import UserDashboard from '../pages/userDashboard'
-import ModalContentAdd from '../components/ContentComponents/ModalContentAdd'
+import Adm from '../pages/adm'
 
 export default function Rotas() {
   return (
     <Router>
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route path='/modal' element={<ModalContentAdd />} />
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path='/admindashboard' element={<AdminDashboard />} />
         <Route path='/userdashboard' element={<UserDashboard />} />
         <Route path='/filme/:id' element={<Filme />} />
+        <Route path='/adm/:id' element={<Adm />} />
       </Routes>
     </Router>
   )

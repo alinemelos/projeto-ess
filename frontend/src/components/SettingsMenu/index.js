@@ -9,6 +9,8 @@ import DeletePost from '../../services/posts/DeletePost'
 export default function SettingsMenu({ post, user_id, setModalOpen, setIsEditing, setReload }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
+  const see = Boolean(user_id == post.user_id)
+
   const handleClick = (event) => {
     if (post.user_id == user_id) {
       setAnchorEl(event.currentTarget)
@@ -25,13 +27,13 @@ export default function SettingsMenu({ post, user_id, setModalOpen, setIsEditing
     }
   }
   const handleEditar = () => {
-    setAnchorEl(null)
     setIsEditing()
+    setAnchorEl(null)
     setModalOpen()
   }
 
   return (
-    <div>
+    <div style={see ? styles.settings__menu : styles.none}>
       <Button
         id='basic-button'
         aria-controls={open ? 'basic-menu' : undefined}

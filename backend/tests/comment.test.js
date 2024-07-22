@@ -48,38 +48,41 @@ function findById(movies, id, user_id = Infinity) {
 
 
 defineFeature(comment_feature, test => {
-    test('Criar um comentário', ({ given, when, and, then }) => {
+    test('Criar um comentário', ({ given, and, then }) => {
         let filme_data;
         let post_id;
         let comment_test;
+        let response;
 
-        given(/^Eu Estou na página do filme "(.*)"$/, async (arg0) => {
+        given(/^Execute um get na rota "(.*)" armazenando o id do filme "(.*)"$/, async (arg0, arg1) => {
             // Fazendo a requisição GET
-            const response = await axios.get('http://localhost:3000/');
+            response = await axios.get(arg0);
             // Armazenando o filme_id do filme especificado
-            filme_data = response.data.find((filme) => filme.nome === arg0);
+            filme_data = response.data.find((filme) => filme.nome === arg1);
         });
 
-        and(/^aperto no botão "(.*)" do primeiro "(.*)" review$/, (arg0, arg1) => {
+        and(/^execute um post na rota "(.*)" com o post_id do "(.*)"º review, user_id "(.*)" e comentário "(.*)"$/, async (arg0, arg1, arg2, arg3) => {
             post_id = filme_data.posts[Number(arg1)].post_id;
-        });
 
-        when(/^Eu preencho "(.*)" no campo de comentário$/, (arg0) => {
             comment_test = {
-                "user_id": 100,
+                "user_id": Number(arg2),
                 "response_id": post_id,
-                "comment": arg0,
+                "comment": arg3,
             };
-        });
 
-        and(/^clico no botão "(.*)"$/, (arg0) => {
             // Fazendo a requisição POST
-            const response = axios.post('http://localhost:3000/comment', comment_test);
+            response = await axios.post(arg0, comment_test);
         });
 
-        then(/^O comentário deve ser adicionado ao post$/, async () => {
+        and(/^verifique se o status code é (.*) e armazene o comentário$/, (arg0) => {
+            // Verificando se o status code é 201
+            expect(response.status).toBe(Number(arg0));
+            comment_test = response.data.comment_id;
+        });
+
+        then(/^execute um get na rota "(.*)" e verifique o comentário com o comment_id de retorno existe.$/, async (arg0) => {
             // Fazendo a requisição GET)
-            const response = await axios.get('http://localhost:3000/');
+            const response = await axios.get(arg0);
 
             // Verificando se o comentário foi criado
             expect(response.data.some((comment) => comment.comment_id === comment_test.comment_id)).toBe(true);
@@ -91,49 +94,47 @@ defineFeature(comment_feature, test => {
         let post_id;
         let comment_test;
         let comment_final;
-        let comment_id;
+        let response;
 
-        given(/^Eu Estou na página do filme "(.*)"$/, async (arg0) => {
+        given(/^Execute um get na rota "(.*)" armazenando o id do filme "(.*)"$/, async (arg0, arg1) => {
             // Fazendo a requisição GET
-            const response = await axios.get('http://localhost:3000/');
+            response = await axios.get(arg0);
             // Armazenando o filme_id do filme especificado
-            filme_data = response.data.find((filme) => filme.nome === arg0);
+            filme_data = response.data.find((filme) => filme.nome === arg1);
         });
 
-        and(/^Eu já publiquei um comentário com o texto "(.*)" respondendo o primeiro "(.*)" review$/, async (arg0, arg1) =>{
+        and(/^execute um post na rota "(.*)" com o post_id do "(.*)"º review, user_id "(.*)" e comentário "(.*)"$/, async (arg0, arg1, arg2, arg3) => {
             post_id = filme_data.posts[Number(arg1)].post_id;
 
             comment_test = {
-                "user_id": 100,
+                "user_id": Number(arg2),
                 "response_id": post_id,
-                "comment": arg0,
-            }
+                "comment": arg3,
+            };
 
             // Fazendo a requisição POST
-            comment_id = await axios.post('http://localhost:3000/comment', comment_test);
-        })
+            response = await axios.post(arg0, comment_test);
+            console.log("response: ", response.data)
+        });
 
-        when(/^Eu altero o texto para "(.*)"$/, (arg0) => {
+        when(/^execute um put na rota "(.*)" user_id "(.*)" e comentário "(.*)"$/, async (arg0, arg1, arg2) => {
             
             comment_test = {
-                "user_id": 100,
-                "comment_id": comment_id.data.comment_id,
-                "comment": arg0
+                "user_id": Number(arg1),
+                "comment_id": response.data.comment_id,
+                "comment": arg2
             }
+            console.log(comment_test)
+            comment_final = await axios.put(arg0, comment_test);
         })
 
-        and (/^clico no botão "(.*)"$/, async (arg0) => {
-            // Fazendo a requisição PUT
-            comment_final = await axios.put('http://localhost:3000/comment', comment_test);
-        })
-
-        then(/^O comentário deve ser atualizado$/, async () => {
+        then(/^execute um get na rota "(.*)" e verifique se o comentário contém "(.*)"$/, async (arg0, arg1) => {
             // Fazendo a requisição GET
-            const response = await axios.get('http://localhost:3000/');
+            const response = await axios.get(arg0);
             // Verificando se o comentário foi atualizado
             let comment = findById(response.data, comment_final.data.comment_id);
 
-            expect(comment.comment === comment_final.data.comment).toBe(true);
+            expect(comment.comment === arg1).toBe(true);
         })
     })
 
@@ -142,42 +143,44 @@ defineFeature(comment_feature, test => {
         let post_id;
         let comment_test;
         let comment_id;
+        let response;
 
-        given(/^Eu Estou na página do filme "(.*)"$/, async (arg0) => {
+        given(/^Execute um get na rota "(.*)" armazenando o id do filme "(.*)"$/, async (arg0, arg1) => {
             // Fazendo a requisição GET
-            const response = await axios.get('http://localhost:3000/');
+            response = await axios.get(arg0);
             // Armazenando o filme_id do filme especificado
-            filme_data = response.data.find((filme) => filme.nome === arg0);
+            filme_data = response.data.find((filme) => filme.nome === arg1);
         });
 
-        and(/^Eu já publiquei um comentário com o texto "(.*)" respondendo o primeiro "(.*)" review$/, async (arg0, arg1) => {
+        and(/^execute um post na rota "(.*)" com o post_id do "(.*)"º review, user_id "(.*)" e comentário "(.*)"$/, async (arg0, arg1, arg2, arg3) => {
             post_id = filme_data.posts[Number(arg1)].post_id;
 
             comment_test = {
-                "user_id": 100,
+                "user_id": Number(arg2),
                 "response_id": post_id,
-                "comment": arg0
-            }
-            // Fazendo a requisição POST
-            comment_id = await axios.post('http://localhost:3000/comment', comment_test);
-        })
+                "comment": arg3,
+            };
 
-        when(/^Eu clico no botão "(.*)"$/, async (arg0) => {
+            // Fazendo a requisição POST
+            response = await axios.post(arg0, comment_test);
+        });
+
+        when(/^execute um DELETE na rota "(.*)" user_id "(.*)" e o comment id do comentário publicado$/, async (arg0, arg1) => {
             // Fazendo a requisição DELETE
             
             const delete_req = {
-                "user_id": 100,
-                "response_id": comment_id.data.comment_id
+                "user_id": Number(arg1),
+                "response_id": response.data.comment_id
             }
 
-            await axios.delete('http://localhost:3000/comment', {data: delete_req});
+            await axios.delete(arg0, {data: delete_req});
         });
 
-        then(/^O comentário deve ser removido do post$/, async () => {
+        then(/^Executa um GET na rota "(.*)" para verificar se o comentário foi apagado.$/, async (arg0) => {
             // Fazendo a requisição GET
-            const response = await axios.get('http://localhost:3000/');
+            const req = await axios.get(arg0);
             // Verificando se o comentário foi excluído
-            let res = findById(response.data, comment_id.data.comment_id);
+            let res = findById(req.data, response.data.comment_id);
             expect(res === null).toBe(true);
         })
     })
@@ -188,36 +191,33 @@ defineFeature(comment_feature, test => {
         let comment_test;
         let erro;
 
-        given(/^Eu Estou na página do filme "(.*)"$/, async (arg0) => {
+        given(/^Execute um get na rota "(.*)" armazenando o id do filme "(.*)"$/, async (arg0, arg1) => {
             // Fazendo a requisição GET
-            const response = await axios.get('http://localhost:3000/');
+            response = await axios.get(arg0);
             // Armazenando o filme_id do filme especificado
-            filme_data = response.data.find((filme) => filme.nome === arg0);
+            filme_data = response.data.find((filme) => filme.nome === arg1);
         });
 
-        and(/^aperto no botão "(.*)" do primeiro "(.*)" review$/, (arg0, arg1) => {
+        and(/^execute um post na rota "(.*)" com o post_id do "(.*)"º review, user_id "(.*)" e comentário "(.*)"$/, async (arg0, arg1, arg2, arg3) => {
             post_id = filme_data.posts[Number(arg1)].post_id;
-        });
 
-        when(/^Eu deixo o campo de comentário vazio "(.*)"$/, async (arg0) => {
             comment_test = {
-                "user_id": 100,
+                "user_id": Number(arg2),
                 "response_id": post_id,
-                "comment": arg0
-            }
-        });
+                "comment": arg3,
+            };
 
-        and(/^clico no botão "(.*)"$/, async (arg0) => {
             // Fazendo a requisição POST
-            try {
-                comment_test = await axios.post('http://localhost:3000/comment', comment_test);
-            } catch (error) {
-                erro = error.response.data.error;
+            try{
+                response = await axios.post(arg0, comment_test);
+            }
+            catch (error){
+                erro = error.response.data['error']
             }
         });
 
-        then(/^Uma mensagem de erro deve ser exibida$/, async () => {
-            expect(erro).toBe("Comment not found");
+        then(/^Uma mensagem de erro "(.*)" deve ser exibida$/, async (arg0) => {
+            expect(erro).toBe(arg0);
         })
     })
 
@@ -226,50 +226,44 @@ defineFeature(comment_feature, test => {
         let post_id;
         let comment_test;
         let comment_id;
+        let response;
 
-        given(/^Eu Estou na página do filme "(.*)"$/, async (arg0) => {
+        given(/^Execute um get na rota "(.*)" armazenando o id do filme "(.*)"$/, async (arg0, arg1) => {
             // Fazendo a requisição GET
-            const response = await axios.get('http://localhost:3000/');
+            response = await axios.get(arg0);
             // Armazenando o filme_id do filme especificado
-            filme_data = response.data.find((filme) => filme.nome === arg0);
+            filme_data = response.data.find((filme) => filme.nome === arg1);
         });
 
-        and(/^aperto no botão "(.*)" do primeiro "(.*)" comentario da primeira "(.*)" review que tinha escrito "(.*)"$/, async (arg0, arg1, arg2, arg3) => {
+        and(/^execute um post na rota "(.*)" com o post_id do "(.*)"º review, user_id "(.*)" e comentário "(.*)"$/, async (arg0, arg1, arg2, arg3) => {
             post_id = filme_data.posts[Number(arg1)].post_id;
 
             comment_test = {
-                "user_id": 200,
+                "user_id": Number(arg2),
                 "response_id": post_id,
-                "comment": arg3
-            }
-
-            // Fazendo a requisição POST
-            comment_id = await axios.post('http://localhost:3000/comment', comment_test);
-            
-            
-            post_id = comment_id.data.comment_id;
-        });
-
-        when(/^Eu preencho "(.*)" no campo de comentário$/, (arg0) => {
-            comment_test = {
-                "user_id": 100,
-                "response_id": post_id,
-                "comment": arg0,
+                "comment": arg3,
             };
-        });
 
-        and(/^clico no botão "(.*)"$/, async (arg0) => {
             // Fazendo a requisição POST
-            comment_id = await axios.post('http://localhost:3000/comment', comment_test);
+            response = await axios.post(arg0, comment_test);
         });
 
-        then(/^O comentário deve ser adicionado ao post$/, async () => {
+        when(/^execute um post na rota "(.*)" com o post_id do comentário anterior, user_id "(.*)" e comentário "(.*)"$/, async (arg0, arg1, arg2) => {
+            comment_test = {
+                "user_id": Number(arg1),
+                "response_id": response.data.comment_id,
+                "comment": arg2,
+            };
+            response = await axios.post(arg0, comment_test);
+        });
+
+        then(/^Executa um GET na rota "(.*)" para verificar se o comentário "(.*)" do user_id "(.*)" foi adicionado$/, async (arg0, arg1, arg2) => {
             // Fazendo a requisição GET)
-            const response = await axios.get('http://localhost:3000/');
+            const req = await axios.get(arg0);
             
-            comment_test = findById(response.data, comment_id.data.comment_id);
+            comment_test = findById(req.data, response.data.comment_id);
             // Verificando se o comentário foi criado
-            expect(comment_test.comment_id === comment_test.comment_id).toBe(true);
+            expect(comment_test.comment === arg1).toBe(true);
         });
     })
 
@@ -280,42 +274,44 @@ defineFeature(comment_feature, test => {
         let comment_id;
         let erro;
 
-        given(/^Eu Estou na página do filme "(.*)"$/, async (arg0) => {
+        given(/^Execute um get na rota "(.*)" armazenando o id do filme "(.*)"$/, async (arg0, arg1) => {
             // Fazendo a requisição GET
-            const response = await axios.get('http://localhost:3000/');
+            response = await axios.get(arg0);
             // Armazenando o filme_id do filme especificado
-            filme_data = response.data.find((filme) => filme.nome === arg0);
+            filme_data = response.data.find((filme) => filme.nome === arg1);
         });
 
-        and(/^O usuário "(.*)" publicou um comentário com o texto "(.*)" respondendo o primeiro "(.*)" review$/, async (arg0, arg1, arg2) => {
-            post_id = filme_data.posts[Number(arg2)].post_id;
+        and(/^execute um post na rota "(.*)" com o post_id do "(.*)"º review, user_id "(.*)" e comentário "(.*)"$/, async (arg0, arg1, arg2, arg3) => {
+            post_id = filme_data.posts[Number(arg1)].post_id;
 
             comment_test = {
-                "user_id": arg0,
+                "user_id": Number(arg2),
                 "response_id": post_id,
-                "comment": arg1
-            }
-            // Fazendo a requisição POST
-            comment_id = await axios.post('http://localhost:3000/comment', comment_test);
-        })
+                "comment": arg3,
+            };
 
-        when(/^Eu clico no botão "(.*)"$/, async (arg0) => {
+            // Fazendo a requisição POST
+            response = await axios.post(arg0, comment_test);
+        });
+
+        when(/^execute um DELETE na rota "(.*)" user_id "(.*)" e o comment id do comentário publicado$/, async (arg0, arg1) => {
             // Fazendo a requisição DELETE
             
             const delete_req = {
-                "user_id": 100,
-                "response_id": comment_id.data.comment_id
+                "user_id": Number(arg1),
+                "response_id": response.data.comment_id
             }
-
+            
             try{
-                await axios.delete('http://localhost:3000/comment', {data: delete_req});
-            } catch (error) {
-                erro = error.response.data.error;
+                await axios.delete(arg0, {data: delete_req});
+            }
+            catch (error){
+                erro = error.response.data['error']
             }
         });
 
-        then(/^O comentário deve ser removido do post$/, async () => {
-            expect(erro).toBe("Comment not found or user not authorized");
+        then(/^deve ser retornado a mensagem de erro "(.*)"$/, async (arg0) => {
+            expect(erro).toBe(arg0);
         })
     })
 })

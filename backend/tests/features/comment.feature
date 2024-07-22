@@ -1,41 +1,39 @@
-Feature: Comment Management
+Feature: Comment
+  As a usuário do site
+  I want to criar um comentário
+  So that eu possa compartilhar minha opinião sobre um review
 
   Scenario: Criar um comentário
-    Given Eu Estou na página do filme "Oppenheimer"
-    And aperto no botão "Responder" do primeiro "1" review
-    When Eu preencho "Comentário massa" no campo de comentário
-    And clico no botão "Enviar Comentário"
-    Then O comentário deve ser adicionado ao post
+    Given Execute um get na rota "http://localhost:3000/" armazenando o id do filme "Oppenheimer"
+    And execute um post na rota "http://localhost:3000/comment" com o post_id do "1"º review, user_id "6" e comentário "Concordo com tudo"
+    And verifique se o status code é 201 e armazene o comentário
+    Then execute um get na rota "http://localhost:3000" e verifique o comentário com o comment_id de retorno existe.
 
   Scenario: Falha ao criar um comentário vazio
-    Given Eu Estou na página do filme "Oppenheimer"
-    And aperto no botão "Responder" do primeiro "1" review
-    When Eu deixo o campo de comentário vazio ""
-    And clico no botão "Enviar Comentário"
-    Then Uma mensagem de erro deve ser exibida
+    Given Execute um get na rota "http://localhost:3000/" armazenando o id do filme "Oppenheimer"
+    And execute um post na rota "http://localhost:3000/comment" com o post_id do "1"º review, user_id "6" e comentário ""
+    Then Uma mensagem de erro "Comment not found" deve ser exibida
 
   Scenario: Atualizar um comentário
-    Given Eu Estou na página do filme "Oppenheimer"
-    And Eu já publiquei um comentário com o texto "Incrível o comentário" respondendo o primeiro "1" review
-    When Eu altero o texto para "Odiei o comentário"
-    And clico no botão "Atualizar Comentário"
-    Then O comentário deve ser atualizado
+    Given Execute um get na rota "http://localhost:3000/" armazenando o id do filme "Oppenheimer"
+    And execute um post na rota "http://localhost:3000/comment" com o post_id do "1"º review, user_id "6" e comentário "Amei o review"
+    When execute um put na rota "http://localhost:3000/comment" user_id "6" e comentário "Odiei o review"
+    Then execute um get na rota "http://localhost:3000/" e verifique se o comentário contém "Odiei o review"
 
   Scenario: Apagar um comentário
-    Given Eu Estou na página do filme "Oppenheimer"
-    And Eu já publiquei um comentário com o texto "Amei o filme" respondendo o primeiro "1" review
-    When Eu clico no botão "Apagar Comentário"
-    Then O comentário deve ser removido do post
+    Given Execute um get na rota "http://localhost:3000/" armazenando o id do filme "Oppenheimer"
+    And execute um post na rota "http://localhost:3000/comment" com o post_id do "1"º review, user_id "6" e comentário "Amei o review"
+    When execute um DELETE na rota "http://localhost:3000/comment" user_id "6" e o comment id do comentário publicado
+    Then Executa um GET na rota "http://localhost:3000/" para verificar se o comentário foi apagado.
 
   Scenario: Criar um comentário de comentário
-    Given Eu Estou na página do filme "Oppenheimer"
-    And aperto no botão "Responder" do primeiro "1" comentario da primeira "1" review que tinha escrito "Amei o filme"
-    When Eu preencho "Concordo com tudo!" no campo de comentário
-    And clico no botão "Enviar Comentário"
-    Then O comentário deve ser adicionado ao post
+    Given Execute um get na rota "http://localhost:3000/" armazenando o id do filme "Oppenheimer"
+    And execute um post na rota "http://localhost:3000/comment" com o post_id do "1"º review, user_id "6" e comentário "Comentário a ser respondido"
+    When execute um post na rota "http://localhost:3000/comment" com o post_id do comentário anterior, user_id "6" e comentário "Respondi o comentário"
+    Then Executa um GET na rota "http://localhost:3000/" para verificar se o comentário "Respondi o comentário" do user_id "6" foi adicionado
 
   Scenario: Erro ao apagar um comentário de outro usuário
-    Given Eu Estou na página do filme "Oppenheimer"
-    And O usuário "10" publicou um comentário com o texto "Amei o filme" respondendo o primeiro "1" review
-    When Eu clico no botão "Apagar Comentário"
-    Then O comentário deve ser removido do post
+    Given Execute um get na rota "http://localhost:3000/" armazenando o id do filme "Oppenheimer"
+    And execute um post na rota "http://localhost:3000/comment" com o post_id do "1"º review, user_id "6" e comentário "Amei o review"
+    When execute um DELETE na rota "http://localhost:3000/comment" user_id "100" e o comment id do comentário publicado
+    Then deve ser retornado a mensagem de erro "Comment not found or user not authorized"
