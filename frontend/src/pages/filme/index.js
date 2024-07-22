@@ -10,8 +10,14 @@ import ModalPlatform from '../../components/ModalPlatform'
 import Header from '../../components/ContentComponents/Header'
 
 const FilmDetail = () => {
+  const getRandomName = (names) => {
+    const randomIndex = Math.floor(Math.random() * names.length)
+    return names[randomIndex]
+  }
+
   const { id } = useParams()
-  const [user_id] = useState('Miguel Oliveira')
+  const nomes = ['Breno Miranda', 'Livia Bion']
+  const [user_id] = useState(getRandomName(nomes))
   const [page, setPage] = useState([])
   const [isEditing, setIsEditing] = useState(false)
   const [reload, setReload] = useState(false)
