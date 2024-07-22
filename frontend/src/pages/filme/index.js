@@ -36,7 +36,7 @@ const FilmDetail = () => {
     setIsEditing(false)
     setOpenModal(true)
   }
-  
+
   const handleReplacePublishComment = () => {
     setPublishComment(!publishComment)
   }
