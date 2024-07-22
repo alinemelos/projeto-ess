@@ -16,35 +16,41 @@ const ModalContentAdd = ({ handleContent }) => {
   const [switchImage, setSwitchImage] = useState(false)
   const [switchConfirm, setSwitchConfirm] = useState(false)
 
+  const [message, setMessage] = useState('')
+
+  const [booleano, setBooleano] = useState(false)
+
   const handleAddMovie = async () => {
+    toggleConfirm()
     const response = await AddMovie(postImage, postName, postYear, postDuration, postSynopsis, postGenre)
-    console.log(response.status)
+
     if (response.status === 201) {
-      alert('Filme cadastrado com sucesso!')
+      setMessage('Filme Cadastrado com Sucesso')
       setPostName('')
       setPostYear('')
       setPostDuration('')
       setPostGenre('')
       setPostSynopsis('')
-      handleContent()
+      setBooleano(true)
+      // handleContent()
     } else if (response === 'Filme já cadastrado no sistema') {
-      alert('Filme já cadastrado no sistema')
+      setMessage('Filme já cadastrado no sistema')
     } else if (response === 'O poster não foi adicionado') {
-      alert('Preencha o campo "Poster"')
+      setMessage('Preencha o campo "Poster"')
     } else if (response === 'O campo nome não foi preenchido') {
-      alert('Preencha o campo "Nome"')
+      setMessage('Preencha o campo "Nome"')
     } else if (response === 'O campo ano não foi preenchido') {
-      alert('Preencha o campo "Ano"')
+      setMessage('Preencha o campo "Ano"')
     } else if (response === 'O campo duração não foi preenchido') {
-      alert('Preencha o campo "Duração"')
+      setMessage('Preencha o campo "Duração"')
     } else if (response === 'O campo sinopse não foi preenchido') {
-      alert('Preencha o campo "Sinopse"')
+      setMessage('Preencha o campo "Sinopse"')
       // } else if (response === 'O campo diretor não foi preenchido') {
       //   alert('Preencha o campo "Diretor"')
     } else if (response === 'O campo genero não foi preenchido') {
-      alert('Preencha o campo "Gênero"')
+      setMessage('Preencha o campo "Gênero"')
     } else {
-      alert('Erro ao cadastrar filme')
+      setMessage('Erro ao cadastrar filme')
     }
   }
 
@@ -74,14 +80,23 @@ const ModalContentAdd = ({ handleContent }) => {
     setSwitchConfirm(!switchConfirm)
   }
 
-  // function HandleConfirm() {
-  //   return (
-  //     <>
-  //       {handleContent()}
-  //       <ModalConfirm handleAddMovie={handleAddMovie} text={'Deseja confirmar o cadastro do filme?'} />
-  //     </>
-  //   )
-  // }
+  const handleCloseFull = () => {
+    toggleConfirm()
+    handleContent()
+  }
+
+  function RenderCorrectWindow() {
+    return (
+      <>
+        {' '}
+        {!booleano ? (
+          <ModalConfirm handleClose={toggleConfirm} text={message} />
+        ) : (
+          <ModalConfirm handleClose={handleCloseFull} text={message} />
+        )}
+      </>
+    )
+  }
 
   return (
     <div style={styles.background}>
@@ -132,12 +147,10 @@ const ModalContentAdd = ({ handleContent }) => {
             ></textarea>
           </div>
         </div>
-        <div style={styles.confirm} onClick={toggleConfirm}>
+        <div style={styles.confirm} onClick={handleAddMovie}>
           <button style={styles.button_confirm}> Confirmar </button>
+          {switchConfirm && <RenderCorrectWindow />}
         </div>
-        {switchConfirm && (
-          <ModalConfirm handleAddMovie={handleAddMovie} toggleConfirm={toggleConfirm} text={'Deseja confirmar o cadastro do filme?'} />
-        )}
       </div>
     </div>
   )
