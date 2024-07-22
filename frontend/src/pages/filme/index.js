@@ -9,8 +9,6 @@ import ModalReview from '../../components/ModalReview'
 import ModalPlatform from '../../components/ModalPlatform'
 import Header from '../../components/ContentComponents/Header'
 
-
-
 const FilmDetail = () => {
   const { id } = useParams()
   const [user_id] = useState('Miguel Oliveira')
@@ -63,61 +61,62 @@ const FilmDetail = () => {
             setIsEditing(!isEditing)
           }}
         />
-      <ModalPlatform
-        isOpen={openModalPlatform}
-        selectedFilmId={id}
-        setModalOpen={() => {
-          setOpenModalPlatform(!openModalPlatform)
-        }}
-      />
-        
-      <div style={styles.content}>
-        <div>
-          <h1 style={styles.title}>{page.nome}</h1>
-        </div>
-        <div style={styles.info}>
-          <img src={page.poster} alt='Poster do Filme' style={styles.image} />
-          <div style={styles.detail}>
-            <div style={styles.synopsis}>
-              <h2>
-                <strong>Sinopse: </strong>
-              </h2>
-              <p>{page.sinopse}</p>
-            </div>
-            <div style={styles.information}>
-              <p>
-                <b>Diretor:</b> {page.diretor}
-              </p>
-              <p>Ano de Lancamento: {page.ano}</p>
-              <p>Genero: {page.genero}</p>
-              <p>Duracao: {page.duracao} min</p>
-              <Button variant='contained' style={{ backgroundColor: 'red', color: 'white' }} onClick={handleOpenModal}>
-                Poste um Review
-              </Button>
+        <ModalPlatform
+          isOpen={openModalPlatform}
+          selectedFilmId={id}
+          setModalOpen={() => {
+            setOpenModalPlatform(!openModalPlatform)
+          }}
+        />
+
+        <div style={styles.content}>
+          <div>
+            <h1 style={styles.title}>{page.nome}</h1>
+          </div>
+          <div style={styles.info}>
+            <img src={page.poster} alt='Poster do Filme' style={styles.image} />
+            <div style={styles.detail}>
+              <div style={styles.synopsis}>
+                <h2>
+                  <strong>Sinopse: </strong>
+                </h2>
+                <p>{page.sinopse}</p>
+              </div>
+              <div style={styles.information}>
+                <p>
+                  <b>Diretor:</b> {page.diretor}
+                </p>
+                <p>Ano de Lancamento: {page.ano}</p>
+                <p>Genero: {page.genero}</p>
+                <p>Duracao: {page.duracao} min</p>
+                <Button variant='contained' style={{ backgroundColor: 'red', color: 'white' }} onClick={handleOpenModal}>
+                  Poste um Review
+                </Button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div style={styles.forum}>
-        <h3 style={styles.forum__title}>FÓRUM:</h3>
-        {page.posts &&
-          page.posts.map((post) => (
-            <Post
-              key={post.post_id}
-              post={post}
-              user_id={user_id}
-              setModalOpen={() => {
-                setOpenModal(!openModal)
-              }}
-              setIsEditing={() => {
-                setEditingPostInfo(post)
-                setIsEditing(true)
-              }}
-              setReload={() => {
-                setReload(!reload)
-              }}
-            />
-          ))}
+        <div style={styles.forum}>
+          <h3 style={styles.forum__title}>FÓRUM:</h3>
+          {page.posts &&
+            page.posts.map((post) => (
+              <Post
+                key={post.post_id}
+                post={post}
+                user_id={user_id}
+                setModalOpen={() => {
+                  setOpenModal(!openModal)
+                }}
+                setIsEditing={() => {
+                  setEditingPostInfo(post)
+                  setIsEditing(true)
+                }}
+                setReload={() => {
+                  setReload(!reload)
+                }}
+              />
+            ))}
+        </div>
       </div>
     </div>
   )
