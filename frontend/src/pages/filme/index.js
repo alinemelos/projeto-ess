@@ -48,16 +48,32 @@ const FilmDetail = () => {
           setIsEditing(!isEditing)
         }}
       />
+
       <div style={styles.content}>
-        <h1 style={styles.title}>Detalhes do filme com id: {id}</h1>
-        <p style={styles.synopsis}>{page.sinopse}</p>
-        <div style={styles.detail}>
-          <p>Diretor: {page.diretor}</p>
-          <p>Ano: {page.ano}</p>
-          <p>Genero: {page.genero}</p>
-          <Button variant='contained' color='primary' onClick={handleOpenModal}>
-            Poste um Review
-          </Button>
+        <div>
+          <h1 style={styles.title}>{page.nome}</h1>
+        </div>
+        <div style={styles.info}>
+          <img src={page.poster} alt='Poster do Filme' style={styles.image} />
+          <div style={styles.detail}>
+            <div style={styles.synopsis}>
+              <h2>
+                <strong>Sinopse: </strong>
+              </h2>
+              <p>{page.sinopse}</p>
+            </div>
+            <div style={styles.information}>
+              <p>
+                <b>Diretor:</b> {page.diretor}
+              </p>
+              <p>Ano de Lancamento: {page.ano}</p>
+              <p>Genero: {page.genero}</p>
+              <p>Duracao: {page.duracao} min</p>
+              <Button variant='contained' style={{ backgroundColor: 'red', color: 'white' }} onClick={handleOpenModal}>
+                Poste um Review
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
       <div style={styles.forum}>
