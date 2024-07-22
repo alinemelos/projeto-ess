@@ -6,6 +6,7 @@ import { IoCloseSharp } from 'react-icons/io5'
 import EditMovie from '../../../services/content/EditMovie'
 import GetFilmes from '../../../services/filmes/GetFilmes'
 // import GetMovie from '../../../services/content/GetMovie'
+import ModalConfirm from '../ModalConfirm'
 
 const ModalContentEdit = ({ handleContent, id }) => {
   // console.log(id)
@@ -17,18 +18,22 @@ const ModalContentEdit = ({ handleContent, id }) => {
   const [postImage, setPostImage] = useState('')
   const [switchImage, setSwitchImage] = useState(false)
 
+  const [switchConfirm, setSwitchConfirm] = useState(false)
+  const [message, setMessage] = useState('')
+
   const handleEditMovie = async () => {
+    toggleConfirm()
     const response = await EditMovie(id, postImage, postName, postYear, postDuration, postSynopsis, postGenre)
-    console.log(response)
-    if (response === 'Filme Editado com Sucesso') {
-      alert('Filme Editado com Sucesso')
-      handleContent()
+    console.log(response.status)
+    if (response.status === 200) {
+      setMessage('Filme Editado com Sucesso')
     } else if (response == 'Nenhum campo para atualizar') {
-      alert('Nenhum campo para atualizar')
-    } else if (response == 'Filme não encontrado') {
+      setMessage('Nenhum campo para atualizar')
+    } else if (response.status == 404) {
       alert('Filme não encontrado')
     } else {
-      alert('Erro ao editar o filme')
+      alert('Erro ao editar filme')
+      setMessage('Erro ao editar o filme')
     }
   }
 
@@ -74,6 +79,15 @@ const ModalContentEdit = ({ handleContent, id }) => {
         )}
       </>
     )
+  }
+
+  function toggleConfirm() {
+    setSwitchConfirm(!switchConfirm)
+  }
+
+  const handleClose = () => {
+    toggleConfirm()
+    handleContent()
   }
 
   return (
@@ -128,6 +142,7 @@ const ModalContentEdit = ({ handleContent, id }) => {
         <div style={styles.confirm} onClick={handleEditMovie}>
           <button style={styles.button_confirm}> Confirmar </button>
         </div>
+        {switchConfirm && <ModalConfirm handleClose={handleClose} toggleConfirm={toggleConfirm} text={message} />}
       </div>
     </div>
   )

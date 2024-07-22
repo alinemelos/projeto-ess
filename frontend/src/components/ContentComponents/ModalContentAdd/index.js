@@ -3,6 +3,7 @@ import styles from './styles'
 import { IoCloseSharp } from 'react-icons/io5'
 import MovieFrame from '../MovieFrame'
 import AddMovie from '../../../services/content/AddMovie'
+import ModalConfirm from '../ModalConfirm'
 
 const ModalContentAdd = ({ handleContent }) => {
   const [postName, setPostName] = useState('')
@@ -13,6 +14,7 @@ const ModalContentAdd = ({ handleContent }) => {
   const [postImage, setPostImage] = useState('')
 
   const [switchImage, setSwitchImage] = useState(false)
+  const [switchConfirm, setSwitchConfirm] = useState(false)
 
   const handleAddMovie = async () => {
     const response = await AddMovie(postImage, postName, postYear, postDuration, postSynopsis, postGenre)
@@ -27,8 +29,8 @@ const ModalContentAdd = ({ handleContent }) => {
       handleContent()
     } else if (response === 'Filme já cadastrado no sistema') {
       alert('Filme já cadastrado no sistema')
-      // } else if (response === 'O poster não foi adicionado') {
-      //   alert('Preencha o campo "Poster"')
+    } else if (response === 'O poster não foi adicionado') {
+      alert('Preencha o campo "Poster"')
     } else if (response === 'O campo nome não foi preenchido') {
       alert('Preencha o campo "Nome"')
     } else if (response === 'O campo ano não foi preenchido') {
@@ -67,6 +69,19 @@ const ModalContentAdd = ({ handleContent }) => {
       </>
     )
   }
+
+  function toggleConfirm() {
+    setSwitchConfirm(!switchConfirm)
+  }
+
+  // function HandleConfirm() {
+  //   return (
+  //     <>
+  //       {handleContent()}
+  //       <ModalConfirm handleAddMovie={handleAddMovie} text={'Deseja confirmar o cadastro do filme?'} />
+  //     </>
+  //   )
+  // }
 
   return (
     <div style={styles.background}>
@@ -117,9 +132,12 @@ const ModalContentAdd = ({ handleContent }) => {
             ></textarea>
           </div>
         </div>
-        <div style={styles.confirm} onClick={handleAddMovie}>
+        <div style={styles.confirm} onClick={toggleConfirm}>
           <button style={styles.button_confirm}> Confirmar </button>
         </div>
+        {switchConfirm && (
+          <ModalConfirm handleAddMovie={handleAddMovie} toggleConfirm={toggleConfirm} text={'Deseja confirmar o cadastro do filme?'} />
+        )}
       </div>
     </div>
   )
