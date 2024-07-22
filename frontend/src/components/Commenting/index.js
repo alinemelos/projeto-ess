@@ -28,7 +28,7 @@ const Commenting = ({ response_id, user_id, publishComment, publish, editing = f
   }
 
   return (
-    <div style={styles.container}>
+    <div className='commenting' style={styles.container}>
       <div style={isNested ? styles.form_nested : styles.form}>
         <textarea
           type='text'
@@ -43,13 +43,13 @@ const Commenting = ({ response_id, user_id, publishComment, publish, editing = f
           <button style={styles.buttonPublish} onClick={publish}>
             CANCELAR
           </button>
-          <button onClick={handlePutClick} style={styles.buttonPublish}>
+          <button className='btn-put' onClick={handlePutClick} style={styles.buttonPublish}>
             ATUALIZAR
           </button>
         </div>
         {/* Modo publicação */}
         <div style={editing ? styles.none : styles.buttons}>
-          <button onClick={handlePublishClick} style={styles.buttonPublish}>
+          <button className='btn-publish' onClick={handlePublishClick} style={styles.buttonPublish}>
             PUBLICAR
           </button>
         </div>
