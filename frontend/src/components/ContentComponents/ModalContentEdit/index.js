@@ -1,50 +1,58 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from './styles'
 import { IoCloseSharp } from 'react-icons/io5'
-import MovieFrame from '../MovieFrame'
-import AddMovie from '../../../services/content/AddMovie'
+import EditMovie from '../../../services/content/EditMovie'
+import GetFilmes from '../../../services/filmes/GetFilmes'
+import ModalConfirm from '../ModalConfirm'
 
-const ModalContentAdd = ({ handleContent }) => {
+const ModalContentEdit = ({ handleContent, id }) => {
   const [postName, setPostName] = useState('')
+  const [postDiretor, setPostDiretor] = useState('')
   const [postYear, setPostYear] = useState('')
   const [postDuration, setPostDuration] = useState('')
   const [postGenre, setPostGenre] = useState('')
   const [postSynopsis, setPostSynopsis] = useState('')
   const [postImage, setPostImage] = useState('')
-
   const [switchImage, setSwitchImage] = useState(false)
 
-  const handleAddMovie = async () => {
-    const response = await AddMovie(postImage, postName, postYear, postDuration, postSynopsis, postGenre)
-    console.log(response.status)
-    if (response.status === 201) {
-      alert('Filme cadastrado com sucesso!')
-      setPostName('')
-      setPostYear('')
-      setPostDuration('')
-      setPostGenre('')
-      setPostSynopsis('')
-      handleContent()
-    } else if (response === 'Filme já cadastrado no sistema') {
-      alert('Filme já cadastrado no sistema')
-      // } else if (response === 'O poster não foi adicionado') {
-      //   alert('Preencha o campo "Poster"')
-    } else if (response === 'O campo nome não foi preenchido') {
-      alert('Preencha o campo "Nome"')
-    } else if (response === 'O campo ano não foi preenchido') {
-      alert('Preencha o campo "Ano"')
-    } else if (response === 'O campo duração não foi preenchido') {
-      alert('Preencha o campo "Duração"')
-    } else if (response === 'O campo sinopse não foi preenchido') {
-      alert('Preencha o campo "Sinopse"')
-      // } else if (response === 'O campo diretor não foi preenchido') {
-      //   alert('Preencha o campo "Diretor"')
-    } else if (response === 'O campo genero não foi preenchido') {
-      alert('Preencha o campo "Gênero"')
+  const [switchConfirm, setSwitchConfirm] = useState(false)
+  const [message, setMessage] = useState('')
+
+  const handleEditMovie = async () => {
+    toggleConfirm()
+    const response = await EditMovie(id, postImage, postName, postDiretor, postYear, postDuration, postSynopsis, postGenre)
+    if (response.status === 200) {
+      setMessage('Filme Editado com Sucesso')
+    } else if (response == 'Nenhum campo para atualizar') {
+      setMessage('Nenhum campo para atualizar')
+    } else if (response.status == 404) {
+      alert('Filme não encontrado')
     } else {
-      alert('Erro ao cadastrar filme')
+      alert('Erro ao editar filme')
+      setMessage('Erro ao editar o filme')
     }
   }
+
+  useEffect(() => {
+    const handleGetMovie = async (id) => {
+      const response = await GetFilmes()
+      const filmes = response.data
+      if (response.status === 200) {
+        const filme = filmes.filter((filme) => filme.filme_id === id)
+        setPostName(filme[0].nome)
+        setPostDiretor(filme[0].diretor)
+        setPostYear(filme[0].ano)
+        setPostDuration(filme[0].duracao)
+        setPostGenre(filme[0].genero)
+        setPostSynopsis(filme[0].sinopse)
+        setPostImage(filme[0].poster)
+        setSwitchImage(true)
+      } else {
+        alert('Erro ao editar filme')
+      }
+    }
+    handleGetMovie(id)
+  }, [id])
 
   const handleSwitchImage = async () => {
     let text
@@ -60,19 +68,28 @@ const ModalContentAdd = ({ handleContent }) => {
       <>
         {' '}
         {!props.switchImage ? (
-          <MovieFrame style={styles.poster_img} onClick={handleSwitchImage} />
+          <img src={postImage} alt='Poster do Filme' style={styles.poster_img} onClick={handleSwitchImage} />
         ) : (
-          <img src={postImage} alt='Poster do Filme' style={styles.poster_img} />
+          <img src={postImage} alt='Poster do Filme' style={styles.poster_img} onClick={handleSwitchImage} />
         )}
       </>
     )
+  }
+
+  function toggleConfirm() {
+    setSwitchConfirm(!switchConfirm)
+  }
+
+  const handleClose = () => {
+    toggleConfirm()
+    handleContent()
   }
 
   return (
     <div style={styles.background}>
       <div style={styles.modal}>
         <div style={styles.titulo}>
-          <p style={styles.fonte_titulo}>Cadastrar Filme:</p>
+          <p style={styles.fonte_titulo}>Editar Filme:</p>
           <IoCloseSharp size={48} cursor={'pointer'} onClick={handleContent} />
         </div>
         <div style={styles.content}>
@@ -85,6 +102,13 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Nome do Filme'
                 value={postName}
                 onChange={(e) => setPostName(e.target.value)}
+              />
+              <input
+                style={styles.input_diretor}
+                type='text'
+                placeholder='Diretor'
+                value={postDiretor}
+                onChange={(e) => setPostDiretor(e.target.value)}
               />
               <input
                 style={styles.input_year}
@@ -117,12 +141,13 @@ const ModalContentAdd = ({ handleContent }) => {
             ></textarea>
           </div>
         </div>
-        <div style={styles.confirm} onClick={handleAddMovie}>
+        <div style={styles.confirm} onClick={handleEditMovie}>
           <button style={styles.button_confirm}> Confirmar </button>
         </div>
+        {switchConfirm && <ModalConfirm handleClose={handleClose} toggleConfirm={toggleConfirm} text={message} />}
       </div>
     </div>
   )
 }
 
-export default ModalContentAdd
+export default ModalContentEdit

@@ -1,11 +1,8 @@
 const { v1: uuidv1, v4: uuidv4 } = require('uuid');
 
-const filme1_id = uuidv1();
-const filme2_id = uuidv1();
-
 module.exports = [
     {
-      filme_id: filme1_id,
+      filme_id: '23a92df3-2d0e-11ef-85cc-15bfccf04c00',
       poster: "https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg",
       nome: "Oppenheimer",
       ano: 2023,
@@ -14,13 +11,13 @@ module.exports = [
       diretor: "Christopher Nolan",
       plataformas: [
       {
-          filme1_id: filme1_id,
+          filme1_id: '23a92df3-2d0e-11ef-85cc-15bfccf04c00',
           nome: "Globoplay",
           url: "https://globoplay.com/oppenheimer",
           image: "https://globoplay.com/logo.png",
       },
       {
-          filme1_id: filme1_id,
+          filme1_id: '23a92df3-2d0e-11ef-85cc-15bfccf04c00',
           nome: "Netflix",
           url: "https://netflix.com/oppenheimer",
           image: "https://netflix.com/logo.png",
@@ -31,7 +28,7 @@ module.exports = [
         {
           post_id: uuidv4(),
           user_id: "Elian Rodriguez",
-          filme_id: filme1_id,
+          filme_id: '23a92df3-2d0e-11ef-85cc-15bfccf04c00',
           nota: 0.5,
           review: "Horrivel!",
           comments: []
@@ -39,7 +36,7 @@ module.exports = [
         {
           post_id: uuidv4(),
           user_id: "Yumi Kinoshita",
-          filme_id: filme1_id,
+          filme_id: '23a92df3-2d0e-11ef-85cc-15bfccf04c00',
           nota: 5,
           review: "Absolute Cinema!",
           comments: []
@@ -47,7 +44,7 @@ module.exports = [
       ]
     },
     {
-      filme_id: filme2_id,
+      filme_id: 'd9a92df3-2d0e-11ef-2424-15bfccf04c00',
       poster: "https://a.ltrbxd.com/resized/film-poster/5/1/5/6/8/51568-fight-club-0-1000-0-1500-crop.jpg?v=768b32dfa4",
       nome: "Fight Club",
       ano: 1999,
@@ -59,7 +56,7 @@ module.exports = [
       posts: []
     },
     {
-      filme_id: "d9a92df2-2d0e-11ef-85cc-15bfccf04c98",
+      filme_id: 'd9a92df2-2d0e-11ef-85cc-15bfccf04c98',
       poster: "https://a.ltrbxd.com/resized/sm/upload/10/u6/42/pa/cezWGskPY5x7GaglTTRN4Fugfb8-0-1000-0-1500-crop.jpg?v=9ec74891d9",
       nome: "Os Vingadores",
       ano: 2012,

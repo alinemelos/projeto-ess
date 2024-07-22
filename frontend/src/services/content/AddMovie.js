@@ -1,6 +1,6 @@
 import api from '../index'
 
-export default async function AddMovie(poster, nome, ano, duracao, sinopse, genero) {
+export default async function AddMovie(poster, nome, diretor, ano, duracao, sinopse, genero) {
   try {
     const data = {
       poster: poster,
@@ -8,7 +8,7 @@ export default async function AddMovie(poster, nome, ano, duracao, sinopse, gene
       ano: ano,
       duracao: duracao,
       sinopse: sinopse,
-      diretor: 'Placeholder',
+      diretor: diretor,
       genero: genero
     }
     const response = await api.post('/movie', data)
@@ -26,8 +26,8 @@ export default async function AddMovie(poster, nome, ano, duracao, sinopse, gene
       return 'O campo duração não foi preenchido'
     } else if (error.response && error.response.data && error.response.data.error === 'O campo sinopse não foi preenchido') {
       return 'O campo sinopse não foi preenchido'
-      // } else if (error.response && error.response.data && error.response.data.error === 'O campo diretor não foi preenchido') {
-      //   return 'O campo diretor não foi preenchido'
+    } else if (error.response && error.response.data && error.response.data.error === 'O campo diretor não foi preenchido') {
+      return 'O campo diretor não foi preenchido'
     } else if (error.response && error.response.data && error.response.data.error === 'O campo genero não foi preenchido') {
       return 'O campo genero não foi preenchido'
     } else {

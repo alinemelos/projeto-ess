@@ -5,8 +5,8 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     position: 'relative',
-    // padding: '4vh 6vw 4vh 6vw',
-    margin: '4vh',
+    paddingTop: '4vh',
+    margin: '0vh 4vh 4vh 4vh',
     borderBottom: 'solid 2px #000000'
   },
   title: {

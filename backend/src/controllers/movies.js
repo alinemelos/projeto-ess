@@ -124,6 +124,18 @@ exports.editMovie = (req, res) => {
     }
 
     if (
+      filme_id === movies[movieIndex].filme_id &&
+      poster === movies[movieIndex].poster &&
+      nome === movies[movieIndex].nome &&
+      ano === movies[movieIndex].ano &&
+      duracao === movies[movieIndex].duracao &&
+      sinopse === movies[movieIndex].sinopse &&
+      genero === movies[movieIndex].genero
+    ) {
+      return res.status(400).json({ error: "Nenhum campo para atualizar" });
+    }
+
+    if (
       !poster &&
       !nome &&
       !ano &&
@@ -143,7 +155,7 @@ exports.editMovie = (req, res) => {
     if (sinopse) movies[movieIndex].sinopse = sinopse;
     if (diretor) movies[movieIndex].diretor = diretor;
     if (genero) movies[movieIndex].genero = genero;
-    if (plataformas) movies[movieIndex].plataformas = plataformas;
+    // if (plataformas) movies[movieIndex].plataformas = plataformas;
 
     res.status(200).json({
       message: "Filme Editado com Sucesso",
