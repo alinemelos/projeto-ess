@@ -1,6 +1,6 @@
 const styles = {
   container: {
-    marginBottom: '2rem',
+    marginBottom: '3.3rem',
     width: '100%'
   },
   post__header: {
@@ -31,12 +31,10 @@ const styles = {
   post__footer: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
-    marginLeft: '1.5rem'
+    alignItems: 'flex-start'
   },
   post__footer_arrow: {
-    marginLeft: 'auto',
-    marginBottom: '1.5rem'
+    marginLeft: 'auto'
   }
 }
 

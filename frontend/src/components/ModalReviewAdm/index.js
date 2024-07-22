@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Rating } from '@mui/material'
 import styles from './styles'
 import CreatePost from '../../services/posts/CreatePost'
-import UpdatePost from '../../services/posts/UpdatePost'
+import UpdateReview from '../../services/posts/UpdatePost'
 import { IoCloseSharp } from 'react-icons/io5'
 import StarIcon from '@mui/icons-material/Star'
 
-const ModalReview = ({
+const ModalReviewAdm = ({
   isOpen,
   setModalOpen,
   imageUrl,
@@ -24,7 +24,7 @@ const ModalReview = ({
 
   const handleCreatePost = async () => {
     if (isEditing) {
-      const response = await UpdatePost(editingPostInfo.post_id, editingPostInfo.user_id, editingPostInfo.filme_id, rating, postText)
+      const response = await UpdateReview(editingPostInfo.post_id, editingPostInfo.user_id, editingPostInfo.filme_id, rating, postText)
       if (response.status === 200) {
         setPostText('')
         setRating(null)
@@ -40,7 +40,7 @@ const ModalReview = ({
       if (response.status === 201) {
         setPostText('')
         setRating(null)
-        setModalOpen()
+        setModalOpen(false)
       } else if (response === 'Nota is required.') {
         setErrorNota(true)
       } else {
@@ -57,7 +57,7 @@ const ModalReview = ({
       setPostText(editingPostInfo.review)
       setRating(editingPostInfo.nota)
     }
-  }, [isOpen])
+  }, [isOpen, isEditing, editingPostInfo])
 
   if (isOpen) {
     return (
@@ -91,20 +91,14 @@ const ModalReview = ({
                   <div style={styles.form__bottom}>
                     <div style={styles.form__bottom__nota}>
                       <p style={styles.form__bottom__nota_label}>Nota</p>
-                      {errorNota && (
-                        <p style={styles.form__bottom__nota_error} data-testid='error'>
-                          Nota é obrigatória
-                        </p>
-                      )}
+                      {errorNota && <p style={styles.form__bottom__nota_error}>Nota é obrigatória</p>}
                       <Rating
                         name='simple-controlled'
                         value={rating}
-                        onChange={(_, value) => {
-                          setRating(value)
-                        }}
                         precision={0.5}
                         emptyIcon={<StarIcon style={{ color: '#D9D9D9' }} />}
                         icon={<StarIcon style={{ color: '#FF182C' }} />}
+                        readOnly={isEditing} // Somente leitura quando estiver editando
                         data-testid='rating-component'
                       />
                     </div>
@@ -123,4 +117,4 @@ const ModalReview = ({
   return null
 }
 
-export default ModalReview
+export default ModalReviewAdm
