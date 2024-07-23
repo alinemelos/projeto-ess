@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import styles from './styles' // Certifique-se de importar corretamente os estilos
+import styles from './styles'
 import { CiSearch } from 'react-icons/ci'
 import { BsPersonCircle } from 'react-icons/bs'
-import SearchFilmes from '../../../services/search/Search' // Importe a função de busca
+import SearchFilmes from '../../../services/search/Search'
 import GetFilmes from '../../../services/filmes/GetFilmes'
 import { useNavigate } from 'react-router-dom'
 
@@ -34,7 +34,7 @@ const Header = ({ topRightName, retornar_filmes }) => {
       if (busca === '') {
         result = await GetFilmes()
       } else {
-        result = await SearchFilmes(busca) // Chama a função de busca com o valor atual de busca
+        result = await SearchFilmes(busca)
       }
 
       retornar_filmes(result.data)
