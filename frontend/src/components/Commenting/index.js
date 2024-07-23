@@ -11,7 +11,6 @@ const Commenting = ({ response_id, user_id, publishComment, publish, editing = f
   }
 
   const handlePublishClick = async () => {
-    console.log(user_id, response_id, comment)
     await CreateComment(user_id, response_id, comment)
     setComment('')
     publishComment()
@@ -19,10 +18,7 @@ const Commenting = ({ response_id, user_id, publishComment, publish, editing = f
   }
 
   const handlePutClick = async () => {
-    console.log('Comentário ATUALIZADO:', response_id)
-    const response = await UpdateComment(response_id, user_id, comment)
-    console.log(response)
-    setComment('')
+    await UpdateComment(response_id, user_id, comment)
     publishComment()
     publish()
   }
