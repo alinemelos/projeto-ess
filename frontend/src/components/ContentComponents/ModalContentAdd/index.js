@@ -4,6 +4,7 @@ import { IoCloseSharp } from 'react-icons/io5'
 import MovieFrame from '../MovieFrame'
 import AddMovie from '../../../services/content/AddMovie'
 import ModalConfirm from '../ModalConfirm'
+import Prompt from '../Prompt'
 
 const ModalContentAdd = ({ handleContent }) => {
   const [postName, setPostName] = useState('')
@@ -20,6 +21,7 @@ const ModalContentAdd = ({ handleContent }) => {
   const [message, setMessage] = useState('')
 
   const [booleano, setBooleano] = useState(false)
+  const [prompt, setPrompt] = useState(false)
 
   const handleAddMovie = async () => {
     toggleConfirm()
@@ -34,7 +36,7 @@ const ModalContentAdd = ({ handleContent }) => {
       setPostSynopsis('')
       setBooleano(true)
       // handleContent()
-    } else if (response === 'Filme já cadastrado no sistema') {
+    } else if (response.status === 200) {
       setMessage('Filme já cadastrado no sistema')
     } else if (response === 'O poster não foi adicionado') {
       setMessage('Preencha o campo "Poster"')
@@ -46,8 +48,8 @@ const ModalContentAdd = ({ handleContent }) => {
       setMessage('Preencha o campo "Duração"')
     } else if (response === 'O campo sinopse não foi preenchido') {
       setMessage('Preencha o campo "Sinopse"')
-      // } else if (response === 'O campo diretor não foi preenchido') {
-      //   alert('Preencha o campo "Diretor"')
+    } else if (response === 'O campo diretor não foi preenchido') {
+      alert('Preencha o campo "Diretor"')
     } else if (response === 'O campo genero não foi preenchido') {
       setMessage('Preencha o campo "Gênero"')
     } else {
@@ -56,11 +58,9 @@ const ModalContentAdd = ({ handleContent }) => {
   }
 
   const handleSwitchImage = async () => {
-    let text
-    text = prompt('Coloque a URL da imagem do poster do filme: ')
-    if (text) {
+    setPrompt(!prompt)
+    if (prompt) {
       setSwitchImage(!switchImage)
-      setPostImage(text)
     }
   }
 
@@ -69,9 +69,12 @@ const ModalContentAdd = ({ handleContent }) => {
       <>
         {' '}
         {!props.switchImage ? (
-          <MovieFrame style={styles.poster_img} onClick={handleSwitchImage} />
+          <>
+            <MovieFrame style={styles.poster_img} onClick={handleSwitchImage} type={'square'} />
+            {prompt && <Prompt handleClose={handleSwitchImage} setPostImage={setPostImage} />}
+          </>
         ) : (
-          <img src={postImage} alt='Poster do Filme' style={styles.poster_img} />
+          <img src={postImage} alt='Poster do Filme' style={styles.poster_img} onClick={handleSwitchImage} />
         )}
       </>
     )
@@ -84,6 +87,7 @@ const ModalContentAdd = ({ handleContent }) => {
   const handleCloseFull = () => {
     toggleConfirm()
     handleContent()
+    window.location.reload()
   }
 
   function RenderCorrectWindow() {
@@ -91,9 +95,9 @@ const ModalContentAdd = ({ handleContent }) => {
       <>
         {' '}
         {!booleano ? (
-          <ModalConfirm handleClose={toggleConfirm} text={message} />
+          <ModalConfirm handleClose={toggleConfirm} text={message} confirm_message='adicionar' />
         ) : (
-          <ModalConfirm handleClose={handleCloseFull} text={message} />
+          <ModalConfirm handleClose={handleCloseFull} text={message} confirm_message='adicionar' />
         )}
       </>
     )
@@ -101,7 +105,7 @@ const ModalContentAdd = ({ handleContent }) => {
 
   return (
     <div style={styles.background}>
-      <div style={styles.modal}>
+      <div style={styles.modal} data-testid='modal'>
         <div style={styles.titulo}>
           <p style={styles.fonte_titulo}>Cadastrar Filme:</p>
           <IoCloseSharp size={48} cursor={'pointer'} onClick={handleContent} />
@@ -116,6 +120,7 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Nome do Filme'
                 value={postName}
                 onChange={(e) => setPostName(e.target.value)}
+                data-testid='input-name'
               />
               <input
                 style={styles.input_diretor}
@@ -123,6 +128,7 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Diretor'
                 value={postDiretor}
                 onChange={(e) => setPostDiretor(e.target.value)}
+                data-testid='input-diretor'
               />
               <input
                 style={styles.input_year}
@@ -130,6 +136,7 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Ano'
                 value={postYear}
                 onChange={(e) => setPostYear(e.target.value)}
+                data-testid='input-year'
               />
               <input
                 style={styles.input_duration}
@@ -137,6 +144,7 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Duração'
                 value={postDuration}
                 onChange={(e) => setPostDuration(e.target.value)}
+                data-testid='input-duration'
               />
               <input
                 style={styles.input_genre}
@@ -144,6 +152,7 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Gênero'
                 value={postGenre}
                 onChange={(e) => setPostGenre(e.target.value)}
+                data-testid='input-genre'
               />
             </div>
             <textarea
@@ -152,11 +161,15 @@ const ModalContentAdd = ({ handleContent }) => {
               style={styles.sinopse_textarea}
               value={postSynopsis}
               onChange={(e) => setPostSynopsis(e.target.value)}
+              data-testid='sinopse'
             ></textarea>
           </div>
         </div>
         <div style={styles.confirm} onClick={handleAddMovie}>
-          <button style={styles.button_confirm}> Confirmar </button>
+          <button style={styles.button_confirm} data-testid='botao'>
+            {' '}
+            Confirmar{' '}
+          </button>
           {switchConfirm && <RenderCorrectWindow />}
         </div>
       </div>

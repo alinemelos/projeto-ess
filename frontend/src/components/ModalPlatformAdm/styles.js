@@ -65,6 +65,36 @@ const styles = {
     width: '80px',
     height: '80px',
     marginBottom: '0.5rem'
+  },
+  removeIcon: {
+    position: 'absolute',
+    top: '-10px',
+    right: '-10px',
+    cursor: 'pointer',
+    backgroundColor: 'white',
+    borderRadius: '50%',
+    padding: '2px'
+  },
+  addPlatformContainer: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    cursor: 'pointer'
+  },
+  addPlatformIcon: {
+    width: '80px',
+    height: '80px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    border: '2px solid #000',
+    borderRadius: '50%'
+  },
+  addPlatformText: {
+    marginTop: '0.5rem',
+    fontSize: '1rem',
+    color: '#000'
   }
 }
 

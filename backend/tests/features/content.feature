@@ -18,10 +18,10 @@ Scenario: Remoção de Filme com Sucesso
 
 Scenario: Edição das Informações do Filme com sucesso
     Given o banco de dados requer um ou mais dos seguintes dados para a edição: filme_id, nome, ano, duracao, genero, sinopse, poster, plataformas.
-    And o filme "1984" de ID "40028922" está cadastrado no sistema e possui seus campos sinopse e genero como "Placeholder" e "Comédia" respectivamente.
-    When o administrador envia uma requisição PUT para a rota /movie passando o ID "40028922" com os campos sinopse e gênero sendo "1984 is the story of a man questioning the system that keeeps his society afloat" e "Ficcção Científica".
+    And o filme "Os Vingadores" de ID "d9a92df2-2d0e-11ef-85cc-15bfccf04c98" está cadastrado no sistema e possui seus campos sinopse e genero como "Loki, o irmão de Thor, ganha acesso ao poder ilimitado do cubo cósmico ao roubá-lo de dentro das instalações da S.H.I.E.L.D. Nick Fury, o diretor desta agência internacional que mantém a paz, logo reúne os únicos super-heróis que serão capazes de defender a Terra de ameaças sem precedentes. Homem de Ferro, Capitão América, Hulk, Thor, Viúva Negra e Gavião Arqueiro formam o time dos sonhos de Fury, mas eles precisam aprender a colocar os egos de lado e agir como um grupo em prol da humanidade." e "Ação" respectivamente.
+    When o administrador envia uma requisição PUT para a rota /movie passando o ID "d9a92df2-2d0e-11ef-85cc-15bfccf04c98" com os campos sinopse e gênero sendo "Thanos INVADIU OS TESTES" e "Ficcção Científica".
     Then o sistema retorna o status code 200 e a mensagem "Filme Editado com Sucesso"
-    And Os campos sinopse e genero agora são "1984 is the story of a man questioning the system that keeeps his society afloat" e "Ficcção Científica".
+    And Os campos sinopse e genero agora são "Thanos INVADIU OS TESTES" e "Ficcção Científica".
 
 Scenario: Cadastro de Filme que já existe
     Given o banco de dados requer os dados obrigatórios nome, gênero, ano, diretor, duracao, sinopse e poster para o cadastro.

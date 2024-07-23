@@ -31,7 +31,7 @@ module.exports = [
         nome: "Prime Video",
         url: "https://www.primevideo.com/detail/0TQ0HYSFFKAO9W3UUIOMSTPUJ7/ref=atv_sr_fle_c_Tn74RA_1_1_1?sr=1-1&pageTypeIdSource=ASIN&pageTypeId=B0CKRZ7G7N&qid=1721626218893",
         image:
-          "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/f1/f7/27/f1f72776-cb16-2416-cd6b-db9f9d9d93f4/AppIcon-2x_U007euniversal-0-4-0-0-85-220-0.png/1200x630wa.png",
+          "https://th.bing.com/th/id/R.0289017ed536952e596eba113a8d5213?rik=XiECS%2fmf5xUcBA&pid=ImgRaw&r=0",
       },
     ],
     genero: "comedia",
@@ -64,7 +64,15 @@ module.exports = [
     sinopse:
       "Um homem deprimido que sofre de insônia conhece um estranho vendedor chamado Tyler Durden e se vê morando em uma casa suja depois que seu perfeito apartamento é destruído. A dupla forma um clube com regras rígidas onde homens lutam. A parceria perfeita é comprometida quando uma mulher, Marla, atrai a atenção de Tyler.",
     diretor: "David Fincher",
-    plataformas: [],
+    plataformas: [
+      {
+        filme1_id: "d9a92df3-2d0e-11ef-2424-15bfccf04c00",
+        nome: "Netflix",
+        url: "https://www.netflix.com/title/26004747",
+        image:
+          "https://static.vecteezy.com/system/resources/previews/006/874/233/original/netflix-logo-icon-on-white-background-free-vector.jpg",
+      },
+    ],
     genero: "comedia",
     posts: [],
   },
@@ -78,7 +86,15 @@ module.exports = [
     sinopse:
       "Loki, o irmão de Thor, ganha acesso ao poder ilimitado do cubo cósmico ao roubá-lo de dentro das instalações da S.H.I.E.L.D. Nick Fury, o diretor desta agência internacional que mantém a paz, logo reúne os únicos super-heróis que serão capazes de defender a Terra de ameaças sem precedentes. Homem de Ferro, Capitão América, Hulk, Thor, Viúva Negra e Gavião Arqueiro formam o time dos sonhos de Fury, mas eles precisam aprender a colocar os egos de lado e agir como um grupo em prol da humanidade.",
     diretor: "Joss Whedon",
-    plataformas: [],
+    plataformas: [
+      {
+        filme1_id: "d9a92df2-2d0e-11ef-85cc-15bfccf04c98",
+        nome: "Disney +",
+        url: "https://www.disneyplus.com/pt-br/movies/os-vingadores/2h6PcHFDbsPy",
+        image:
+          "https://cdn-1.webcatalog.io/catalog/disney-plus/disney-plus-icon.png",
+      },
+    ],
     genero: "Ação",
     posts: [],
   },
@@ -92,7 +108,15 @@ module.exports = [
     sinopse:
       "Após Thanos eliminar metade das criaturas vivas, os Vingadores têm de lidar com a perda de amigos e entes queridos. Com Tony Stark vagando perdido no espaço sem água e comida, Steve Rogers e Natasha Romanov lideram a resistência contra o titã louco.",
     diretor: "Anthony Russo, Joe Russo",
-    plataformas: [],
+    plataformas: [
+      {
+        filme1_id: "d9a92df2-2d0e-11ef-85cc-15bfccf04c98",
+        nome: "Disney +",
+        url: "https://www.disneyplus.com/pt-br/movies/vingadores-endgame/aRbVJUb2h2Rf",
+        image:
+          "https://cdn-1.webcatalog.io/catalog/disney-plus/disney-plus-icon.png",
+      },
+    ],
     genero: "comedia",
     posts: [],
   },

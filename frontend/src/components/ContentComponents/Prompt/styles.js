@@ -13,46 +13,37 @@ const styles = {
   },
   modal: {
     backgroundColor: 'white',
-    padding: '2% 6.1%',
+    padding: '1% 3%',
     border: '1px solid black',
     borderRadius: '22px',
     display: 'flex',
     flexDirection: 'column',
-    boxSizing: 'border-box',
-    width: '80%',
-    height: 'auto%'
+    width: '40%',
+    height: 'auto'
   },
-  titulo: {
-    display: 'flex',
-    justifyContent: 'right',
-    flexDirection: 'row',
-    alignItems: 'center',
-    margin: '2.6rem 0rem'
-  },
-  text: {
-    fontFamily: 'Bebas Neue',
-    fontSize: '3rem',
-    margin: '20vh'
-  },
-
-  content: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
+  input_url: {
+    width: '100%',
+    height: '2rem',
+    fontSize: '1rem',
+    fontFamily: 'Be Vietnam Pro',
+    padding: '0.5rem',
+    borderRadius: '12px',
+    border: '1px solid #000',
+    marginTop: '2rem',
+    marginBottom: '1rem'
   },
   confirm: {
     display: 'flex',
-    justifyContent: 'right',
-    marginTop: '1.6rem'
+    justifyContent: 'right'
   },
   button_confirm: {
     cursor: 'pointer',
     backgroundColor: '#FF182C',
     border: 'none',
     borderRadius: '12px',
-    fontSize: '1.5rem',
+    fontSize: '1rem',
     color: '#fff',
-    padding: '12px 3.5rem',
+    padding: '0.5rem 2rem',
     fontFamily: 'Bebas Neue'
   }
 }
