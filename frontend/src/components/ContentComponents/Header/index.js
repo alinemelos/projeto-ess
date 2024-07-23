@@ -1,9 +1,35 @@
-import React from 'react'
-import styles from './styles'
+import React, { useState } from 'react'
+import styles from './styles' // Certifique-se de importar corretamente os estilos
 import { CiSearch } from 'react-icons/ci'
 import { BsPersonCircle } from 'react-icons/bs'
+import SearchFilmes from '../../../services/search/Search' // Importe a função de busca
+import GetFilmes from '../../../services/filmes/GetFilmes'
 
-const Header = ({ user_id }) => {
+const Header = ({ topRightName, retornar_filmes }) => {
+  const [busca, setBusca] = useState('')
+
+  const handleInputChange = (event) => {
+    setBusca(event.target.value)
+  }
+
+  const handleSubmit = async () => {
+    try {
+      let result = []
+
+      if (busca === '') {
+        result = await GetFilmes()
+      } else {
+        result = await SearchFilmes(busca) // Chama a função de busca com o valor atual de busca
+      }
+
+      retornar_filmes(result.data)
+      console.log('Resultados da busca:', result.data)
+    } catch (error) {
+      console.error('Erro na busca:', error)
+      retornar_filmes(404)
+    }
+  }
+
   return (
     <div style={styles.background}>
       <div style={styles.title}>
@@ -14,12 +40,24 @@ const Header = ({ user_id }) => {
         <p style={styles.about}>FILMES</p>
         <div>
           <CiSearch />
-          <input style={styles.input_name} type='text' id='nome-filme' name='nome-filme' placeholder='Nome do Filme' />
+          <input
+            style={styles.input_name}
+            type='text'
+            id='busca'
+            name='nome-filme'
+            placeholder='Nome do Filme'
+            value={busca}
+            onChange={handleInputChange}
+          />
+          <input
+            type='submit'
+            id='entrar-busca'
+            value='Buscar'
+            onClick={handleSubmit} // Chama o handleSubmit ao clicar no botão de buscar
+          />
         </div>
-        <div style={styles.user}>
-          <BsPersonCircle style={styles.profile} />
-          <p>{user_id}</p>
-        </div>
+        <BsPersonCircle style={styles.profile} />
+        <p>{topRightName}</p>
       </div>
     </div>
   )
