@@ -82,7 +82,7 @@ const Adm = () => {
         />
 
         <div style={styles.content}>
-          <Header user_id={user_id} />
+          <Header topRightName={user_id} />
           <div style={styles.head}>
             <h1 data-testid='title' style={styles.title}>
               {page.nome}
