@@ -23,8 +23,12 @@ const Header = ({ topRightName, retornar_filmes }) => {
     }
   }
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     try {
+      if (e.key !== 'Enter') {
+        return
+      }
+
       let result = []
 
       if (busca === '') {
@@ -62,6 +66,7 @@ const Header = ({ topRightName, retornar_filmes }) => {
             value={busca}
             onChange={handleInputChange}
             onKeyDown={handleSubmit}
+            onClick={handleMoveToDashboard}
             data-testid='caixa de busca'
           />
         </div>
