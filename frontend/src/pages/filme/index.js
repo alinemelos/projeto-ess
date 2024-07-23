@@ -4,10 +4,11 @@ import { useParams } from 'react-router-dom'
 import styles from './styles'
 import GetPage from '../../services/pages/GetPage'
 import Post from '../../components/Post'
-import { Button } from '@mui/material'
+import { Button, Rating } from '@mui/material'
 import ModalReview from '../../components/ModalReview'
 import ModalPlatform from '../../components/ModalPlatform'
 import Header from '../../components/ContentComponents/Header'
+import StarIcon from '@mui/icons-material/Star'
 
 const FilmDetail = () => {
   const { id } = useParams()
@@ -19,6 +20,7 @@ const FilmDetail = () => {
   const [openModal, setOpenModal] = useState(false)
   const [openModalPlatform, setOpenModalPlatform] = useState(false)
   const [publishComment, setPublishComment] = useState(false)
+  const [mediaNota, setMediaNota] = useState(0)
 
   useEffect(() => {
     async function fetchData() {
@@ -28,6 +30,15 @@ const FilmDetail = () => {
     fetchData()
   }, [openModal, reload, publishComment])
   // Fetch the film details using the id, or use a state management solution.
+  useEffect(() => {
+    let notas = 0
+    if (page.posts) {
+      for (let i = 0; i < page.posts.length; i++) {
+        notas += page.posts[i].nota
+      }
+      setMediaNota(notas / page.posts.length)
+    }
+  }, [page])
 
   const handleOpenModal = () => {
     setIsEditing(false)
@@ -71,42 +82,58 @@ const FilmDetail = () => {
 
         <div style={styles.content}>
           <Header user_id={user_id} />
-          <div>
+          <div style={styles.head}>
             <h1 data-testid='title' style={styles.title}>
               {page.nome}
             </h1>
+            <Rating
+              size='large'
+              name='simple-controlled'
+              value={mediaNota}
+              onChange={(_, value) => {
+                setMediaNota(value)
+              }}
+              precision={0.25}
+              readOnly
+              emptyIcon={<StarIcon style={{ color: '#D9D9D9' }} />}
+              icon={<StarIcon style={{ color: '#FF182C' }} />}
+            />
           </div>
           <div style={styles.info}>
             <img src={page.poster} alt='Poster do Filme' style={styles.image} />
             <div style={styles.detail}>
-              <div className='synopsis' style={styles.synopsis}>
-                <h2 style={styles.titlesbegin}> Sinopse: </h2>
-                <p>{page.sinopse}</p>
+              <div style={styles.synopsisandinfo}>
+                <div className='synopsis' style={styles.synopsis}>
+                  <h2 style={styles.titlesbegin}> Sinopse: </h2>
+                  <p>{page.sinopse}</p>
+                </div>
+                <div className='information' style={styles.information}>
+                  <p style={styles.minordetail}>
+                    <p style={styles.titlesbegin}>Diretor:</p>
+                    <p>{page.diretor}</p>
+                  </p>
+                  <p style={styles.minordetail}>
+                    <p style={styles.titlesbegin}>Ano de Lancamento:</p>
+                    <p>{page.ano}</p>
+                  </p>
+                  <p style={styles.minordetail}>
+                    <p style={styles.titlesbegin}>Genero:</p>
+                    <p> {page.genero}</p>
+                  </p>
+                  <p style={styles.minordetail}>
+                    <p style={styles.titlesbegin}>Duracao:</p>
+                    <p> {page.duracao} min</p>
+                  </p>
+                </div>
               </div>
-              <div className='information' style={styles.information}>
-                <p style={styles.minordetail}>
-                  <p style={styles.titlesbegin}>Diretor:</p>
-                  <p>{page.diretor}</p>
-                </p>
-                <p style={styles.minordetail}>
-                  <p style={styles.titlesbegin}>Ano de Lancamento:</p>
-                  <p>{page.ano}</p>
-                </p>
-                <p style={styles.minordetail}>
-                  <p style={styles.titlesbegin}>Genero:</p>
-                  <p> {page.genero}</p>
-                </p>
-                <p style={styles.minordetail}>
-                  <p style={styles.titlesbegin}>Duracao:</p>
-                  <p> {page.duracao} min</p>
-                </p>
+              <p style={styles.butons}>
                 <Button variant='contained' style={{ backgroundColor: 'red', color: 'white' }} onClick={handleOpenModal}>
                   Poste um Review
                 </Button>
                 <Button variant='contained' color='primary' onClick={handleOpenModalPlatform}>
                   Onde Assistir?
                 </Button>
-              </div>
+              </p>
             </div>
           </div>
         </div>
