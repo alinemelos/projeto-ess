@@ -14,7 +14,7 @@ const styles = {
     zIndex: 2
   },
   modal: {
-    backgroundColor: 'pink',
+    backgroundColor: 'white',
     padding: '2% 6.1%',
     border: '1px solid black',
     borderRadius: '22px',

@@ -83,6 +83,7 @@ const ModalContentEdit = ({ handleContent, id }) => {
   const handleClose = () => {
     toggleConfirm()
     handleContent()
+    window.location.reload()
   }
 
   return (
