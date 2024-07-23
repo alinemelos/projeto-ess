@@ -3,8 +3,8 @@ const movies = require('../db/db');
 exports.search = (req, res) => {
   try {
 
-    console.log(req)
-    console.log(req.query)
+    // console.log(req)
+    // console.log(req.query)
 
     let { busca } = req.query; // Usando req.query para acessar parâmetros de consulta
 

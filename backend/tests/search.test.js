@@ -26,7 +26,7 @@ defineFeature(search_feature, test => {
             const requisicao = {
                 "busca": filme
             };
-            search_results = await axios.get('http://localhost:3000/search', {data:requisicao});
+            search_results = await axios.get('http://localhost:3000/search', {params:requisicao});
         });
 
         then(/^os posts dos filmes "(.*)" e "(.*)" são exibidas$/, (filme1, filme2) => {
@@ -66,7 +66,7 @@ defineFeature(search_feature, test => {
             const requisicao = {
                 "busca": categoria
             };
-            search_results = await axios.get('http://localhost:3000/search', {data:requisicao});
+            search_results = await axios.get('http://localhost:3000/search', {params:requisicao});
         });
 
         then(/^Reviews de filmes de "(.*)" são exibidas$/, (categoria) => {
@@ -87,6 +87,7 @@ defineFeature(search_feature, test => {
     test('Busca falhou (Serviço)', ({ given, when, then, and }) => {
 
         let search_results;
+        let erro = 200
 
         given(/^o filme "(.*)" não esta cadastrado no site$/, (arg0) => {
 
@@ -96,7 +97,11 @@ defineFeature(search_feature, test => {
             const requisicao = {
                 "busca": filme
             };
-            search_results = await axios.get('http://localhost:3000/search', {data:requisicao});
+            try {
+                search_results = await axios.get('http://localhost:3000/search', {params:requisicao});
+            } catch (error) {
+                erro = error.response.status
+            }
         });
 
         then('o servidor retorna uma mensagem de erro', () => {
@@ -104,9 +109,7 @@ defineFeature(search_feature, test => {
         });
 
         and('uma mensagem informando que não foram encontrados resultados é exibida', () => {
-            expect(search_results.data).toEqual(
-                []
-            );
+            expect(erro).toEqual(404);
         });
     });
 });
