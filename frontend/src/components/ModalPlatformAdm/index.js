@@ -50,23 +50,28 @@ const ModalPlatform = ({ isOpen, setModalOpen, selectedFilmId }) => {
   return (
     <>
       <div style={styles.background}>
-        <div style={styles.modal}>
+        <div style={styles.modal} className='modal'>
           <div style={styles.exit}>
-            <IoCloseSharp size={32} onClick={() => setModalOpen(false)} style={styles.exit__btn} />
+            <IoCloseSharp size={32} onClick={() => setModalOpen(false)} style={styles.exit__btn} data-testid='exit' />
           </div>
           <div style={styles.content}>
             <p style={styles.title__text}>Disponível em:</p>
             <div style={styles.platforms}>
               {selectedFilm?.plataformas?.map((plataforma) => (
-                <div key={plataforma.filme1_id} style={styles.platformContainer}>
+                <div key={plataforma.filme1_id} style={styles.platformContainer} className='modal'>
                   <a href={plataforma.url} target='_blank' rel='noopener noreferrer' style={styles.platform}>
                     <img src={plataforma.image} alt={plataforma.nome} style={styles.platformImage} />
                     <span>{plataforma.nome}</span>
                   </a>
-                  <IoCloseSharp size={24} style={styles.removeIcon} onClick={() => handleRemovePlatform(selectedFilmId, plataforma.nome)} />
+                  <IoCloseSharp
+                    size={24}
+                    style={styles.removeIcon}
+                    onClick={() => handleRemovePlatform(selectedFilmId, plataforma.nome)}
+                    data-testid='remove'
+                  />
                 </div>
               ))}
-              <div style={styles.addPlatformContainer} onClick={handleAddPlatform}>
+              <div style={styles.addPlatformContainer} onClick={handleAddPlatform} data-testid='Adicionar'>
                 <div style={styles.addPlatformIcon}>
                   <IoAddCircleOutline size={48} />
                 </div>

@@ -26,7 +26,7 @@ const ModalPlatform = ({ isOpen, setModalOpen, selectedFilmId }) => {
 
   return (
     <div style={styles.background}>
-      <div style={styles.modal}>
+      <div style={styles.modal} className='modal'>
         <div style={styles.titulo}>
           <IoCloseSharp size={32} onClick={() => setModalOpen(false)} style={styles.exit__btn} />
         </div>
