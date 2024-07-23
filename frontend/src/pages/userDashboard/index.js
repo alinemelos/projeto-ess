@@ -1,22 +1,30 @@
 import React, { useState } from 'react'
 import styles from './styles'
 import ModalContentAdd from '../../components/ContentComponents/ModalContentAdd'
-import UserCarouselMovies from '../../components/ContentComponents/UserCarouselMovies'
+import CarouselMovies from '../../components/ContentComponents/CarrouselMovies'
 import Header from '../../components/ContentComponents/Header'
 
 const AdminDashboard = () => {
   const [showContent, setShowContent] = useState(false)
+  const [filmes_novos, setfilmes] = useState('')
+
+  function retornar_filmes(result) {
+    setfilmes(result)
+  }
+
   function handleContent() {
     setShowContent(!showContent)
   }
+
   function ModalAddMovie(props) {
     return <>{props.showContent && <ModalContentAdd showContent={showContent} handleContent={handleContent} />}</>
   }
+
   return (
     <div style={styles.background}>
-      <Header user_id={'Usuário'} />
+      <Header topRightName={'Usuário'} retornar_filmes={retornar_filmes} />
       <div>
-        <UserCarouselMovies handleContent={handleContent} showMovieFrame={false} />
+        <CarouselMovies filmes_novos={filmes_novos} handleContent={handleContent} showMovieFrame={false} />
         {showContent && <ModalAddMovie showContent={showContent} />}
       </div>
     </div>
