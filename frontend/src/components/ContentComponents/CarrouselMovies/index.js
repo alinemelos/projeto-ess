@@ -79,7 +79,7 @@ const CarouselMovies = ({ filmes_novos, handleContent, showMovieFrame }) => {
           {filmes.map((movie) => {
             const { filme_id, nome, poster } = movie
             return (
-              <Link to={`/filme/${filme_id}`} key={filme_id} style={styles.movie}>
+              <Link to={`/Adm/${filme_id}`} key={filme_id} style={styles.movie}>
                 <div style={styles.image_div}>
                   <img style={styles.image} src={poster} alt='movie' draggable='false' />
                   <span style={styles.title}>{nome}</span>
