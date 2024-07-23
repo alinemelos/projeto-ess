@@ -9,6 +9,8 @@ import ModalReview from '../../components/ModalReviewAdm'
 import ModalPlatform from '../../components/ModalPlatformAdm'
 import Header from '../../components/ContentComponents/Header'
 import StarIcon from '@mui/icons-material/Star'
+import ModalContentEdit from '../../components/ContentComponents/ModalContentEdit'
+import ModalContentDelete from '../../components/ContentComponents/ModalContentDelete'
 
 const Adm = () => {
   const getRandomName = (names) => {
@@ -27,6 +29,8 @@ const Adm = () => {
   const [openModalPlatform, setOpenModalPlatform] = useState(false)
   const [publishComment, setPublishComment] = useState(false)
   const [mediaNota, setMediaNota] = useState(0)
+  const [showContent, setShowContent] = useState(false)
+  const [deleteContent, setDeleteContent] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -52,6 +56,22 @@ const Adm = () => {
 
   const handleReplacePublishComment = () => {
     setPublishComment(!publishComment)
+  }
+
+  function handleContent() {
+    setShowContent(!showContent)
+  }
+
+  function handleDelete() {
+    setDeleteContent(!deleteContent)
+  }
+
+  const ModalEditMovie = (props) => {
+    return <>{props.showContent && <ModalContentEdit handleContent={handleContent} id={id} />}</>
+  }
+
+  const ModalDeleteMovie = (props) => {
+    return <>{props.deleteContent && <ModalContentDelete handleDelete={handleDelete} id={id} />}</>
   }
 
   return (
@@ -127,11 +147,19 @@ const Adm = () => {
                   </p>
                 </div>
               </div>
-              <p style={styles.butons}>
+              <div style={styles.butons}>
+                <Button variant='contained' color='secondary' onClick={handleDelete} data-testid='delete'>
+                  Excluir Filme
+                </Button>
+                <Button variant='contained' color='warning' onClick={handleContent} data-testid='edit'>
+                  Editar Filme
+                </Button>
                 <Button variant='contained' color='primary' onClick={handleOpenModalPlatform}>
                   Onde Assistir?
                 </Button>
-              </p>
+                {showContent && <ModalEditMovie showContent={showContent} />}
+                {deleteContent && <ModalDeleteMovie deleteContent={deleteContent} />}
+              </div>
             </div>
           </div>
         </div>

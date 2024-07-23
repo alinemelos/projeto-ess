@@ -45,7 +45,7 @@ const CarouselMovies = ({ filmes_novos, handleContent, showMovieFrame }) => {
         {' '}
         {props.showMovieFrame ? (
           <div style={styles.image_div}>
-            <MovieFrame onClick={handleContent} />
+            <MovieFrame onClick={handleContent} type={'triangle'} />
           </div>
         ) : (
           <></>

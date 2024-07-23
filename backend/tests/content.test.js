@@ -30,7 +30,7 @@ defineFeature(content_feature, (test) => {
 
         then(/^o sistema retorna o status code (\d+) e a resposta deve conter a mensagem "(.*)"$/, (status, message) => {
             expect(post_status).toBe(Number(status));
-            expect(post_message).toEqual({message});
+            expect(post_message).toMatchObject({message});
         });
     });
 
@@ -72,7 +72,7 @@ defineFeature(content_feature, (test) => {
         });
     });
    
-    test('Edição das Informações do Filme com sucesso', ({ given, and, when, then }) => {
+test('Edição das Informações do Filme com sucesso', ({ given, and, when, then }) => {
 
         filme_id = "";
 

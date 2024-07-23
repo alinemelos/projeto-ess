@@ -14,15 +14,14 @@ const styles = {
     zIndex: 2
   },
   modal: {
-    backgroundColor: 'pink',
+    backgroundColor: 'white',
     padding: '2% 6.1%',
     border: '1px solid black',
     borderRadius: '22px',
     display: 'flex',
     flexDirection: 'column',
-    maxWidth: '1414px',
-    maxHeigth: '700px',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    width: '80%'
   },
   titulo: {
     display: 'flex',
@@ -44,7 +43,9 @@ const styles = {
     width: '29.6%',
     height: 'auto',
     borderRadius: '12px',
-    border: '2px solid #000'
+    border: '2px solid #000',
+    maxWidth: '286px',
+    maxHeight: '442px'
   },
   form: {
     display: 'flex',

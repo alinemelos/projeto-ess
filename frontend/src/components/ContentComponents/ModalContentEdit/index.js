@@ -83,6 +83,7 @@ const ModalContentEdit = ({ handleContent, id }) => {
   const handleClose = () => {
     toggleConfirm()
     handleContent()
+    window.location.reload()
   }
 
   return (
@@ -102,6 +103,7 @@ const ModalContentEdit = ({ handleContent, id }) => {
                 placeholder='Nome do Filme'
                 value={postName}
                 onChange={(e) => setPostName(e.target.value)}
+                data-testid='input-name'
               />
               <input
                 style={styles.input_diretor}
@@ -109,6 +111,7 @@ const ModalContentEdit = ({ handleContent, id }) => {
                 placeholder='Diretor'
                 value={postDiretor}
                 onChange={(e) => setPostDiretor(e.target.value)}
+                data-testid='input-diretor'
               />
               <input
                 style={styles.input_year}
@@ -116,6 +119,7 @@ const ModalContentEdit = ({ handleContent, id }) => {
                 placeholder='Ano'
                 value={postYear}
                 onChange={(e) => setPostYear(e.target.value)}
+                data-testid='input-year'
               />
               <input
                 style={styles.input_duration}
@@ -123,6 +127,7 @@ const ModalContentEdit = ({ handleContent, id }) => {
                 placeholder='Duração'
                 value={postDuration}
                 onChange={(e) => setPostDuration(e.target.value)}
+                data-testid='input-duration'
               />
               <input
                 style={styles.input_genre}
@@ -130,6 +135,7 @@ const ModalContentEdit = ({ handleContent, id }) => {
                 placeholder='Gênero'
                 value={postGenre}
                 onChange={(e) => setPostGenre(e.target.value)}
+                data-testid='input-genre'
               />
             </div>
             <textarea
@@ -138,13 +144,19 @@ const ModalContentEdit = ({ handleContent, id }) => {
               style={styles.sinopse_textarea}
               value={postSynopsis}
               onChange={(e) => setPostSynopsis(e.target.value)}
+              data-testid='sinopse'
             ></textarea>
           </div>
         </div>
         <div style={styles.confirm} onClick={handleEditMovie}>
-          <button style={styles.button_confirm}> Confirmar </button>
+          <button style={styles.button_confirm} data-testid='botao'>
+            {' '}
+            Confirmar{' '}
+          </button>
         </div>
-        {switchConfirm && <ModalConfirm handleClose={handleClose} toggleConfirm={toggleConfirm} text={message} />}
+        {switchConfirm && (
+          <ModalConfirm handleClose={handleClose} toggleConfirm={toggleConfirm} text={message} confirm_message='adicionar' />
+        )}
       </div>
     </div>
   )
