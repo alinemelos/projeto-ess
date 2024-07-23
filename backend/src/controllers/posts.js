@@ -23,6 +23,10 @@ exports.createPost = (req, res) => {
       return res.status(404).json({ error: "Movie not found" });
     }
 
+    if (movie.posts.find((post) => post.user_id === user_id)) {
+      return res.status(400).json({ error: "User already posted a review." });
+    }
+
     // Add the new post to the movie's posts array
     movie.posts.push(newPost);
     res.status(201).json(newPost);

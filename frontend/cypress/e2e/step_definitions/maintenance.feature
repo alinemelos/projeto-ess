@@ -19,7 +19,7 @@ Scenario: Editar review
 	And O "Modal de Review" fecha
 	Then Eu posso ver meu review no "Forum"
     When Eu estiver na página de adm do filme "Teste"
-    And Eu clicar no icone "opções" de review de "Yumi Kinoshita ou Lívia Bion ou Ítalo Lima ou Miguel Oliveira"
+    And Eu clicar no icone "opções" de review de "Yumi Kinoshita ou Lívia Bion ou Livia Bion ou Ítalo Lima ou Miguel Oliveira ou Breno Miranda ou Elian Rodrigues ou Aline Marianna"
     And Eu clico no botão "Editar"
     Then Um "Modal de Review" abre
 	And Eu preencho "!!" no campo Review e clico em "ENVIAR"
@@ -34,7 +34,7 @@ Scenario: Falha na edição
 	And O "Modal de Review" fecha
 	Then Eu posso ver meu review no "Forum"
     When Eu estiver na página de adm do filme "Teste"
-    And Eu clicar no icone "opções" de review de "Yumi Kinoshita ou Lívia Bion ou Ítalo Lima ou Miguel Oliveira"
+    And Eu clicar no icone "opções" de review de "Yumi Kinoshita ou Lívia Bion ou Livia Bion ou Ítalo Lima ou Miguel Oliveira ou Breno Miranda ou Elian Rodrigues ou Aline Marianna"
     And Eu clico no botão "Editar"
     Then Um "Modal de Review" abre
   	And Eu preencho "!!" no campo Review
@@ -50,6 +50,6 @@ Scenario: Remover review
 	And O "Modal de Review" fecha
 	Then Eu posso ver meu review no "Forum"
     When Eu estiver na página de adm do filme "Teste"
-    And Eu clicar no icone "opções" de review de "Yumi Kinoshita ou Lívia Bion ou Ítalo Lima ou Miguel Oliveira"
+    And Eu clicar no icone "opções" de review de "Yumi Kinoshita ou Lívia Bion ou Livia Bion ou Ítalo Lima ou Miguel Oliveira ou Breno Miranda ou Elian Rodrigues ou Aline Marianna"
     And Eu clico no botão "Deletar"
     Then Meu review é removido do "Campo de Reviews"

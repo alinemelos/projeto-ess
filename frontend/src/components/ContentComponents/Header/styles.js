@@ -11,25 +11,51 @@ const styles = {
   },
   title: {
     display: 'flex',
-    margin: '0 0 2vh 3vw'
+    margin: '0 0 2vh 4vw'
   },
   fonte_titulo: {
     fontFamily: 'Bebas Neue',
     fontSize: '3rem'
   },
   options: {
-    gap: '4vw',
+    gap: '2vw',
     display: 'flex',
     alignItems: 'center',
-    padding: '0 10px 0 10px'
+    marginRight: '6vw',
+    padding: '0 10px 0 2px'
   },
   user: {
     display: 'flex',
     alignItems: 'center',
-    gap: '1vw'
+    fontFamily: 'Montserrat',
+    fontSize: '0.9rem',
+    width: '100%',
+    gap: '0.8vw'
   },
   profile: {
     fontSize: '2rem'
+  },
+  search: {
+    backgroundColor: '#F6F6F6',
+    borderRadius: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5vw',
+    padding: '1% 1% 1% 1%'
+  },
+  input_name: {
+    border: 'none',
+    outline: 'none',
+    backgroundColor: 'transparent',
+    fontSize: '0.9rem',
+    color: 'gray',
+    width: '10vw',
+    fontFamily: 'Montserrat'
+  },
+  about: {
+    fontFamily: 'bebas neue',
+    fontSize: '1.5rem',
+    cursor: 'pointer'
   }
 }
 

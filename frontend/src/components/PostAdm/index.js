@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Comment from '../Comment'
+import CommentAdm from '../CommentAdm'
 import styles from './styles'
 import { Rating } from '@mui/material'
-import { PiArrowBendDownLeftFill } from 'react-icons/pi'
 import StarIcon from '@mui/icons-material/Star'
 import SettingsMenu from '../MenuAdm'
 
@@ -38,11 +37,8 @@ const Post = ({ post, user_id, setModalOpen, setIsEditing, setReload }) => {
         <p style={styles.post__body__content_review}>{post.review}</p>
       </div>
       <div style={styles.post__footer}>
-        <div style={styles.post__footer_arrow}>
-          <PiArrowBendDownLeftFill />
-        </div>
-        {post.comments.length > 0 && <h3>Comentários:</h3>}
-        {post.comments.length > 0 && post.comments.map((comment) => <Comment key={comment.comment_id} comment={comment} />)}
+        <div style={styles.post__footer_arrow}></div>
+        {post.comments.length > 0 && post.comments.map((comment) => <CommentAdm key={comment.comment_id} comment={comment} />)}
       </div>
     </div>
   )

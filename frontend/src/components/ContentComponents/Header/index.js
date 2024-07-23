@@ -4,12 +4,23 @@ import { CiSearch } from 'react-icons/ci'
 import { BsPersonCircle } from 'react-icons/bs'
 import SearchFilmes from '../../../services/search/Search' // Importe a função de busca
 import GetFilmes from '../../../services/filmes/GetFilmes'
+import { useNavigate } from 'react-router-dom'
 
 const Header = ({ topRightName, retornar_filmes }) => {
+  const navigate = useNavigate()
   const [busca, setBusca] = useState('')
 
   const handleInputChange = (event) => {
     setBusca(event.target.value)
+  }
+
+  const handleMoveToDashboard = () => {
+    console.log(topRightName)
+    if (topRightName == 'ADM') {
+      navigate('/admindashboard')
+    } else {
+      navigate('/userdashboard')
+    }
   }
 
   const handleSubmit = async () => {
@@ -37,9 +48,11 @@ const Header = ({ topRightName, retornar_filmes }) => {
       </div>
       <div style={styles.options}>
         <p style={styles.about}>SOBRE</p>
-        <p style={styles.about}>FILMES</p>
-        <div>
-          <CiSearch />
+        <p style={styles.about} onClick={handleMoveToDashboard}>
+          FILMES
+        </p>
+        <div style={styles.search}>
+          <CiSearch type='submit' id='entrar-busca' value='Buscar' onClick={handleSubmit} />
           <input
             style={styles.input_name}
             type='text'
@@ -48,16 +61,13 @@ const Header = ({ topRightName, retornar_filmes }) => {
             placeholder='Nome do Filme'
             value={busca}
             onChange={handleInputChange}
-          />
-          <input
-            type='submit'
-            id='entrar-busca'
-            value='Buscar'
-            onClick={handleSubmit} // Chama o handleSubmit ao clicar no botão de buscar
+            onKeyDown={handleSubmit}
           />
         </div>
-        <BsPersonCircle style={styles.profile} />
-        <p>{topRightName}</p>
+        <div style={styles.user}>
+          <BsPersonCircle style={styles.profile} />
+          <p style={styles.user_name}>{topRightName}</p>
+        </div>
       </div>
     </div>
   )
