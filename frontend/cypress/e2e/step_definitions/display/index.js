@@ -12,7 +12,7 @@ Before(async () => {
   })
 
 // Scenario: Visualização do título do Filme
-Given('Eu Estou na página do filme "Teste"', () => {
+Given('O usuario esta na página do filme "Teste"', () => {
     cy.visit(`http://localhost:3005/filme/${filme_id}`)
   })
   
