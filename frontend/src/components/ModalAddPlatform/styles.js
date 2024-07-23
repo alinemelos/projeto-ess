@@ -1,5 +1,3 @@
-// styles.js
-
 const styles = {
   background: {
     position: 'fixed',
@@ -65,6 +63,59 @@ const styles = {
     width: '80px',
     height: '80px',
     marginBottom: '0.5rem'
+  },
+  removeIcon: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    cursor: 'pointer',
+    backgroundColor: 'white',
+    borderRadius: '50%',
+    padding: '2px'
+  },
+  addPlatformContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    cursor: 'pointer'
+  },
+  addPlatformIcon: {
+    marginBottom: '0.5rem'
+  },
+  addPlatformText: {
+    fontSize: '1rem',
+    fontWeight: 'bold'
+  },
+  form: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '1rem',
+    width: '100%'
+  },
+  label: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.5rem'
+  },
+  input: {
+    padding: '0.5rem',
+    fontSize: '1rem',
+    borderRadius: '4px',
+    border: '1px solid #ccc'
+  },
+  submitButton: {
+    padding: '0.75rem',
+    fontSize: '1rem',
+    fontWeight: 'bold',
+    backgroundColor: 'red',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '4px',
+    cursor: 'pointer',
+    alignSelf: 'center'
+  },
+  errorText: {
+    color: 'red'
   }
 }
 

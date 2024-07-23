@@ -1,29 +1,26 @@
 Feature: Availability
 
-Scenario: Adicionar plataforma
-    Given Eu estou na página do filme "Oppenheimer"
-    When Eu pressiono o botão "Adicionar plataforma"
-    And Eu visualizo um "formulário" na tela
-    And Eu preencho "Telecine" no campo "nome", "https://www.netflix.com/br/title/81277950" no campo "link", "img.png" no campo "image" e clico em"Adicionar"
-    Then O formulário é fechado
-    And Eu posso ver a plataforma "Telecine" na lista de plataformas disponíveis
+Scenario: Tentar adicionar filme com todos os campos preenchidos
+    Given o banco de dados requisita os campos "nome", "url", e "img"
+    And o filme "Oppenheimer" já está cadastrado
+    When o usuário admnistrador envia uma requisição "POST" para a rota "/platform" com nome "Telecine", url "https://www.netflix.com/br/title/81277950" e img "img.png"
+    Then o status da resposta deve ser 201
 
-Scenario: Adicionar plataforma já existente
-    Given Eu estou na página do filme "Oppenheimer"
-    When Eu pressiono o botão "Adicionar plataforma"
-    And Eu visualizo um "formulário" na tela
-    And Eu preencho "Telecine" no campo "nome", "https://www.netflix.com/br/title/81277950" no campo "link", "img.png" no campo "image" e clico em"Adicionar"
-    Then Eu vejo uma mensagem de erro
+Scenario: Tentar adicionar plataforma já existente
+    Given o banco de dados requisita os campos "nome", "url", e "img"
+    And o filme "Oppenheimer" já está cadastrado
+    And a plataforma "Telecine" já está cadastrada
+    When o usuário admnistrador envia uma requisição "POST" para a rota "/" com nome "Telecine", url "https://www.netflix.com/br/title/81277950" e img "img.png"
+    Then o status da resposta deve ser 400
 
-Scenario: Remover plataforma
-    Given Eu estou na página do filme "Oppenheimer"
-    When Eu pressiono o botão "Remover plataforma" da plataforma "Telecine"
-    Then A plataforma "Telecine" é removida 
-    And Eu não vejo a plataforma "Telecine" na lista de plataformas disponíveis
+Scenario: Tentar remover plataforma
+    Given o filme "Oppenheimer" já está cadastrado no banco de dados 
+    And possui a plataforma "Telecine"
+    When o usuário admnistrador envia uma requisição "DELETE" para a rota "/platform" com nome "Telecine"
+    Then o status da resposta deve ser 200 e plataforma "Telecine" não deve estar mais cadastrada no filme "Oppenheimer"
 
-Scenario: Adicionar plataforma sem preencher todos os campos
-    Given Eu estou na página do filme "Oppenheimer"
-    When Eu pressiono o botão "Adicionar plataforma"
-    And Eu visualizo um "formulário" na tela
-    And Eu preencho "https://www.netflix.com/br/title/81277950" no campo "link", "img.png" no campo "image" e clico em "Adicionar"
-    Then Eu vejo uma mensagem de erro
+Scenario: Tentar adicionar plataforma sem preencher todos os campos
+    Given o banco de dados requisita os campos "nome", "url", e "img"
+    And o filme "Oppenheimer" já está cadastrado
+    When o usuário admnistrador envia uma requisição "POST" para a rota "/" com url "https://www.netflix.com/br/title/81277950" e img "img.png"
+    Then o status da resposta deve ser 400

@@ -1,16 +1,19 @@
 import api from '../index'
 
-export default async function AddPlatform(nome, logo) {
+export default async function createPlatform(filme_id, nome, url, image) {
   try {
-    const data = {
+    const platform = {
+      filme_id: filme_id,
       nome: nome,
-      url: 'Placeholder',
-      logo: logo
+      url: url,
+      image: image
     }
-    const response = await api.post('/platform', data)
+    console.log('oisajdioasjd')
+    console.log(platform)
+    const response = await api.post('/platform', platform)
     return response
   } catch (error) {
-    if (error.response && error.response.data && error.response.data.error === 'Plataforma já cadastrada no sistema') {
+    if (error.response && error.response.data && error.response.data.error === 'Platform already exists') {
       return 'Plataforma já cadastrada no sistema'
     } else if (error.response && error.response.data && error.response.data.error === 'O campo nome não foi preenchido') {
       return 'O campo nome não foi preenchido'

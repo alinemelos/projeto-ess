@@ -6,7 +6,7 @@ import GetPage from '../../services/pages/GetPage'
 import Post from '../../components/PostAdm'
 import { Button, Rating } from '@mui/material'
 import ModalReview from '../../components/ModalReviewAdm'
-import ModalPlatform from '../../components/ModalPlatform'
+import ModalPlatform from '../../components/ModalPlatformAdm'
 import Header from '../../components/ContentComponents/Header'
 import StarIcon from '@mui/icons-material/Star'
 
