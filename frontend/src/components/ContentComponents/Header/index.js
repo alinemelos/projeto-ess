@@ -62,6 +62,7 @@ const Header = ({ topRightName, retornar_filmes }) => {
             value={busca}
             onChange={handleInputChange}
             onKeyDown={handleSubmit}
+            data-testid='caixa de busca'
           />
         </div>
         <div style={styles.user}>
