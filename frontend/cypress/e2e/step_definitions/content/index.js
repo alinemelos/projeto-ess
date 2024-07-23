@@ -16,6 +16,8 @@ And('Um "Modal de Conteúdo" é aberto na tela', () => {
 
 And('Preencho as informações "nome", "ano", "diretor", "duracao", "genero", "sinopse" e "poster" com os dados "Deadpool", "2016", "Tim Miller", "1h54m", "Comédia", "Baseado no anti-herói não convencional da Marvel Comics, Deadpool conta a história da origem do ex-agente das Forças Especiais que se tornou o mercenário Wade Wilson." e "imagemPoster" respectivamente e clico no botão "Confirmar"', () => {
   cy.get('[data-testid="square"]').click()
+  cy.get('[data-testid="prompt"]').type('https://m.media-amazon.com/images/M/MV5BZmU4OGZiODItYzAwYy00MWU3LTg3ODUtN2IwN2Q0NzBhZDUyXkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_QL75_UX480_.jpg')
+  cy.get('[data-testid="botaoConfirmarPrompt"]').click()
   cy.get('[data-testid="input-name"]').type('Deadpool')
   cy.get('[data-testid="input-diretor"]').type('2016')
   cy.get('[data-testid="input-year"]').type('Tim Miller')
@@ -32,6 +34,8 @@ And('Preencho as informações "nome", "ano", "diretor", "duracao", "genero", "s
   
   And('Preencho as informações "nome", "ano", "diretor", "duracao", "genero", "sinopse" e "poster" com os dados "O Exorcista", "1973", "William Friedkin", "2h12m", "Terror", "Em Georgetown, Washington, uma atriz vai gradativamente tomando consciência que a sua filha de doze anos está tendo um comportamento completamente assustador." e "imagemPoster" respectivamente e clico no botão "Confirmar"', () => {
     cy.get('[data-testid="square"]').click()
+    cy.get('[data-testid="prompt"]').type('https://http2.mlstatic.com/D_NQ_NP_682779-MLB41490235362_042020-O.webp')
+    cy.get('[data-testid="botaoConfirmarPrompt"]').click()
     cy.get('[data-testid="input-name"]').type('O Exorcista')
     cy.get('[data-testid="input-diretor"]').type('1973')
     cy.get('[data-testid="input-year"]').type('William Friedkin')
@@ -60,7 +64,9 @@ And('Aparece um modal com a mensagem "Filme Removido com Sucesso" e o filme não
 
 And('Preencho as informações "nome", "ano", "diretor", "duracao", "genero", "sinopse" e "poster" com os dados "1984", "1984", "Michael Radford", "1h53m", "Drama", "Mil novecentos e oitenta e quatro é um romance distópico do escritor inglês George Orwell." e "imagePoster" respectivamente e clico no botão "Confirmar"', () => {
   cy.get('[data-testid="square"]').click()
-  cy.get('[data-testid="input-name"]').type('O 1984')
+  cy.get('[data-testid="prompt"]').type('https://image.tmdb.org/t/p/w600_and_h900_bestv2/2EOfGaRluwJe6OlR21JtbLhWDvt.jpg')
+  cy.get('[data-testid="botaoConfirmarPrompt"]').click()
+  cy.get('[data-testid="input-name"]').type('1984')
   cy.get('[data-testid="input-diretor"]').type('1984')
   cy.get('[data-testid="input-year"]').type('Michael Radford')
   cy.get('[data-testid="input-duration"]').type('1h53m')
@@ -70,7 +76,7 @@ And('Preencho as informações "nome", "ano", "diretor", "duracao", "genero", "s
   })
 
   When('Eu clico no componente "Filme" e escolho a opção "Editar"', () => {
-    cy.visit(`http://localhost:3005/Adm/5e6f7g8h-9i10-j11k12-l13m14-n15o16p17q`)
+    cy.visit(`http://localhost:3005/Adm/28e43335-5848-52a4-bcd8-223e571c80f1`)
     cy.get('[data-testid="edit"]').click()
   })
 
@@ -103,83 +109,3 @@ And('Preencho as informações "nome", "ano", "diretor", "duracao", "genero", "s
         cy.get('[data-testid="adicionar"]').contains('Preencha o campo "Poster"')
       })
     
-
-// And('O "Modal de Review" fecha', () => {
-//   cy.get('.modal').should('not.exist')
-// })
-
-// And('Eu posso ver meu review no "Forum"', async () => {
-//   cy.get('.post').contains('Filme muito bom').should('exist')
-// })
-
-// // Scenario: Criação de um review sem a descricao.
-// Given('Given Eu Estou na página do filme "Teste"', async () => {
-//   cy.visit(`http://localhost:3005/filme/${filme_id}`)
-// })
-
-// When('Eu clico no botão "Poste um Review"', () => {
-//   cy.get('button').contains('Poste um Review').click()
-// })
-
-// Then('Um "Modal de Review" abre na minha tela', () => {
-//   cy.get('.modal').should('exist')
-// })
-
-// And('Eu preencho "5" no campo nota e clico no botão "ENVIAR"', () => {
-//   // Select the Rating component using the data-testid attribute
-//   cy.get('[data-testid="rating-component"]').as('rating')
-
-//   // Measure the dimensions and calculate the position to click
-//   cy.get('@rating').then(($el) => {
-//     const ratingWidth = $el.width()
-//     const starsCount = 5 // Assuming 5 stars in the Rating component
-//     const targetStarIndex = 5 // 5th star for the maximum rating
-//     const clickPosition = (ratingWidth / starsCount) * (targetStarIndex - 0.5)
-
-//     cy.wrap($el).click(clickPosition, $el.height() / 2)
-//   })
-
-//   cy.get('button').contains('ENVIAR').click()
-// })
-
-// And('O "Modal de Review" fecha', () => {
-//   cy.get('.modal').should('not.exist')
-// })
-
-// And('Eu posso ver meu review no "Forum", com nota "5" e sem Review', async () => {
-//   // cy.get('.post').contains('Filme muito bom').should('exist')
-//   cy.get('.post').within(() => {
-//     // Check for 5 red stars
-//     cy.get('.MuiRating-iconFilled')
-//       .should('have.length', 10)
-//       .each(($star) => {
-//         cy.wrap($star).find('svg').should('have.attr', 'style', 'color: rgb(255, 24, 44);')
-//       })
-//   })
-// })
-
-// // Scenario: Falha criação de review sem nota.
-
-// And('Eu preencho "Filme muito bom" no campo Review e clico no botão "Publicar"', () => {
-//   cy.get('textarea').type('Filme muito bom')
-//   cy.get('button').contains('ENVIAR').click()
-// })
-
-// Then('Uma "Mensagem de Erro" escrita "Nota é obrigatória" surge acima das estrelas', () => {
-//   cy.get('[data-testid="error"]').contains('Nota é obrigatória').should('exist')
-// })
-
-// // Scenario: Apagar um review.
-
-// When('Eu clico no icone de "opções" no meu review', () => {
-//   cy.get('[data-testid="settings-menu"]').click()
-// })
-
-// And('Eu clico no botão "Deletar"', () => {
-//   cy.get('li').contains('Deletar').click()
-// })
-
-// Then('Meu review é removido do "Campo de Reviews"', () => {
-//   cy.get('.post').should('not.exist')
-// })
-

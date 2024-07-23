@@ -36,7 +36,7 @@ const ModalContentAdd = ({ handleContent }) => {
       setPostSynopsis('')
       setBooleano(true)
       // handleContent()
-    } else if (response === 'Filme já cadastrado no sistema') {
+    } else if (response.status === 200) {
       setMessage('Filme já cadastrado no sistema')
     } else if (response === 'O poster não foi adicionado') {
       setMessage('Preencha o campo "Poster"')
@@ -48,8 +48,8 @@ const ModalContentAdd = ({ handleContent }) => {
       setMessage('Preencha o campo "Duração"')
     } else if (response === 'O campo sinopse não foi preenchido') {
       setMessage('Preencha o campo "Sinopse"')
-      // } else if (response === 'O campo diretor não foi preenchido') {
-      //   alert('Preencha o campo "Diretor"')
+    } else if (response === 'O campo diretor não foi preenchido') {
+      alert('Preencha o campo "Diretor"')
     } else if (response === 'O campo genero não foi preenchido') {
       setMessage('Preencha o campo "Gênero"')
     } else {
