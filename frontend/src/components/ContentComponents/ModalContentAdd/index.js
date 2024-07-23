@@ -4,6 +4,7 @@ import { IoCloseSharp } from 'react-icons/io5'
 import MovieFrame from '../MovieFrame'
 import AddMovie from '../../../services/content/AddMovie'
 import ModalConfirm from '../ModalConfirm'
+import Prompt from '../Prompt'
 
 const ModalContentAdd = ({ handleContent }) => {
   const [postName, setPostName] = useState('')
@@ -20,6 +21,7 @@ const ModalContentAdd = ({ handleContent }) => {
   const [message, setMessage] = useState('')
 
   const [booleano, setBooleano] = useState(false)
+  const [prompt, setPrompt] = useState(false)
 
   const handleAddMovie = async () => {
     toggleConfirm()
@@ -56,11 +58,9 @@ const ModalContentAdd = ({ handleContent }) => {
   }
 
   const handleSwitchImage = async () => {
-    let text
-    text = prompt('Coloque a URL da imagem do poster do filme: ')
-    if (text) {
+    setPrompt(!prompt)
+    if (prompt) {
       setSwitchImage(!switchImage)
-      setPostImage(text)
     }
   }
 
@@ -69,9 +69,12 @@ const ModalContentAdd = ({ handleContent }) => {
       <>
         {' '}
         {!props.switchImage ? (
-          <MovieFrame style={styles.poster_img} onClick={handleSwitchImage} type={'square'} />
+          <>
+            <MovieFrame style={styles.poster_img} onClick={handleSwitchImage} type={'square'} />
+            {prompt && <Prompt handleClose={handleSwitchImage} setPostImage={setPostImage} />}
+          </>
         ) : (
-          <img src={postImage} alt='Poster do Filme' style={styles.poster_img} />
+          <img src={postImage} alt='Poster do Filme' style={styles.poster_img} onClick={handleSwitchImage} />
         )}
       </>
     )
