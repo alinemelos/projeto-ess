@@ -1,24 +1,25 @@
-const Movie = require("../models/movies");
-const movies = require("../db/db");
-const { v5: uuidv5 } = require("uuid");
+const Movie = require('../models/movies');
+const movies = require('../db/db');
+const { v5: uuidv5 } = require('uuid');
 
-const MY_NAMESPACE = "d7b4380e-75f9-4b83-a67b-867540268a50";
+const MY_NAMESPACE = 'd7b4380e-75f9-4b83-a67b-867540268a50';
 
 exports.getMovie = (req, res) => {
   try {
     const { filme_id } = req.body;
-
-    const movieIndex = movies.findIndex((movie) => movie.filme_id === filme_id);
+    
+    const movieIndex = movies.findIndex(movie => movie.filme_id === filme_id);
 
     if (movieIndex === -1) {
-      return res.status(404).json({ error: "Filme não encontrado" });
+      return res.status(404).json({ error: 'Filme não encontrado' });
     }
 
     const movie = movies[movieIndex];
-    res.status(200).json(movie);
+    res.status(200).json( movie );
+    
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ error: "Erro ao remover o filme" });
+    return res.status(500).json({ error: 'Erro ao remover o filme' });
   }
 };
 
@@ -77,12 +78,13 @@ exports.addMovie = (req, res) => {
     );
 
     movies.push(newMovie);
-    res.status(201).json({ filme_id: newMovie.filme_id });
+    res.status(201).json({ filme_id: newMovie.filme_id, message: "Filme Adicionado com Sucesso" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Erro ao adicionar o filme" });
   }
 };
+
 
 exports.delMovie = (req, res) => {
   try {
@@ -124,17 +126,17 @@ exports.editMovie = (req, res) => {
     }
 
     if (
-      !poster &&
-      !nome &&
-      !ano &&
-      !duracao &&
-      !sinopse &&
-      !diretor &&
-      !genero &&
-      !plataformas
+      filme_id === movies[movieIndex].filme_id &&
+      poster === movies[movieIndex].poster &&
+      nome === movies[movieIndex].nome &&
+      ano === movies[movieIndex].ano &&
+      duracao === movies[movieIndex].duracao &&
+      sinopse === movies[movieIndex].sinopse &&
+      genero === movies[movieIndex].genero
     ) {
       return res.status(400).json({ error: "Nenhum campo para atualizar" });
     }
+
 
     if (poster) movies[movieIndex].poster = poster;
     if (nome) movies[movieIndex].nome = nome;
@@ -143,7 +145,7 @@ exports.editMovie = (req, res) => {
     if (sinopse) movies[movieIndex].sinopse = sinopse;
     if (diretor) movies[movieIndex].diretor = diretor;
     if (genero) movies[movieIndex].genero = genero;
-    if (plataformas) movies[movieIndex].plataformas = plataformas;
+    // if (plataformas) movies[movieIndex].plataformas = plataformas;
 
     res.status(200).json({
       message: "Filme Editado com Sucesso",

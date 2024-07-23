@@ -34,7 +34,8 @@ const styles = {
     alignItems: 'flex-start'
   },
   post__footer_arrow: {
-    marginLeft: 'auto'
+    marginBottom: '2rem',
+    visibility: 'hidden'
   }
 }
 

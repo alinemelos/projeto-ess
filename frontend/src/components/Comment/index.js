@@ -26,7 +26,7 @@ const Comment = ({ comment, user_id, publishComment, isNested = false }) => {
           </div>
           <div style={styles.comment__actions}>
             <div style={styles.comment__actions__options}>
-              <span>
+              <span className='config-comment'>
                 <SettingsMenuComment
                   style={styles.menu}
                   comment={comment}
@@ -35,7 +35,7 @@ const Comment = ({ comment, user_id, publishComment, isNested = false }) => {
                   editing={handleEditing}
                 />
               </span>
-              <span style={styles.arrow} onClick={handleArrowClick}>
+              <span className='arrow-comment' style={styles.arrow} onClick={handleArrowClick}>
                 <PiArrowBendDownLeftFill />
               </span>
             </div>

@@ -1,6 +1,5 @@
 import background from '../../assets/bg.png'
 
-// src/pages/FilmStyles.js
 const styles = {
   bg: {
     backgroundAttachment: 'fixed',
@@ -15,19 +14,58 @@ const styles = {
     margin: '0 auto 0 7%',
     padding: '20px'
   },
+  head: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    gap: '20px',
+    alignItems: 'baseline'
+  },
   title: {
-    fontSize: '2em',
+    fontSize: '3.2em',
+    fontFamily: 'Bebas Neue',
     marginBottom: '20px',
+    color: '#000'
+  },
+  minordetail: {
+    display: 'flex',
+    gap: '5px'
+  },
+  titlesbegin: {
+    fontSize: '1.2em',
+    fontFamily: 'Bebas Neue',
     color: '#333'
+  },
+  image: {
+    width: '20%',
+    borderRadius: '10px',
+    objectFit: 'cover' // Assegura que a imagem cubra totalmente a caixa
+  },
+  info: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    gap: '20px',
+    alignItems: 'stretch' // Faz com que as caixas dentro de info tenham a mesma altura
   },
   synopsis: {
     fontSize: '1.2em',
     color: '#555'
   },
   detail: {
-    marginTop: '20px',
-    fontSize: '1em',
-    color: '#777'
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    // gap: '20px',
+    flexGrow: 1 // Faz com que a caixa de detalhes cresça para preencher o espaço disponível
+  },
+  synopsisandinfo: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px'
+  },
+  butons: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    gap: '10px'
   },
   forum: {
     marginTop: '4rem'

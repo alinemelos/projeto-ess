@@ -20,6 +20,7 @@ const ModalReview = ({
 }) => {
   const [postText, setPostText] = useState('')
   const [errorNota, setErrorNota] = useState(false)
+  const [errorAlreadyHasReview, setErrorAlreadyHasReview] = useState(false)
   const [rating, setRating] = useState(null)
 
   const handleCreatePost = async () => {
@@ -32,6 +33,8 @@ const ModalReview = ({
         setModalOpen()
       } else if (response === 'Nota is required.') {
         setErrorNota(true)
+      } else if (response === 'User already posted a review.') {
+        setErrorAlreadyHasReview(true)
       } else {
         alert('Erro ao enviar review')
       }
@@ -43,6 +46,8 @@ const ModalReview = ({
         setModalOpen()
       } else if (response === 'Nota is required.') {
         setErrorNota(true)
+      } else if (response === 'User already posted a review.') {
+        setErrorAlreadyHasReview(true)
       } else {
         alert('Erro ao enviar review')
       }
@@ -51,6 +56,7 @@ const ModalReview = ({
 
   useEffect(() => {
     setErrorNota(false)
+    setErrorAlreadyHasReview(false)
     setPostText('')
     setRating(null)
     if (isEditing) {
@@ -80,6 +86,11 @@ const ModalReview = ({
                   </div>
                 </div>
                 <div style={styles.form}>
+                  {errorAlreadyHasReview && (
+                    <p style={styles.form__bottom__nota_error} data-testid='error'>
+                      Usuário já postou uma review
+                    </p>
+                  )}
                   <textarea
                     type='text'
                     placeholder='Escreva aqui sua review...'
