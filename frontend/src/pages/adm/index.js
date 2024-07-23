@@ -148,10 +148,10 @@ const Adm = () => {
                 </div>
               </div>
               <div style={styles.butons}>
-                <Button variant='contained' color='secondary' onClick={handleDelete}>
+                <Button variant='contained' color='secondary' onClick={handleDelete} data-testid='delete'>
                   Excluir Filme
                 </Button>
-                <Button variant='contained' color='warning' onClick={handleContent}>
+                <Button variant='contained' color='warning' onClick={handleContent} data-testid='edit'>
                   Editar Filme
                 </Button>
                 <Button variant='contained' color='primary' onClick={handleOpenModalPlatform}>

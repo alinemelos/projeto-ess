@@ -39,9 +39,9 @@ const ModalContentDelete = ({ handleDelete, id }) => {
       <>
         {' '}
         {!booleano ? (
-          <ModalConfirm handleClose={toggleConfirm} text={message} />
+          <ModalConfirm handleClose={toggleConfirm} text={message} confirm_message={'deletar'} />
         ) : (
-          <ModalConfirm handleClose={handleCloseFull} text={message} />
+          <ModalConfirm handleClose={handleCloseFull} text={message} confirm_message={'deletar'} />
         )}
       </>
     )
@@ -54,10 +54,15 @@ const ModalContentDelete = ({ handleDelete, id }) => {
           <IoCloseSharp size={48} cursor={'pointer'} onClick={handleDelete} />
         </div>
         <div style={styles.content}>
-          <p style={styles.text}>Você certeza que deseja apagar o filme?</p>
+          <p style={styles.text} data-testid='verificar-deletar'>
+            {' '}
+            Você tem certeza que deseja apagar o filme?
+          </p>
         </div>
         <div style={styles.confirm} cursor={'pointer'} onClick={handleDeleteMovie}>
-          <button style={styles.button_confirm}>Confirmar</button>
+          <button style={styles.button_confirm} data-testid='Continue'>
+            Confirmar
+          </button>
           {switchConfirm && <RenderCorrectWindow />}
         </div>
       </div>

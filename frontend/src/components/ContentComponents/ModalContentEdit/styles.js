@@ -20,8 +20,8 @@ const styles = {
     borderRadius: '22px',
     display: 'flex',
     flexDirection: 'column',
-    maxWidth: '1414px',
-    maxHeigth: '700px',
+    width: '80%',
+    height: '90%',
     boxSizing: 'border-box'
   },
   titulo: {

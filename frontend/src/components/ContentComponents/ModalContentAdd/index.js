@@ -69,7 +69,7 @@ const ModalContentAdd = ({ handleContent }) => {
       <>
         {' '}
         {!props.switchImage ? (
-          <MovieFrame style={styles.poster_img} onClick={handleSwitchImage} />
+          <MovieFrame style={styles.poster_img} onClick={handleSwitchImage} type={'square'} />
         ) : (
           <img src={postImage} alt='Poster do Filme' style={styles.poster_img} />
         )}
@@ -84,6 +84,7 @@ const ModalContentAdd = ({ handleContent }) => {
   const handleCloseFull = () => {
     toggleConfirm()
     handleContent()
+    window.location.reload()
   }
 
   function RenderCorrectWindow() {
@@ -91,9 +92,9 @@ const ModalContentAdd = ({ handleContent }) => {
       <>
         {' '}
         {!booleano ? (
-          <ModalConfirm handleClose={toggleConfirm} text={message} />
+          <ModalConfirm handleClose={toggleConfirm} text={message} confirm_message='adicionar' />
         ) : (
-          <ModalConfirm handleClose={handleCloseFull} text={message} />
+          <ModalConfirm handleClose={handleCloseFull} text={message} confirm_message='adicionar' />
         )}
       </>
     )
@@ -101,7 +102,7 @@ const ModalContentAdd = ({ handleContent }) => {
 
   return (
     <div style={styles.background}>
-      <div style={styles.modal}>
+      <div style={styles.modal} data-testid='modal'>
         <div style={styles.titulo}>
           <p style={styles.fonte_titulo}>Cadastrar Filme:</p>
           <IoCloseSharp size={48} cursor={'pointer'} onClick={handleContent} />
@@ -116,6 +117,7 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Nome do Filme'
                 value={postName}
                 onChange={(e) => setPostName(e.target.value)}
+                data-testid='input-name'
               />
               <input
                 style={styles.input_diretor}
@@ -123,6 +125,7 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Diretor'
                 value={postDiretor}
                 onChange={(e) => setPostDiretor(e.target.value)}
+                data-testid='input-diretor'
               />
               <input
                 style={styles.input_year}
@@ -130,6 +133,7 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Ano'
                 value={postYear}
                 onChange={(e) => setPostYear(e.target.value)}
+                data-testid='input-year'
               />
               <input
                 style={styles.input_duration}
@@ -137,6 +141,7 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Duração'
                 value={postDuration}
                 onChange={(e) => setPostDuration(e.target.value)}
+                data-testid='input-duration'
               />
               <input
                 style={styles.input_genre}
@@ -144,6 +149,7 @@ const ModalContentAdd = ({ handleContent }) => {
                 placeholder='Gênero'
                 value={postGenre}
                 onChange={(e) => setPostGenre(e.target.value)}
+                data-testid='input-genre'
               />
             </div>
             <textarea
@@ -152,11 +158,15 @@ const ModalContentAdd = ({ handleContent }) => {
               style={styles.sinopse_textarea}
               value={postSynopsis}
               onChange={(e) => setPostSynopsis(e.target.value)}
+              data-testid='sinopse'
             ></textarea>
           </div>
         </div>
         <div style={styles.confirm} onClick={handleAddMovie}>
-          <button style={styles.button_confirm}> Confirmar </button>
+          <button style={styles.button_confirm} data-testid='botao'>
+            {' '}
+            Confirmar{' '}
+          </button>
           {switchConfirm && <RenderCorrectWindow />}
         </div>
       </div>

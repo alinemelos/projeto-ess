@@ -18,11 +18,9 @@ const styles = {
     borderRadius: '22px',
     display: 'flex',
     flexDirection: 'column',
-    maxWidth: '1414px',
-    maxHeigth: '700px',
-    boxSizing: 'border-box',
-    width: '100%',
-    heigth: '100%'
+    width: '80%',
+    height: 'auto',
+    boxSizing: 'border-box'
   },
   titulo: {
     display: 'flex',
@@ -34,7 +32,7 @@ const styles = {
   text: {
     fontFamily: 'Bebas Neue',
     fontSize: '3rem',
-    margin: '14.9rem 20rem'
+    margin: '20vh'
   },
 
   content: {
