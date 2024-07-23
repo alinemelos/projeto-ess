@@ -20,9 +20,8 @@ const styles = {
     borderRadius: '22px',
     display: 'flex',
     flexDirection: 'column',
-    width: '80%',
-    height: '90%',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    width: '80%'
   },
   titulo: {
     display: 'flex',
@@ -44,7 +43,9 @@ const styles = {
     width: '29.6%',
     height: 'auto',
     borderRadius: '12px',
-    border: '2px solid #000'
+    border: '2px solid #000',
+    maxWidth: '286px',
+    maxHeight: '442px'
   },
   form: {
     display: 'flex',

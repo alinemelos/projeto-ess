@@ -43,7 +43,9 @@ const styles = {
     width: '29.6%',
     height: 'auto',
     borderRadius: '12px',
-    border: '2px solid #000'
+    border: '2px solid #000',
+    maxWidth: '286px',
+    maxHeight: '442px'
   },
   form: {
     display: 'flex',
