@@ -62,7 +62,7 @@ const CarouselMovies = ({ filmes_novos, handleContent, showMovieFrame }) => {
         </div>
         <div style={styles.errorMessage}>
           <CiSearch style={styles.icon} />
-          <p>Infelizmente não foram encontrados resultados para a sua busca :(</p>
+          <p id='mensagem_de_erro'>Infelizmente não foram encontrados resultados para a sua busca :(</p>
         </div>
       </div>
     )
